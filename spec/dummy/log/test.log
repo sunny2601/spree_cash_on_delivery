@@ -1,0 +1,627 @@
+Connecting to database specified by database.yml
+  [1m[36mSpree::Preference Load (8.1ms)[0m  [1mSELECT "spree_preferences".* FROM "spree_preferences" WHERE "spree_preferences"."key" = 'spree/app_configuration/attachment_styles' LIMIT 1[0m
+  [1m[35mSpree::Preference Load (0.2ms)[0m  SELECT "spree_preferences".* FROM "spree_preferences" WHERE "spree_preferences"."key" = 'spree/app_configuration/attachment_path' LIMIT 1
+  [1m[36mSpree::Preference Load (0.1ms)[0m  [1mSELECT "spree_preferences".* FROM "spree_preferences" WHERE "spree_preferences"."key" = 'spree/app_configuration/attachment_url' LIMIT 1[0m
+  [1m[35mSpree::Preference Load (0.2ms)[0m  SELECT "spree_preferences".* FROM "spree_preferences" WHERE "spree_preferences"."key" = 'spree/app_configuration/attachment_default_url' LIMIT 1
+  [1m[36mSpree::Preference Load (0.2ms)[0m  [1mSELECT "spree_preferences".* FROM "spree_preferences" WHERE "spree_preferences"."key" = 'spree/app_configuration/attachment_default_style' LIMIT 1[0m
+Creating scope :deleted. Overwriting existing method Spree::Variant.deleted.
+  [1m[35m (23.9ms)[0m  DELETE FROM "spree_activators";
+  [1m[36m (0.2ms)[0m  [1mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.4ms)[0m  DELETE FROM sqlite_sequence where name = 'spree_activators';
+  [1m[36m (1.8ms)[0m  [1mDELETE FROM "spree_addresses";[0m
+  [1m[35m (0.2ms)[0m  SELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';
+  [1m[36m (0.1ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'spree_addresses';[0m
+  [1m[35m (2.5ms)[0m  DELETE FROM "spree_adjustments";
+  [1m[36m (0.2ms)[0m  [1mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.1ms)[0m  DELETE FROM sqlite_sequence where name = 'spree_adjustments';
+  [1m[36m (2.5ms)[0m  [1mDELETE FROM "spree_assets";[0m
+  [1m[35m (0.2ms)[0m  SELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';
+  [1m[36m (0.1ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'spree_assets';[0m
+  [1m[35m (1.4ms)[0m  DELETE FROM "spree_calculators";
+  [1m[36m (0.2ms)[0m  [1mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.1ms)[0m  DELETE FROM sqlite_sequence where name = 'spree_calculators';
+  [1m[36m (1.6ms)[0m  [1mDELETE FROM "spree_configurations";[0m
+  [1m[35m (0.2ms)[0m  SELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';
+  [1m[36m (0.1ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'spree_configurations';[0m
+  [1m[35m (1.4ms)[0m  DELETE FROM "spree_countries";
+  [1m[36m (0.2ms)[0m  [1mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.1ms)[0m  DELETE FROM sqlite_sequence where name = 'spree_countries';
+  [1m[36m (1.4ms)[0m  [1mDELETE FROM "spree_credit_cards";[0m
+  [1m[35m (0.1ms)[0m  SELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';
+  [1m[36m (0.1ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'spree_credit_cards';[0m
+  [1m[35m (1.3ms)[0m  DELETE FROM "spree_gateways";
+  [1m[36m (0.1ms)[0m  [1mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.1ms)[0m  DELETE FROM sqlite_sequence where name = 'spree_gateways';
+  [1m[36m (2.9ms)[0m  [1mDELETE FROM "spree_inventory_units";[0m
+  [1m[35m (0.1ms)[0m  SELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';
+  [1m[36m (0.1ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'spree_inventory_units';[0m
+  [1m[35m (2.3ms)[0m  DELETE FROM "spree_line_items";
+  [1m[36m (0.1ms)[0m  [1mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.1ms)[0m  DELETE FROM sqlite_sequence where name = 'spree_line_items';
+  [1m[36m (2.6ms)[0m  [1mDELETE FROM "spree_log_entries";[0m
+  [1m[35m (0.2ms)[0m  SELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';
+  [1m[36m (0.1ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'spree_log_entries';[0m
+  [1m[35m (1.8ms)[0m  DELETE FROM "spree_option_types";
+  [1m[36m (0.1ms)[0m  [1mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.1ms)[0m  DELETE FROM sqlite_sequence where name = 'spree_option_types';
+  [1m[36m (1.1ms)[0m  [1mDELETE FROM "spree_option_types_prototypes";[0m
+  [1m[35m (0.1ms)[0m  SELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';
+  [1m[36m (0.1ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'spree_option_types_prototypes';[0m
+  [1m[35m (1.6ms)[0m  DELETE FROM "spree_option_values";
+  [1m[36m (0.1ms)[0m  [1mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.1ms)[0m  DELETE FROM sqlite_sequence where name = 'spree_option_values';
+  [1m[36m (2.9ms)[0m  [1mDELETE FROM "spree_option_values_variants";[0m
+  [1m[35m (0.1ms)[0m  SELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';
+  [1m[36m (0.1ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'spree_option_values_variants';[0m
+  [1m[35m (1.8ms)[0m  DELETE FROM "spree_orders";
+  [1m[36m (0.1ms)[0m  [1mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.1ms)[0m  DELETE FROM sqlite_sequence where name = 'spree_orders';
+  [1m[36m (1.1ms)[0m  [1mDELETE FROM "spree_payment_methods";[0m
+  [1m[35m (0.1ms)[0m  SELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';
+  [1m[36m (0.1ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'spree_payment_methods';[0m
+  [1m[35m (2.0ms)[0m  DELETE FROM "spree_payments";
+  [1m[36m (0.1ms)[0m  [1mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.1ms)[0m  DELETE FROM sqlite_sequence where name = 'spree_payments';
+  [1m[36m (2.0ms)[0m  [1mDELETE FROM "spree_preferences";[0m
+  [1m[35m (0.1ms)[0m  SELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';
+  [1m[36m (0.1ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'spree_preferences';[0m
+  [1m[35m (2.0ms)[0m  DELETE FROM "spree_prices";
+  [1m[36m (0.1ms)[0m  [1mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.1ms)[0m  DELETE FROM sqlite_sequence where name = 'spree_prices';
+  [1m[36m (1.5ms)[0m  [1mDELETE FROM "spree_product_option_types";[0m
+  [1m[35m (0.1ms)[0m  SELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';
+  [1m[36m (0.1ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'spree_product_option_types';[0m
+  [1m[35m (30.2ms)[0m  DELETE FROM "spree_product_properties";
+  [1m[36m (0.3ms)[0m  [1mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.2ms)[0m  DELETE FROM sqlite_sequence where name = 'spree_product_properties';
+  [1m[36m (6.7ms)[0m  [1mDELETE FROM "spree_products";[0m
+  [1m[35m (0.2ms)[0m  SELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';
+  [1m[36m (0.1ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'spree_products';[0m
+  [1m[35m (3.1ms)[0m  DELETE FROM "spree_products_promotion_rules";
+  [1m[36m (0.2ms)[0m  [1mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.1ms)[0m  DELETE FROM sqlite_sequence where name = 'spree_products_promotion_rules';
+  [1m[36m (3.1ms)[0m  [1mDELETE FROM "spree_products_taxons";[0m
+  [1m[35m (0.2ms)[0m  SELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';
+  [1m[36m (0.1ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'spree_products_taxons';[0m
+  [1m[35m (1.5ms)[0m  DELETE FROM "spree_promotion_action_line_items";
+  [1m[36m (0.1ms)[0m  [1mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.1ms)[0m  DELETE FROM sqlite_sequence where name = 'spree_promotion_action_line_items';
+  [1m[36m (1.1ms)[0m  [1mDELETE FROM "spree_promotion_actions";[0m
+  [1m[35m (0.1ms)[0m  SELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';
+  [1m[36m (0.1ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'spree_promotion_actions';[0m
+  [1m[35m (2.4ms)[0m  DELETE FROM "spree_promotion_rules";
+  [1m[36m (0.2ms)[0m  [1mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.1ms)[0m  DELETE FROM sqlite_sequence where name = 'spree_promotion_rules';
+  [1m[36m (1.8ms)[0m  [1mDELETE FROM "spree_promotion_rules_users";[0m
+  [1m[35m (0.1ms)[0m  SELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';
+  [1m[36m (0.1ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'spree_promotion_rules_users';[0m
+  [1m[35m (1.1ms)[0m  DELETE FROM "spree_properties";
+  [1m[36m (0.1ms)[0m  [1mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.1ms)[0m  DELETE FROM sqlite_sequence where name = 'spree_properties';
+  [1m[36m (1.2ms)[0m  [1mDELETE FROM "spree_properties_prototypes";[0m
+  [1m[35m (0.1ms)[0m  SELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';
+  [1m[36m (0.1ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'spree_properties_prototypes';[0m
+  [1m[35m (1.3ms)[0m  DELETE FROM "spree_prototypes";
+  [1m[36m (0.1ms)[0m  [1mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.1ms)[0m  DELETE FROM sqlite_sequence where name = 'spree_prototypes';
+  [1m[36m (1.3ms)[0m  [1mDELETE FROM "spree_return_authorizations";[0m
+  [1m[35m (0.2ms)[0m  SELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';
+  [1m[36m (0.1ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'spree_return_authorizations';[0m
+  [1m[35m (1.3ms)[0m  DELETE FROM "spree_roles";
+  [1m[36m (0.1ms)[0m  [1mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.1ms)[0m  DELETE FROM sqlite_sequence where name = 'spree_roles';
+  [1m[36m (2.1ms)[0m  [1mDELETE FROM "spree_roles_users";[0m
+  [1m[35m (0.1ms)[0m  SELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';
+  [1m[36m (0.1ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'spree_roles_users';[0m
+  [1m[35m (2.3ms)[0m  DELETE FROM "spree_shipments";
+  [1m[36m (0.1ms)[0m  [1mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.1ms)[0m  DELETE FROM sqlite_sequence where name = 'spree_shipments';
+  [1m[36m (1.4ms)[0m  [1mDELETE FROM "spree_shipping_categories";[0m
+  [1m[35m (0.1ms)[0m  SELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';
+  [1m[36m (0.1ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'spree_shipping_categories';[0m
+  [1m[35m (2.1ms)[0m  DELETE FROM "spree_shipping_method_categories";
+  [1m[36m (0.2ms)[0m  [1mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.1ms)[0m  DELETE FROM sqlite_sequence where name = 'spree_shipping_method_categories';
+  [1m[36m (1.5ms)[0m  [1mDELETE FROM "spree_shipping_methods";[0m
+  [1m[35m (0.1ms)[0m  SELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';
+  [1m[36m (0.1ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'spree_shipping_methods';[0m
+  [1m[35m (2.3ms)[0m  DELETE FROM "spree_shipping_methods_zones";
+  [1m[36m (0.2ms)[0m  [1mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.1ms)[0m  DELETE FROM sqlite_sequence where name = 'spree_shipping_methods_zones';
+  [1m[36m (2.1ms)[0m  [1mDELETE FROM "spree_shipping_rates";[0m
+  [1m[35m (0.1ms)[0m  SELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';
+  [1m[36m (0.1ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'spree_shipping_rates';[0m
+  [1m[35m (1.3ms)[0m  DELETE FROM "spree_state_changes";
+  [1m[36m (0.2ms)[0m  [1mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.1ms)[0m  DELETE FROM sqlite_sequence where name = 'spree_state_changes';
+  [1m[36m (1.5ms)[0m  [1mDELETE FROM "spree_states";[0m
+  [1m[35m (0.1ms)[0m  SELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';
+  [1m[36m (0.1ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'spree_states';[0m
+  [1m[35m (2.3ms)[0m  DELETE FROM "spree_stock_items";
+  [1m[36m (0.1ms)[0m  [1mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.1ms)[0m  DELETE FROM sqlite_sequence where name = 'spree_stock_items';
+  [1m[36m (1.4ms)[0m  [1mDELETE FROM "spree_stock_locations";[0m
+  [1m[35m (0.1ms)[0m  SELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';
+  [1m[36m (0.1ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'spree_stock_locations';[0m
+  [1m[35m (2.3ms)[0m  DELETE FROM "spree_stock_movements";
+  [1m[36m (0.1ms)[0m  [1mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.1ms)[0m  DELETE FROM sqlite_sequence where name = 'spree_stock_movements';
+  [1m[36m (2.4ms)[0m  [1mDELETE FROM "spree_stock_transfers";[0m
+  [1m[35m (0.2ms)[0m  SELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';
+  [1m[36m (0.1ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'spree_stock_transfers';[0m
+  [1m[35m (1.7ms)[0m  DELETE FROM "spree_tax_categories";
+  [1m[36m (0.1ms)[0m  [1mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.1ms)[0m  DELETE FROM sqlite_sequence where name = 'spree_tax_categories';
+  [1m[36m (1.7ms)[0m  [1mDELETE FROM "spree_tax_rates";[0m
+  [1m[35m (0.1ms)[0m  SELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';
+  [1m[36m (0.1ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'spree_tax_rates';[0m
+  [1m[35m (1.9ms)[0m  DELETE FROM "spree_taxonomies";
+  [1m[36m (0.1ms)[0m  [1mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.1ms)[0m  DELETE FROM sqlite_sequence where name = 'spree_taxonomies';
+  [1m[36m (22.8ms)[0m  [1mDELETE FROM "spree_taxons";[0m
+  [1m[35m (0.3ms)[0m  SELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';
+  [1m[36m (0.2ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'spree_taxons';[0m
+  [1m[35m (2.4ms)[0m  DELETE FROM "spree_tokenized_permissions";
+  [1m[36m (0.2ms)[0m  [1mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.1ms)[0m  DELETE FROM sqlite_sequence where name = 'spree_tokenized_permissions';
+  [1m[36m (2.7ms)[0m  [1mDELETE FROM "spree_trackers";[0m
+  [1m[35m (0.2ms)[0m  SELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';
+  [1m[36m (0.1ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'spree_trackers';[0m
+  [1m[35m (2.3ms)[0m  DELETE FROM "spree_users";
+  [1m[36m (0.3ms)[0m  [1mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.1ms)[0m  DELETE FROM sqlite_sequence where name = 'spree_users';
+  [1m[36m (2.6ms)[0m  [1mDELETE FROM "spree_variants";[0m
+  [1m[35m (0.2ms)[0m  SELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';
+  [1m[36m (0.1ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'spree_variants';[0m
+  [1m[35m (1.6ms)[0m  DELETE FROM "spree_zone_members";
+  [1m[36m (0.1ms)[0m  [1mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.1ms)[0m  DELETE FROM sqlite_sequence where name = 'spree_zone_members';
+  [1m[36m (2.7ms)[0m  [1mDELETE FROM "spree_zones";[0m
+  [1m[35m (0.2ms)[0m  SELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';
+  [1m[36m (0.1ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'spree_zones';[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (40.7ms)[0m  INSERT INTO "spree_payment_methods" ("active", "created_at", "deleted_at", "description", "display_on", "environment", "name", "type", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)  [["active", true], ["created_at", Mon, 24 Mar 2014 12:20:54 UTC +00:00], ["deleted_at", nil], ["description", nil], ["display_on", nil], ["environment", "test"], ["name", "Cash On Delivery"], ["type", "Spree::PaymentMethod::CashOnDelivery"], ["updated_at", Mon, 24 Mar 2014 12:20:54 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSpree::Order Load (0.2ms)[0m  [1mSELECT "spree_orders".* FROM "spree_orders" WHERE "spree_orders"."number" = 'R731428245' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "spree_orders" WHERE (spree_orders.number LIKE 'R731428245%')
+  [1m[36mSpree::Payment Load (0.1ms)[0m  [1mSELECT "spree_payments".* FROM "spree_payments" WHERE "spree_payments"."order_id" IS NULL AND "spree_payments"."state" = 'completed'[0m
+  [1m[35mSpree::Adjustment Load (0.2ms)[0m  SELECT "spree_adjustments".* FROM "spree_adjustments" WHERE "spree_adjustments"."adjustable_id" IS NULL AND "spree_adjustments"."adjustable_type" = 'Spree::Order' AND "spree_adjustments"."eligible" = 't' ORDER BY created_at ASC
+  [1m[36mSpree::Preference Load (0.1ms)[0m  [1mSELECT "spree_preferences".* FROM "spree_preferences" WHERE "spree_preferences"."key" = 'spree/app_configuration/always_include_confirm_step' LIMIT 1[0m
+  [1m[35mSpree::Payment Load (0.3ms)[0m  SELECT "spree_payments".* FROM "spree_payments" WHERE "spree_payments"."order_id" IS NULL AND ("spree_payments".state NOT IN ('failed','invalid'))
+  [1m[36mSpree::Payment Load (0.2ms)[0m  [1mSELECT "spree_payments".* FROM "spree_payments" WHERE "spree_payments"."order_id" IS NULL AND "spree_payments"."state" = 'completed'[0m
+  [1m[35mSpree::Adjustment Load (0.1ms)[0m  SELECT "spree_adjustments".* FROM "spree_adjustments" WHERE "spree_adjustments"."adjustable_id" IS NULL AND "spree_adjustments"."adjustable_type" = 'Spree::Order' AND "spree_adjustments"."eligible" = 't' ORDER BY created_at ASC
+  [1m[36mSpree::Payment Load (0.1ms)[0m  [1mSELECT "spree_payments".* FROM "spree_payments" WHERE "spree_payments"."order_id" IS NULL AND ("spree_payments".state NOT IN ('failed','invalid'))[0m
+  [1m[35mSQL (1.7ms)[0m  INSERT INTO "spree_orders" ("adjustment_total", "bill_address_id", "channel", "completed_at", "created_at", "created_by_id", "currency", "email", "item_total", "last_ip_address", "number", "payment_state", "payment_total", "ship_address_id", "shipment_state", "shipping_method_id", "special_instructions", "state", "total", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)  [["adjustment_total", #<BigDecimal:7ff0d889d598,'0.0',9(36)>], ["bill_address_id", nil], ["channel", "spree"], ["completed_at", nil], ["created_at", Mon, 24 Mar 2014 12:20:54 UTC +00:00], ["created_by_id", nil], ["currency", "USD"], ["email", nil], ["item_total", #<BigDecimal:7ff0d889d688,'0.0',9(36)>], ["last_ip_address", nil], ["number", "R731428245"], ["payment_state", nil], ["payment_total", #<BigDecimal:7ff0d889d340,'0.0',9(36)>], ["ship_address_id", nil], ["shipment_state", nil], ["shipping_method_id", nil], ["special_instructions", nil], ["state", "cart"], ["total", #<BigDecimal:7ff0d88532e0,'0.0',9(27)>], ["updated_at", Mon, 24 Mar 2014 12:20:54 UTC +00:00], ["user_id", nil]]
+  [1m[36mSpree::TokenizedPermission Load (0.2ms)[0m  [1mSELECT "spree_tokenized_permissions".* FROM "spree_tokenized_permissions" WHERE "spree_tokenized_permissions"."permissable_id" = 1 AND "spree_tokenized_permissions"."permissable_type" = 'Spree::Order' LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "spree_tokenized_permissions" ("created_at", "permissable_id", "permissable_type", "token", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", Mon, 24 Mar 2014 12:20:54 UTC +00:00], ["permissable_id", 1], ["permissable_type", "Spree::Order"], ["token", "7154b4458c1834c4"], ["updated_at", Mon, 24 Mar 2014 12:20:54 UTC +00:00]]
+  [1m[36mSpree::Adjustment Load (0.2ms)[0m  [1mSELECT "spree_adjustments".* FROM "spree_adjustments" WHERE "spree_adjustments"."adjustable_id" = 1 AND "spree_adjustments"."originator_type" = 'Spree::TaxRate' AND "spree_adjustments"."adjustable_type" = 'Spree::Order' ORDER BY created_at ASC[0m
+  [1m[35mSpree::Adjustment Load (0.1ms)[0m  SELECT "spree_adjustments".* FROM "spree_adjustments" INNER JOIN "spree_line_items" ON "spree_adjustments"."adjustable_id" = "spree_line_items"."id" AND "spree_adjustments"."adjustable_type" = 'Spree::LineItem' WHERE "spree_line_items"."order_id" = 1 AND "spree_adjustments"."originator_type" = 'Spree::TaxRate'
+  [1m[36mSpree::Preference Load (0.1ms)[0m  [1mSELECT "spree_preferences".* FROM "spree_preferences" WHERE "spree_preferences"."key" = 'spree/app_configuration/tax_using_ship_address' LIMIT 1[0m
+  [1m[35mSpree::Zone Load (0.1ms)[0m  SELECT "spree_zones".* FROM "spree_zones" ORDER BY zone_members_count, created_at
+  [1m[36mSpree::Zone Load (0.1ms)[0m  [1mSELECT "spree_zones".* FROM "spree_zones" WHERE "spree_zones"."default_tax" = 't' LIMIT 1[0m
+  [1m[35mSpree::Payment Exists (0.1ms)[0m  SELECT 1 AS one FROM "spree_payments" WHERE "spree_payments"."identifier" = '26EH2P3D' LIMIT 1
+  [1m[36mSQL (0.7ms)[0m  [1mINSERT INTO "spree_payments" ("amount", "avs_response", "created_at", "cvv_response_code", "cvv_response_message", "identifier", "order_id", "payment_method_id", "response_code", "source_id", "source_type", "state", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["amount", #<BigDecimal:7ff0d3429840,'0.0',9(45)>], ["avs_response", nil], ["created_at", Mon, 24 Mar 2014 12:20:54 UTC +00:00], ["cvv_response_code", nil], ["cvv_response_message", nil], ["identifier", "26EH2P3D"], ["order_id", 1], ["payment_method_id", 1], ["response_code", nil], ["source_id", nil], ["source_type", nil], ["state", "checkout"], ["updated_at", Mon, 24 Mar 2014 12:20:54 UTC +00:00]]
+  [1m[35mSpree::Payment Load (0.1ms)[0m  SELECT "spree_payments".* FROM "spree_payments" WHERE "spree_payments"."order_id" = 1 AND "spree_payments"."state" = 'checkout' AND (id != 1)
+  [1m[36mSQL (0.2ms)[0m  [1mUPDATE "spree_orders" SET "updated_at" = '2014-03-24 12:20:54.561448' WHERE "spree_orders"."id" = 1[0m
+  [1m[35mSpree::Payment Load (0.1ms)[0m  SELECT "spree_payments".* FROM "spree_payments" WHERE "spree_payments"."order_id" = 1
+  [1m[36mSpree::Payment Load (0.1ms)[0m  [1mSELECT "spree_payments".* FROM "spree_payments" WHERE "spree_payments"."order_id" = 1 AND "spree_payments"."state" = 'completed'[0m
+  [1m[35mSpree::Adjustment Load (0.1ms)[0m  SELECT "spree_adjustments".* FROM "spree_adjustments" WHERE "spree_adjustments"."adjustable_id" = 1 AND "spree_adjustments"."adjustable_type" = 'Spree::Order' AND "spree_adjustments"."eligible" = 't' ORDER BY created_at ASC
+  [1m[36mSpree::Adjustment Load (0.1ms)[0m  [1mSELECT "spree_adjustments".* FROM "spree_adjustments" WHERE "spree_adjustments"."adjustable_id" = 1 AND "spree_adjustments"."adjustable_type" = 'Spree::Order' ORDER BY created_at ASC[0m
+  [1m[35mSpree::Adjustment Load (0.3ms)[0m  SELECT "spree_adjustments".* FROM "spree_adjustments" WHERE "spree_adjustments"."adjustable_id" = 1 AND "spree_adjustments"."adjustable_type" = 'Spree::Order' AND "spree_adjustments"."originator_type" = 'Spree::PromotionAction' AND "spree_adjustments"."eligible" = 't' ORDER BY amount ASC, created_at DESC LIMIT 1
+  [1m[36mSpree::Payment Load (0.1ms)[0m  [1mSELECT "spree_payments".* FROM "spree_payments" WHERE "spree_payments"."order_id" = 1 AND "spree_payments"."state" = 'completed'[0m
+  [1m[35mSpree::Adjustment Load (0.1ms)[0m  SELECT "spree_adjustments".* FROM "spree_adjustments" WHERE "spree_adjustments"."adjustable_id" = 1 AND "spree_adjustments"."adjustable_type" = 'Spree::Order' AND "spree_adjustments"."eligible" = 't' ORDER BY created_at ASC
+  [1m[36mSQL (0.1ms)[0m  [1mUPDATE "spree_orders" SET "payment_state" = NULL, "shipment_state" = NULL, "item_total" = 0.0, "adjustment_total" = 0.0, "payment_total" = 0.0, "total" = 0.0 WHERE "spree_orders"."id" = 1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.7ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "spree_payment_methods" ("active", "created_at", "deleted_at", "description", "display_on", "environment", "name", "type", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)  [["active", true], ["created_at", Mon, 24 Mar 2014 12:20:54 UTC +00:00], ["deleted_at", nil], ["description", nil], ["display_on", nil], ["environment", "test"], ["name", "Cash On Delivery"], ["type", "Spree::PaymentMethod::CashOnDelivery"], ["updated_at", Mon, 24 Mar 2014 12:20:54 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSpree::Order Load (0.2ms)[0m  [1mSELECT "spree_orders".* FROM "spree_orders" WHERE "spree_orders"."number" = 'R647542322' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "spree_orders" WHERE (spree_orders.number LIKE 'R647542322%')
+  [1m[36mSpree::Payment Load (0.2ms)[0m  [1mSELECT "spree_payments".* FROM "spree_payments" WHERE "spree_payments"."order_id" IS NULL AND "spree_payments"."state" = 'completed'[0m
+  [1m[35mSpree::Adjustment Load (0.1ms)[0m  SELECT "spree_adjustments".* FROM "spree_adjustments" WHERE "spree_adjustments"."adjustable_id" IS NULL AND "spree_adjustments"."adjustable_type" = 'Spree::Order' AND "spree_adjustments"."eligible" = 't' ORDER BY created_at ASC
+  [1m[36mSpree::Payment Load (0.1ms)[0m  [1mSELECT "spree_payments".* FROM "spree_payments" WHERE "spree_payments"."order_id" IS NULL AND ("spree_payments".state NOT IN ('failed','invalid'))[0m
+  [1m[35mSpree::Payment Load (0.1ms)[0m  SELECT "spree_payments".* FROM "spree_payments" WHERE "spree_payments"."order_id" IS NULL AND "spree_payments"."state" = 'completed'
+  [1m[36mSpree::Adjustment Load (0.2ms)[0m  [1mSELECT "spree_adjustments".* FROM "spree_adjustments" WHERE "spree_adjustments"."adjustable_id" IS NULL AND "spree_adjustments"."adjustable_type" = 'Spree::Order' AND "spree_adjustments"."eligible" = 't' ORDER BY created_at ASC[0m
+  [1m[35mSpree::Payment Load (0.1ms)[0m  SELECT "spree_payments".* FROM "spree_payments" WHERE "spree_payments"."order_id" IS NULL AND ("spree_payments".state NOT IN ('failed','invalid'))
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "spree_orders" ("adjustment_total", "bill_address_id", "channel", "completed_at", "created_at", "created_by_id", "currency", "email", "item_total", "last_ip_address", "number", "payment_state", "payment_total", "ship_address_id", "shipment_state", "shipping_method_id", "special_instructions", "state", "total", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["adjustment_total", #<BigDecimal:7ff0d835a748,'0.0',9(36)>], ["bill_address_id", nil], ["channel", "spree"], ["completed_at", nil], ["created_at", Mon, 24 Mar 2014 12:20:54 UTC +00:00], ["created_by_id", nil], ["currency", "USD"], ["email", nil], ["item_total", #<BigDecimal:7ff0d835a838,'0.0',9(36)>], ["last_ip_address", nil], ["number", "R647542322"], ["payment_state", nil], ["payment_total", #<BigDecimal:7ff0d835a590,'0.0',9(36)>], ["ship_address_id", nil], ["shipment_state", nil], ["shipping_method_id", nil], ["special_instructions", nil], ["state", "cart"], ["total", #<BigDecimal:7ff0d8340410,'0.0',9(27)>], ["updated_at", Mon, 24 Mar 2014 12:20:54 UTC +00:00], ["user_id", nil]]
+  [1m[35mSpree::TokenizedPermission Load (0.1ms)[0m  SELECT "spree_tokenized_permissions".* FROM "spree_tokenized_permissions" WHERE "spree_tokenized_permissions"."permissable_id" = 1 AND "spree_tokenized_permissions"."permissable_type" = 'Spree::Order' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "spree_tokenized_permissions" ("created_at", "permissable_id", "permissable_type", "token", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", Mon, 24 Mar 2014 12:20:54 UTC +00:00], ["permissable_id", 1], ["permissable_type", "Spree::Order"], ["token", "e6baccdb1d438b0d"], ["updated_at", Mon, 24 Mar 2014 12:20:54 UTC +00:00]]
+  [1m[35mSpree::Adjustment Load (0.1ms)[0m  SELECT "spree_adjustments".* FROM "spree_adjustments" WHERE "spree_adjustments"."adjustable_id" = 1 AND "spree_adjustments"."originator_type" = 'Spree::TaxRate' AND "spree_adjustments"."adjustable_type" = 'Spree::Order' ORDER BY created_at ASC
+  [1m[36mSpree::Adjustment Load (0.2ms)[0m  [1mSELECT "spree_adjustments".* FROM "spree_adjustments" INNER JOIN "spree_line_items" ON "spree_adjustments"."adjustable_id" = "spree_line_items"."id" AND "spree_adjustments"."adjustable_type" = 'Spree::LineItem' WHERE "spree_line_items"."order_id" = 1 AND "spree_adjustments"."originator_type" = 'Spree::TaxRate'[0m
+  [1m[35mSpree::Zone Load (0.1ms)[0m  SELECT "spree_zones".* FROM "spree_zones" ORDER BY zone_members_count, created_at
+  [1m[36mSpree::Zone Load (0.1ms)[0m  [1mSELECT "spree_zones".* FROM "spree_zones" WHERE "spree_zones"."default_tax" = 't' LIMIT 1[0m
+  [1m[35mSpree::Payment Exists (0.1ms)[0m  SELECT 1 AS one FROM "spree_payments" WHERE "spree_payments"."identifier" = 'AZGKMNGJ' LIMIT 1
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "spree_payments" ("amount", "avs_response", "created_at", "cvv_response_code", "cvv_response_message", "identifier", "order_id", "payment_method_id", "response_code", "source_id", "source_type", "state", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["amount", #<BigDecimal:7ff0d839bf90,'0.0',9(45)>], ["avs_response", nil], ["created_at", Mon, 24 Mar 2014 12:20:54 UTC +00:00], ["cvv_response_code", nil], ["cvv_response_message", nil], ["identifier", "AZGKMNGJ"], ["order_id", 1], ["payment_method_id", 1], ["response_code", nil], ["source_id", nil], ["source_type", nil], ["state", "checkout"], ["updated_at", Mon, 24 Mar 2014 12:20:54 UTC +00:00]]
+  [1m[35mSpree::Payment Load (0.1ms)[0m  SELECT "spree_payments".* FROM "spree_payments" WHERE "spree_payments"."order_id" = 1 AND "spree_payments"."state" = 'checkout' AND (id != 1)
+  [1m[36mSQL (0.1ms)[0m  [1mUPDATE "spree_orders" SET "updated_at" = '2014-03-24 12:20:54.643473' WHERE "spree_orders"."id" = 1[0m
+  [1m[35mSpree::Payment Load (0.1ms)[0m  SELECT "spree_payments".* FROM "spree_payments" WHERE "spree_payments"."order_id" = 1
+  [1m[36mSpree::Payment Load (0.1ms)[0m  [1mSELECT "spree_payments".* FROM "spree_payments" WHERE "spree_payments"."order_id" = 1 AND "spree_payments"."state" = 'completed'[0m
+  [1m[35mSpree::Adjustment Load (0.1ms)[0m  SELECT "spree_adjustments".* FROM "spree_adjustments" WHERE "spree_adjustments"."adjustable_id" = 1 AND "spree_adjustments"."adjustable_type" = 'Spree::Order' AND "spree_adjustments"."eligible" = 't' ORDER BY created_at ASC
+  [1m[36mSpree::Adjustment Load (0.1ms)[0m  [1mSELECT "spree_adjustments".* FROM "spree_adjustments" WHERE "spree_adjustments"."adjustable_id" = 1 AND "spree_adjustments"."adjustable_type" = 'Spree::Order' ORDER BY created_at ASC[0m
+  [1m[35mSpree::Adjustment Load (0.2ms)[0m  SELECT "spree_adjustments".* FROM "spree_adjustments" WHERE "spree_adjustments"."adjustable_id" = 1 AND "spree_adjustments"."adjustable_type" = 'Spree::Order' AND "spree_adjustments"."originator_type" = 'Spree::PromotionAction' AND "spree_adjustments"."eligible" = 't' ORDER BY amount ASC, created_at DESC LIMIT 1
+  [1m[36mSpree::Payment Load (0.1ms)[0m  [1mSELECT "spree_payments".* FROM "spree_payments" WHERE "spree_payments"."order_id" = 1 AND "spree_payments"."state" = 'completed'[0m
+  [1m[35mSpree::Adjustment Load (0.2ms)[0m  SELECT "spree_adjustments".* FROM "spree_adjustments" WHERE "spree_adjustments"."adjustable_id" = 1 AND "spree_adjustments"."adjustable_type" = 'Spree::Order' AND "spree_adjustments"."eligible" = 't' ORDER BY created_at ASC
+  [1m[36mSQL (0.1ms)[0m  [1mUPDATE "spree_orders" SET "payment_state" = NULL, "shipment_state" = NULL, "item_total" = 0.0, "adjustment_total" = 0.0, "payment_total" = 0.0, "total" = 0.0 WHERE "spree_orders"."id" = 1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  UPDATE "spree_orders" SET "updated_at" = '2014-03-24 12:20:54.655065' WHERE "spree_orders"."id" = 1
+  [1m[36mSpree::Payment Load (0.1ms)[0m  [1mSELECT "spree_payments".* FROM "spree_payments" WHERE "spree_payments"."order_id" = 1[0m
+  [1m[35mSpree::Payment Load (0.2ms)[0m  SELECT "spree_payments".* FROM "spree_payments" WHERE "spree_payments"."order_id" = 1 AND "spree_payments"."state" = 'completed'
+  [1m[36mSpree::Adjustment Load (0.1ms)[0m  [1mSELECT "spree_adjustments".* FROM "spree_adjustments" WHERE "spree_adjustments"."adjustable_id" = 1 AND "spree_adjustments"."adjustable_type" = 'Spree::Order' AND "spree_adjustments"."eligible" = 't' ORDER BY created_at ASC[0m
+  [1m[35mSpree::Adjustment Load (0.1ms)[0m  SELECT "spree_adjustments".* FROM "spree_adjustments" WHERE "spree_adjustments"."adjustable_id" = 1 AND "spree_adjustments"."adjustable_type" = 'Spree::Order' ORDER BY created_at ASC
+  [1m[36mSpree::Adjustment Load (0.1ms)[0m  [1mSELECT "spree_adjustments".* FROM "spree_adjustments" WHERE "spree_adjustments"."adjustable_id" = 1 AND "spree_adjustments"."adjustable_type" = 'Spree::Order' AND "spree_adjustments"."originator_type" = 'Spree::PromotionAction' AND "spree_adjustments"."eligible" = 't' ORDER BY amount ASC, created_at DESC LIMIT 1[0m
+  [1m[35mSpree::Payment Load (0.1ms)[0m  SELECT "spree_payments".* FROM "spree_payments" WHERE "spree_payments"."order_id" = 1 AND "spree_payments"."state" = 'completed'
+  [1m[36mSpree::Adjustment Load (0.2ms)[0m  [1mSELECT "spree_adjustments".* FROM "spree_adjustments" WHERE "spree_adjustments"."adjustable_id" = 1 AND "spree_adjustments"."adjustable_type" = 'Spree::Order' AND "spree_adjustments"."eligible" = 't' ORDER BY created_at ASC[0m
+  [1m[35mSQL (0.1ms)[0m  UPDATE "spree_orders" SET "payment_state" = NULL, "shipment_state" = NULL, "item_total" = 0.0, "adjustment_total" = 0.0, "payment_total" = 0.0, "total" = 0.0 WHERE "spree_orders"."id" = 1
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.8ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "spree_payment_methods" ("active", "created_at", "deleted_at", "description", "display_on", "environment", "name", "type", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["active", true], ["created_at", Mon, 24 Mar 2014 12:20:54 UTC +00:00], ["deleted_at", nil], ["description", nil], ["display_on", nil], ["environment", "test"], ["name", "Cash On Delivery"], ["type", "Spree::PaymentMethod::CashOnDelivery"], ["updated_at", Mon, 24 Mar 2014 12:20:54 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSpree::Order Load (0.1ms)[0m  SELECT "spree_orders".* FROM "spree_orders" WHERE "spree_orders"."number" = 'R826682775' LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "spree_orders" WHERE (spree_orders.number LIKE 'R826682775%')[0m
+  [1m[35mSpree::Payment Load (0.1ms)[0m  SELECT "spree_payments".* FROM "spree_payments" WHERE "spree_payments"."order_id" IS NULL AND "spree_payments"."state" = 'completed'
+  [1m[36mSpree::Adjustment Load (0.1ms)[0m  [1mSELECT "spree_adjustments".* FROM "spree_adjustments" WHERE "spree_adjustments"."adjustable_id" IS NULL AND "spree_adjustments"."adjustable_type" = 'Spree::Order' AND "spree_adjustments"."eligible" = 't' ORDER BY created_at ASC[0m
+  [1m[35mSpree::Payment Load (0.1ms)[0m  SELECT "spree_payments".* FROM "spree_payments" WHERE "spree_payments"."order_id" IS NULL AND ("spree_payments".state NOT IN ('failed','invalid'))
+  [1m[36mSpree::Payment Load (0.1ms)[0m  [1mSELECT "spree_payments".* FROM "spree_payments" WHERE "spree_payments"."order_id" IS NULL AND "spree_payments"."state" = 'completed'[0m
+  [1m[35mSpree::Adjustment Load (0.2ms)[0m  SELECT "spree_adjustments".* FROM "spree_adjustments" WHERE "spree_adjustments"."adjustable_id" IS NULL AND "spree_adjustments"."adjustable_type" = 'Spree::Order' AND "spree_adjustments"."eligible" = 't' ORDER BY created_at ASC
+  [1m[36mSpree::Payment Load (0.3ms)[0m  [1mSELECT "spree_payments".* FROM "spree_payments" WHERE "spree_payments"."order_id" IS NULL AND ("spree_payments".state NOT IN ('failed','invalid'))[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "spree_orders" ("adjustment_total", "bill_address_id", "channel", "completed_at", "created_at", "created_by_id", "currency", "email", "item_total", "last_ip_address", "number", "payment_state", "payment_total", "ship_address_id", "shipment_state", "shipping_method_id", "special_instructions", "state", "total", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)  [["adjustment_total", #<BigDecimal:7ff0d8b09cc8,'0.0',9(36)>], ["bill_address_id", nil], ["channel", "spree"], ["completed_at", nil], ["created_at", Mon, 24 Mar 2014 12:20:54 UTC +00:00], ["created_by_id", nil], ["currency", "USD"], ["email", nil], ["item_total", #<BigDecimal:7ff0d8b09db8,'0.0',9(36)>], ["last_ip_address", nil], ["number", "R826682775"], ["payment_state", nil], ["payment_total", #<BigDecimal:7ff0d8b09b88,'0.0',9(36)>], ["ship_address_id", nil], ["shipment_state", nil], ["shipping_method_id", nil], ["special_instructions", nil], ["state", "cart"], ["total", #<BigDecimal:7ff0d1a24788,'0.0',9(27)>], ["updated_at", Mon, 24 Mar 2014 12:20:54 UTC +00:00], ["user_id", nil]]
+  [1m[36mSpree::TokenizedPermission Load (0.1ms)[0m  [1mSELECT "spree_tokenized_permissions".* FROM "spree_tokenized_permissions" WHERE "spree_tokenized_permissions"."permissable_id" = 1 AND "spree_tokenized_permissions"."permissable_type" = 'Spree::Order' LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "spree_tokenized_permissions" ("created_at", "permissable_id", "permissable_type", "token", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", Mon, 24 Mar 2014 12:20:54 UTC +00:00], ["permissable_id", 1], ["permissable_type", "Spree::Order"], ["token", "f73a2ba6699188b7"], ["updated_at", Mon, 24 Mar 2014 12:20:54 UTC +00:00]]
+  [1m[36mSpree::Adjustment Load (0.2ms)[0m  [1mSELECT "spree_adjustments".* FROM "spree_adjustments" WHERE "spree_adjustments"."adjustable_id" = 1 AND "spree_adjustments"."originator_type" = 'Spree::TaxRate' AND "spree_adjustments"."adjustable_type" = 'Spree::Order' ORDER BY created_at ASC[0m
+  [1m[35mSpree::Adjustment Load (0.2ms)[0m  SELECT "spree_adjustments".* FROM "spree_adjustments" INNER JOIN "spree_line_items" ON "spree_adjustments"."adjustable_id" = "spree_line_items"."id" AND "spree_adjustments"."adjustable_type" = 'Spree::LineItem' WHERE "spree_line_items"."order_id" = 1 AND "spree_adjustments"."originator_type" = 'Spree::TaxRate'
+  [1m[36mSpree::Zone Load (0.1ms)[0m  [1mSELECT "spree_zones".* FROM "spree_zones" ORDER BY zone_members_count, created_at[0m
+  [1m[35mSpree::Zone Load (0.1ms)[0m  SELECT "spree_zones".* FROM "spree_zones" WHERE "spree_zones"."default_tax" = 't' LIMIT 1
+  [1m[36mSpree::Payment Exists (0.1ms)[0m  [1mSELECT 1 AS one FROM "spree_payments" WHERE "spree_payments"."identifier" = 'VYN6BVSG' LIMIT 1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "spree_payments" ("amount", "avs_response", "created_at", "cvv_response_code", "cvv_response_message", "identifier", "order_id", "payment_method_id", "response_code", "source_id", "source_type", "state", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)  [["amount", #<BigDecimal:7ff0d8b6be78,'0.0',9(45)>], ["avs_response", nil], ["created_at", Mon, 24 Mar 2014 12:20:54 UTC +00:00], ["cvv_response_code", nil], ["cvv_response_message", nil], ["identifier", "VYN6BVSG"], ["order_id", 1], ["payment_method_id", 1], ["response_code", nil], ["source_id", nil], ["source_type", nil], ["state", "checkout"], ["updated_at", Mon, 24 Mar 2014 12:20:54 UTC +00:00]]
+  [1m[36mSpree::Payment Load (0.1ms)[0m  [1mSELECT "spree_payments".* FROM "spree_payments" WHERE "spree_payments"."order_id" = 1 AND "spree_payments"."state" = 'checkout' AND (id != 1)[0m
+  [1m[35mSQL (0.1ms)[0m  UPDATE "spree_orders" SET "updated_at" = '2014-03-24 12:20:54.705183' WHERE "spree_orders"."id" = 1
+  [1m[36mSpree::Payment Load (0.2ms)[0m  [1mSELECT "spree_payments".* FROM "spree_payments" WHERE "spree_payments"."order_id" = 1[0m
+  [1m[35mSpree::Payment Load (0.1ms)[0m  SELECT "spree_payments".* FROM "spree_payments" WHERE "spree_payments"."order_id" = 1 AND "spree_payments"."state" = 'completed'
+  [1m[36mSpree::Adjustment Load (0.1ms)[0m  [1mSELECT "spree_adjustments".* FROM "spree_adjustments" WHERE "spree_adjustments"."adjustable_id" = 1 AND "spree_adjustments"."adjustable_type" = 'Spree::Order' AND "spree_adjustments"."eligible" = 't' ORDER BY created_at ASC[0m
+  [1m[35mSpree::Adjustment Load (0.1ms)[0m  SELECT "spree_adjustments".* FROM "spree_adjustments" WHERE "spree_adjustments"."adjustable_id" = 1 AND "spree_adjustments"."adjustable_type" = 'Spree::Order' ORDER BY created_at ASC
+  [1m[36mSpree::Adjustment Load (0.2ms)[0m  [1mSELECT "spree_adjustments".* FROM "spree_adjustments" WHERE "spree_adjustments"."adjustable_id" = 1 AND "spree_adjustments"."adjustable_type" = 'Spree::Order' AND "spree_adjustments"."originator_type" = 'Spree::PromotionAction' AND "spree_adjustments"."eligible" = 't' ORDER BY amount ASC, created_at DESC LIMIT 1[0m
+  [1m[35mSpree::Payment Load (0.1ms)[0m  SELECT "spree_payments".* FROM "spree_payments" WHERE "spree_payments"."order_id" = 1 AND "spree_payments"."state" = 'completed'
+  [1m[36mSpree::Adjustment Load (0.2ms)[0m  [1mSELECT "spree_adjustments".* FROM "spree_adjustments" WHERE "spree_adjustments"."adjustable_id" = 1 AND "spree_adjustments"."adjustable_type" = 'Spree::Order' AND "spree_adjustments"."eligible" = 't' ORDER BY created_at ASC[0m
+  [1m[35mSQL (0.1ms)[0m  UPDATE "spree_orders" SET "payment_state" = NULL, "shipment_state" = NULL, "item_total" = 0.0, "adjustment_total" = 0.0, "payment_total" = 0.0, "total" = 0.0 WHERE "spree_orders"."id" = 1
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mUPDATE "spree_payments" SET "state" = 'pending', "updated_at" = '2014-03-24 12:20:54.800873' WHERE "spree_payments"."id" = 1[0m
+  [1m[35mSQL (0.1ms)[0m  UPDATE "spree_orders" SET "updated_at" = '2014-03-24 12:20:54.802359' WHERE "spree_orders"."id" = 1
+  [1m[36mSpree::Payment Load (0.1ms)[0m  [1mSELECT "spree_payments".* FROM "spree_payments" WHERE "spree_payments"."order_id" = 1[0m
+  [1m[35mSpree::Payment Load (0.1ms)[0m  SELECT "spree_payments".* FROM "spree_payments" WHERE "spree_payments"."order_id" = 1 AND "spree_payments"."state" = 'completed'
+  [1m[36mSpree::Adjustment Load (0.2ms)[0m  [1mSELECT "spree_adjustments".* FROM "spree_adjustments" WHERE "spree_adjustments"."adjustable_id" = 1 AND "spree_adjustments"."adjustable_type" = 'Spree::Order' AND "spree_adjustments"."eligible" = 't' ORDER BY created_at ASC[0m
+  [1m[35mSpree::Adjustment Load (0.2ms)[0m  SELECT "spree_adjustments".* FROM "spree_adjustments" WHERE "spree_adjustments"."adjustable_id" = 1 AND "spree_adjustments"."adjustable_type" = 'Spree::Order' ORDER BY created_at ASC
+  [1m[36mSpree::Adjustment Load (0.3ms)[0m  [1mSELECT "spree_adjustments".* FROM "spree_adjustments" WHERE "spree_adjustments"."adjustable_id" = 1 AND "spree_adjustments"."adjustable_type" = 'Spree::Order' AND "spree_adjustments"."originator_type" = 'Spree::PromotionAction' AND "spree_adjustments"."eligible" = 't' ORDER BY amount ASC, created_at DESC LIMIT 1[0m
+  [1m[35mSpree::Payment Load (0.1ms)[0m  SELECT "spree_payments".* FROM "spree_payments" WHERE "spree_payments"."order_id" = 1 AND "spree_payments"."state" = 'completed'
+  [1m[36mSpree::Adjustment Load (0.2ms)[0m  [1mSELECT "spree_adjustments".* FROM "spree_adjustments" WHERE "spree_adjustments"."adjustable_id" = 1 AND "spree_adjustments"."adjustable_type" = 'Spree::Order' AND "spree_adjustments"."eligible" = 't' ORDER BY created_at ASC[0m
+  [1m[35mSQL (0.1ms)[0m  UPDATE "spree_orders" SET "payment_state" = NULL, "shipment_state" = NULL, "item_total" = 0.0, "adjustment_total" = 0.0, "payment_total" = 0.0, "total" = 0.0 WHERE "spree_orders"."id" = 1
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.9ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "spree_payment_methods" ("active", "created_at", "deleted_at", "description", "display_on", "environment", "name", "type", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["active", true], ["created_at", Mon, 24 Mar 2014 12:20:54 UTC +00:00], ["deleted_at", nil], ["description", nil], ["display_on", nil], ["environment", "test"], ["name", "Cash On Delivery"], ["type", "Spree::PaymentMethod::CashOnDelivery"], ["updated_at", Mon, 24 Mar 2014 12:20:54 UTC +00:00]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSpree::Order Load (0.1ms)[0m  SELECT "spree_orders".* FROM "spree_orders" WHERE "spree_orders"."number" = 'R443377257' LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "spree_orders" WHERE (spree_orders.number LIKE 'R443377257%')[0m
+  [1m[35mSpree::Payment Load (0.1ms)[0m  SELECT "spree_payments".* FROM "spree_payments" WHERE "spree_payments"."order_id" IS NULL AND "spree_payments"."state" = 'completed'
+  [1m[36mSpree::Adjustment Load (0.1ms)[0m  [1mSELECT "spree_adjustments".* FROM "spree_adjustments" WHERE "spree_adjustments"."adjustable_id" IS NULL AND "spree_adjustments"."adjustable_type" = 'Spree::Order' AND "spree_adjustments"."eligible" = 't' ORDER BY created_at ASC[0m
+  [1m[35mSpree::Payment Load (0.1ms)[0m  SELECT "spree_payments".* FROM "spree_payments" WHERE "spree_payments"."order_id" IS NULL AND ("spree_payments".state NOT IN ('failed','invalid'))
+  [1m[36mSpree::Payment Load (0.1ms)[0m  [1mSELECT "spree_payments".* FROM "spree_payments" WHERE "spree_payments"."order_id" IS NULL AND "spree_payments"."state" = 'completed'[0m
+  [1m[35mSpree::Adjustment Load (0.2ms)[0m  SELECT "spree_adjustments".* FROM "spree_adjustments" WHERE "spree_adjustments"."adjustable_id" IS NULL AND "spree_adjustments"."adjustable_type" = 'Spree::Order' AND "spree_adjustments"."eligible" = 't' ORDER BY created_at ASC
+  [1m[36mSpree::Payment Load (0.2ms)[0m  [1mSELECT "spree_payments".* FROM "spree_payments" WHERE "spree_payments"."order_id" IS NULL AND ("spree_payments".state NOT IN ('failed','invalid'))[0m
+  [1m[35mSQL (0.7ms)[0m  INSERT INTO "spree_orders" ("adjustment_total", "bill_address_id", "channel", "completed_at", "created_at", "created_by_id", "currency", "email", "item_total", "last_ip_address", "number", "payment_state", "payment_total", "ship_address_id", "shipment_state", "shipping_method_id", "special_instructions", "state", "total", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)  [["adjustment_total", #<BigDecimal:7ff0d5f97220,'0.0',9(36)>], ["bill_address_id", nil], ["channel", "spree"], ["completed_at", nil], ["created_at", Mon, 24 Mar 2014 12:20:54 UTC +00:00], ["created_by_id", nil], ["currency", "USD"], ["email", nil], ["item_total", #<BigDecimal:7ff0d5f97950,'0.0',9(36)>], ["last_ip_address", nil], ["number", "R443377257"], ["payment_state", nil], ["payment_total", #<BigDecimal:7ff0d5f96d48,'0.0',9(36)>], ["ship_address_id", nil], ["shipment_state", nil], ["shipping_method_id", nil], ["special_instructions", nil], ["state", "cart"], ["total", #<BigDecimal:7ff0d5f657c0,'0.0',9(27)>], ["updated_at", Mon, 24 Mar 2014 12:20:54 UTC +00:00], ["user_id", nil]]
+  [1m[36mSpree::TokenizedPermission Load (0.1ms)[0m  [1mSELECT "spree_tokenized_permissions".* FROM "spree_tokenized_permissions" WHERE "spree_tokenized_permissions"."permissable_id" = 1 AND "spree_tokenized_permissions"."permissable_type" = 'Spree::Order' LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "spree_tokenized_permissions" ("created_at", "permissable_id", "permissable_type", "token", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", Mon, 24 Mar 2014 12:20:54 UTC +00:00], ["permissable_id", 1], ["permissable_type", "Spree::Order"], ["token", "ae92486d25e19f6a"], ["updated_at", Mon, 24 Mar 2014 12:20:54 UTC +00:00]]
+  [1m[36mSpree::Adjustment Load (0.1ms)[0m  [1mSELECT "spree_adjustments".* FROM "spree_adjustments" WHERE "spree_adjustments"."adjustable_id" = 1 AND "spree_adjustments"."originator_type" = 'Spree::TaxRate' AND "spree_adjustments"."adjustable_type" = 'Spree::Order' ORDER BY created_at ASC[0m
+  [1m[35mSpree::Adjustment Load (0.2ms)[0m  SELECT "spree_adjustments".* FROM "spree_adjustments" INNER JOIN "spree_line_items" ON "spree_adjustments"."adjustable_id" = "spree_line_items"."id" AND "spree_adjustments"."adjustable_type" = 'Spree::LineItem' WHERE "spree_line_items"."order_id" = 1 AND "spree_adjustments"."originator_type" = 'Spree::TaxRate'
+  [1m[36mSpree::Zone Load (0.1ms)[0m  [1mSELECT "spree_zones".* FROM "spree_zones" ORDER BY zone_members_count, created_at[0m
+  [1m[35mSpree::Zone Load (0.0ms)[0m  SELECT "spree_zones".* FROM "spree_zones" WHERE "spree_zones"."default_tax" = 't' LIMIT 1
+  [1m[36mSpree::Payment Exists (0.0ms)[0m  [1mSELECT 1 AS one FROM "spree_payments" WHERE "spree_payments"."identifier" = 'TJCWZY8C' LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "spree_payments" ("amount", "avs_response", "created_at", "cvv_response_code", "cvv_response_message", "identifier", "order_id", "payment_method_id", "response_code", "source_id", "source_type", "state", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)  [["amount", #<BigDecimal:7ff0d8897f08,'0.0',9(45)>], ["avs_response", nil], ["created_at", Mon, 24 Mar 2014 12:20:54 UTC +00:00], ["cvv_response_code", nil], ["cvv_response_message", nil], ["identifier", "TJCWZY8C"], ["order_id", 1], ["payment_method_id", 1], ["response_code", nil], ["source_id", nil], ["source_type", nil], ["state", "checkout"], ["updated_at", Mon, 24 Mar 2014 12:20:54 UTC +00:00]]
+  [1m[36mSpree::Payment Load (0.2ms)[0m  [1mSELECT "spree_payments".* FROM "spree_payments" WHERE "spree_payments"."order_id" = 1 AND "spree_payments"."state" = 'checkout' AND (id != 1)[0m
+  [1m[35mSQL (0.1ms)[0m  UPDATE "spree_orders" SET "updated_at" = '2014-03-24 12:20:54.855098' WHERE "spree_orders"."id" = 1
+  [1m[36mSpree::Payment Load (0.2ms)[0m  [1mSELECT "spree_payments".* FROM "spree_payments" WHERE "spree_payments"."order_id" = 1[0m
+  [1m[35mSpree::Payment Load (0.1ms)[0m  SELECT "spree_payments".* FROM "spree_payments" WHERE "spree_payments"."order_id" = 1 AND "spree_payments"."state" = 'completed'
+  [1m[36mSpree::Adjustment Load (0.1ms)[0m  [1mSELECT "spree_adjustments".* FROM "spree_adjustments" WHERE "spree_adjustments"."adjustable_id" = 1 AND "spree_adjustments"."adjustable_type" = 'Spree::Order' AND "spree_adjustments"."eligible" = 't' ORDER BY created_at ASC[0m
+  [1m[35mSpree::Adjustment Load (0.1ms)[0m  SELECT "spree_adjustments".* FROM "spree_adjustments" WHERE "spree_adjustments"."adjustable_id" = 1 AND "spree_adjustments"."adjustable_type" = 'Spree::Order' ORDER BY created_at ASC
+  [1m[36mSpree::Adjustment Load (0.1ms)[0m  [1mSELECT "spree_adjustments".* FROM "spree_adjustments" WHERE "spree_adjustments"."adjustable_id" = 1 AND "spree_adjustments"."adjustable_type" = 'Spree::Order' AND "spree_adjustments"."originator_type" = 'Spree::PromotionAction' AND "spree_adjustments"."eligible" = 't' ORDER BY amount ASC, created_at DESC LIMIT 1[0m
+  [1m[35mSpree::Payment Load (0.1ms)[0m  SELECT "spree_payments".* FROM "spree_payments" WHERE "spree_payments"."order_id" = 1 AND "spree_payments"."state" = 'completed'
+  [1m[36mSpree::Adjustment Load (0.1ms)[0m  [1mSELECT "spree_adjustments".* FROM "spree_adjustments" WHERE "spree_adjustments"."adjustable_id" = 1 AND "spree_adjustments"."adjustable_type" = 'Spree::Order' AND "spree_adjustments"."eligible" = 't' ORDER BY created_at ASC[0m
+  [1m[35mSQL (0.2ms)[0m  UPDATE "spree_orders" SET "payment_state" = NULL, "shipment_state" = NULL, "item_total" = 0.0, "adjustment_total" = 0.0, "payment_total" = 0.0, "total" = 0.0 WHERE "spree_orders"."id" = 1
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mUPDATE "spree_payments" SET "state" = 'void', "updated_at" = '2014-03-24 12:20:54.865999' WHERE "spree_payments"."id" = 1[0m
+  [1m[35mSQL (0.1ms)[0m  UPDATE "spree_orders" SET "updated_at" = '2014-03-24 12:20:54.866858' WHERE "spree_orders"."id" = 1
+  [1m[36mSpree::Payment Load (0.1ms)[0m  [1mSELECT "spree_payments".* FROM "spree_payments" WHERE "spree_payments"."order_id" = 1[0m
+  [1m[35mSpree::Payment Load (0.1ms)[0m  SELECT "spree_payments".* FROM "spree_payments" WHERE "spree_payments"."order_id" = 1 AND "spree_payments"."state" = 'completed'
+  [1m[36mSpree::Adjustment Load (0.2ms)[0m  [1mSELECT "spree_adjustments".* FROM "spree_adjustments" WHERE "spree_adjustments"."adjustable_id" = 1 AND "spree_adjustments"."adjustable_type" = 'Spree::Order' AND "spree_adjustments"."eligible" = 't' ORDER BY created_at ASC[0m
+  [1m[35mSpree::Adjustment Load (0.1ms)[0m  SELECT "spree_adjustments".* FROM "spree_adjustments" WHERE "spree_adjustments"."adjustable_id" = 1 AND "spree_adjustments"."adjustable_type" = 'Spree::Order' ORDER BY created_at ASC
+  [1m[36mSpree::Adjustment Load (0.2ms)[0m  [1mSELECT "spree_adjustments".* FROM "spree_adjustments" WHERE "spree_adjustments"."adjustable_id" = 1 AND "spree_adjustments"."adjustable_type" = 'Spree::Order' AND "spree_adjustments"."originator_type" = 'Spree::PromotionAction' AND "spree_adjustments"."eligible" = 't' ORDER BY amount ASC, created_at DESC LIMIT 1[0m
+  [1m[35mSpree::Payment Load (0.1ms)[0m  SELECT "spree_payments".* FROM "spree_payments" WHERE "spree_payments"."order_id" = 1 AND "spree_payments"."state" = 'completed'
+  [1m[36mSpree::Adjustment Load (0.1ms)[0m  [1mSELECT "spree_adjustments".* FROM "spree_adjustments" WHERE "spree_adjustments"."adjustable_id" = 1 AND "spree_adjustments"."adjustable_type" = 'Spree::Order' AND "spree_adjustments"."eligible" = 't' ORDER BY created_at ASC[0m
+  [1m[35mSQL (0.1ms)[0m  UPDATE "spree_orders" SET "payment_state" = NULL, "shipment_state" = NULL, "item_total" = 0.0, "adjustment_total" = 0.0, "payment_total" = 0.0, "total" = 0.0 WHERE "spree_orders"."id" = 1
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.7ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "spree_payment_methods" ("active", "created_at", "deleted_at", "description", "display_on", "environment", "name", "type", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["active", true], ["created_at", Mon, 24 Mar 2014 12:20:54 UTC +00:00], ["deleted_at", nil], ["description", nil], ["display_on", nil], ["environment", "test"], ["name", "Cash On Delivery"], ["type", "Spree::PaymentMethod::CashOnDelivery"], ["updated_at", Mon, 24 Mar 2014 12:20:54 UTC +00:00]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSpree::Order Load (0.2ms)[0m  SELECT "spree_orders".* FROM "spree_orders" WHERE "spree_orders"."number" = 'R141740460' LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "spree_orders" WHERE (spree_orders.number LIKE 'R141740460%')[0m
+  [1m[35mSpree::Payment Load (0.1ms)[0m  SELECT "spree_payments".* FROM "spree_payments" WHERE "spree_payments"."order_id" IS NULL AND "spree_payments"."state" = 'completed'
+  [1m[36mSpree::Adjustment Load (0.1ms)[0m  [1mSELECT "spree_adjustments".* FROM "spree_adjustments" WHERE "spree_adjustments"."adjustable_id" IS NULL AND "spree_adjustments"."adjustable_type" = 'Spree::Order' AND "spree_adjustments"."eligible" = 't' ORDER BY created_at ASC[0m
+  [1m[35mSpree::Payment Load (0.1ms)[0m  SELECT "spree_payments".* FROM "spree_payments" WHERE "spree_payments"."order_id" IS NULL AND ("spree_payments".state NOT IN ('failed','invalid'))
+  [1m[36mSpree::Payment Load (0.1ms)[0m  [1mSELECT "spree_payments".* FROM "spree_payments" WHERE "spree_payments"."order_id" IS NULL AND "spree_payments"."state" = 'completed'[0m
+  [1m[35mSpree::Adjustment Load (0.1ms)[0m  SELECT "spree_adjustments".* FROM "spree_adjustments" WHERE "spree_adjustments"."adjustable_id" IS NULL AND "spree_adjustments"."adjustable_type" = 'Spree::Order' AND "spree_adjustments"."eligible" = 't' ORDER BY created_at ASC
+  [1m[36mSpree::Payment Load (0.2ms)[0m  [1mSELECT "spree_payments".* FROM "spree_payments" WHERE "spree_payments"."order_id" IS NULL AND ("spree_payments".state NOT IN ('failed','invalid'))[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "spree_orders" ("adjustment_total", "bill_address_id", "channel", "completed_at", "created_at", "created_by_id", "currency", "email", "item_total", "last_ip_address", "number", "payment_state", "payment_total", "ship_address_id", "shipment_state", "shipping_method_id", "special_instructions", "state", "total", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)  [["adjustment_total", #<BigDecimal:7ff0d820a938,'0.0',9(36)>], ["bill_address_id", nil], ["channel", "spree"], ["completed_at", nil], ["created_at", Mon, 24 Mar 2014 12:20:54 UTC +00:00], ["created_by_id", nil], ["currency", "USD"], ["email", nil], ["item_total", #<BigDecimal:7ff0d820aaf0,'0.0',9(36)>], ["last_ip_address", nil], ["number", "R141740460"], ["payment_state", nil], ["payment_total", #<BigDecimal:7ff0d820a668,'0.0',9(36)>], ["ship_address_id", nil], ["shipment_state", nil], ["shipping_method_id", nil], ["special_instructions", nil], ["state", "cart"], ["total", #<BigDecimal:7ff0d81f0e70,'0.0',9(27)>], ["updated_at", Mon, 24 Mar 2014 12:20:54 UTC +00:00], ["user_id", nil]]
+  [1m[36mSpree::TokenizedPermission Load (0.1ms)[0m  [1mSELECT "spree_tokenized_permissions".* FROM "spree_tokenized_permissions" WHERE "spree_tokenized_permissions"."permissable_id" = 1 AND "spree_tokenized_permissions"."permissable_type" = 'Spree::Order' LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "spree_tokenized_permissions" ("created_at", "permissable_id", "permissable_type", "token", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", Mon, 24 Mar 2014 12:20:54 UTC +00:00], ["permissable_id", 1], ["permissable_type", "Spree::Order"], ["token", "3bf30a3e0b15381a"], ["updated_at", Mon, 24 Mar 2014 12:20:54 UTC +00:00]]
+  [1m[36mSpree::Adjustment Load (0.2ms)[0m  [1mSELECT "spree_adjustments".* FROM "spree_adjustments" WHERE "spree_adjustments"."adjustable_id" = 1 AND "spree_adjustments"."originator_type" = 'Spree::TaxRate' AND "spree_adjustments"."adjustable_type" = 'Spree::Order' ORDER BY created_at ASC[0m
+  [1m[35mSpree::Adjustment Load (0.2ms)[0m  SELECT "spree_adjustments".* FROM "spree_adjustments" INNER JOIN "spree_line_items" ON "spree_adjustments"."adjustable_id" = "spree_line_items"."id" AND "spree_adjustments"."adjustable_type" = 'Spree::LineItem' WHERE "spree_line_items"."order_id" = 1 AND "spree_adjustments"."originator_type" = 'Spree::TaxRate'
+  [1m[36mSpree::Zone Load (0.1ms)[0m  [1mSELECT "spree_zones".* FROM "spree_zones" ORDER BY zone_members_count, created_at[0m
+  [1m[35mSpree::Zone Load (0.1ms)[0m  SELECT "spree_zones".* FROM "spree_zones" WHERE "spree_zones"."default_tax" = 't' LIMIT 1
+  [1m[36mSpree::Payment Exists (0.0ms)[0m  [1mSELECT 1 AS one FROM "spree_payments" WHERE "spree_payments"."identifier" = '4NB8T58P' LIMIT 1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "spree_payments" ("amount", "avs_response", "created_at", "cvv_response_code", "cvv_response_message", "identifier", "order_id", "payment_method_id", "response_code", "source_id", "source_type", "state", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)  [["amount", #<BigDecimal:7ff0d8291528,'0.0',9(45)>], ["avs_response", nil], ["created_at", Mon, 24 Mar 2014 12:20:54 UTC +00:00], ["cvv_response_code", nil], ["cvv_response_message", nil], ["identifier", "4NB8T58P"], ["order_id", 1], ["payment_method_id", 1], ["response_code", nil], ["source_id", nil], ["source_type", nil], ["state", "checkout"], ["updated_at", Mon, 24 Mar 2014 12:20:54 UTC +00:00]]
+  [1m[36mSpree::Payment Load (0.1ms)[0m  [1mSELECT "spree_payments".* FROM "spree_payments" WHERE "spree_payments"."order_id" = 1 AND "spree_payments"."state" = 'checkout' AND (id != 1)[0m
+  [1m[35mSQL (0.3ms)[0m  UPDATE "spree_orders" SET "updated_at" = '2014-03-24 12:20:54.913338' WHERE "spree_orders"."id" = 1
+  [1m[36mSpree::Payment Load (0.1ms)[0m  [1mSELECT "spree_payments".* FROM "spree_payments" WHERE "spree_payments"."order_id" = 1[0m
+  [1m[35mSpree::Payment Load (0.1ms)[0m  SELECT "spree_payments".* FROM "spree_payments" WHERE "spree_payments"."order_id" = 1 AND "spree_payments"."state" = 'completed'
+  [1m[36mSpree::Adjustment Load (0.1ms)[0m  [1mSELECT "spree_adjustments".* FROM "spree_adjustments" WHERE "spree_adjustments"."adjustable_id" = 1 AND "spree_adjustments"."adjustable_type" = 'Spree::Order' AND "spree_adjustments"."eligible" = 't' ORDER BY created_at ASC[0m
+  [1m[35mSpree::Adjustment Load (0.1ms)[0m  SELECT "spree_adjustments".* FROM "spree_adjustments" WHERE "spree_adjustments"."adjustable_id" = 1 AND "spree_adjustments"."adjustable_type" = 'Spree::Order' ORDER BY created_at ASC
+  [1m[36mSpree::Adjustment Load (0.3ms)[0m  [1mSELECT "spree_adjustments".* FROM "spree_adjustments" WHERE "spree_adjustments"."adjustable_id" = 1 AND "spree_adjustments"."adjustable_type" = 'Spree::Order' AND "spree_adjustments"."originator_type" = 'Spree::PromotionAction' AND "spree_adjustments"."eligible" = 't' ORDER BY amount ASC, created_at DESC LIMIT 1[0m
+  [1m[35mSpree::Payment Load (0.1ms)[0m  SELECT "spree_payments".* FROM "spree_payments" WHERE "spree_payments"."order_id" = 1 AND "spree_payments"."state" = 'completed'
+  [1m[36mSpree::Adjustment Load (0.2ms)[0m  [1mSELECT "spree_adjustments".* FROM "spree_adjustments" WHERE "spree_adjustments"."adjustable_id" = 1 AND "spree_adjustments"."adjustable_type" = 'Spree::Order' AND "spree_adjustments"."eligible" = 't' ORDER BY created_at ASC[0m
+  [1m[35mSQL (0.2ms)[0m  UPDATE "spree_orders" SET "payment_state" = NULL, "shipment_state" = NULL, "item_total" = 0.0, "adjustment_total" = 0.0, "payment_total" = 0.0, "total" = 0.0 WHERE "spree_orders"."id" = 1
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mUPDATE "spree_payments" SET "state" = 'pending', "updated_at" = '2014-03-24 12:20:54.927674' WHERE "spree_payments"."id" = 1[0m
+  [1m[35mSQL (0.1ms)[0m  UPDATE "spree_orders" SET "updated_at" = '2014-03-24 12:20:54.928520' WHERE "spree_orders"."id" = 1
+  [1m[36mSpree::Payment Load (0.1ms)[0m  [1mSELECT "spree_payments".* FROM "spree_payments" WHERE "spree_payments"."order_id" = 1[0m
+  [1m[35mSpree::Payment Load (0.1ms)[0m  SELECT "spree_payments".* FROM "spree_payments" WHERE "spree_payments"."order_id" = 1 AND "spree_payments"."state" = 'completed'
+  [1m[36mSpree::Adjustment Load (0.1ms)[0m  [1mSELECT "spree_adjustments".* FROM "spree_adjustments" WHERE "spree_adjustments"."adjustable_id" = 1 AND "spree_adjustments"."adjustable_type" = 'Spree::Order' AND "spree_adjustments"."eligible" = 't' ORDER BY created_at ASC[0m
+  [1m[35mSpree::Adjustment Load (0.1ms)[0m  SELECT "spree_adjustments".* FROM "spree_adjustments" WHERE "spree_adjustments"."adjustable_id" = 1 AND "spree_adjustments"."adjustable_type" = 'Spree::Order' ORDER BY created_at ASC
+  [1m[36mSpree::Adjustment Load (0.1ms)[0m  [1mSELECT "spree_adjustments".* FROM "spree_adjustments" WHERE "spree_adjustments"."adjustable_id" = 1 AND "spree_adjustments"."adjustable_type" = 'Spree::Order' AND "spree_adjustments"."originator_type" = 'Spree::PromotionAction' AND "spree_adjustments"."eligible" = 't' ORDER BY amount ASC, created_at DESC LIMIT 1[0m
+  [1m[35mSpree::Payment Load (0.1ms)[0m  SELECT "spree_payments".* FROM "spree_payments" WHERE "spree_payments"."order_id" = 1 AND "spree_payments"."state" = 'completed'
+  [1m[36mSpree::Adjustment Load (0.2ms)[0m  [1mSELECT "spree_adjustments".* FROM "spree_adjustments" WHERE "spree_adjustments"."adjustable_id" = 1 AND "spree_adjustments"."adjustable_type" = 'Spree::Order' AND "spree_adjustments"."eligible" = 't' ORDER BY created_at ASC[0m
+  [1m[35mSQL (0.1ms)[0m  UPDATE "spree_orders" SET "payment_state" = NULL, "shipment_state" = NULL, "item_total" = 0.0, "adjustment_total" = 0.0, "payment_total" = 0.0, "total" = 0.0 WHERE "spree_orders"."id" = 1
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.7ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "spree_payment_methods" ("active", "created_at", "deleted_at", "description", "display_on", "environment", "name", "type", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["active", true], ["created_at", Mon, 24 Mar 2014 12:20:54 UTC +00:00], ["deleted_at", nil], ["description", nil], ["display_on", nil], ["environment", "test"], ["name", "Cash On Delivery"], ["type", "Spree::PaymentMethod::CashOnDelivery"], ["updated_at", Mon, 24 Mar 2014 12:20:54 UTC +00:00]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSpree::Order Load (0.2ms)[0m  SELECT "spree_orders".* FROM "spree_orders" WHERE "spree_orders"."number" = 'R823270504' LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "spree_orders" WHERE (spree_orders.number LIKE 'R823270504%')[0m
+  [1m[35mSpree::Payment Load (0.2ms)[0m  SELECT "spree_payments".* FROM "spree_payments" WHERE "spree_payments"."order_id" IS NULL AND "spree_payments"."state" = 'completed'
+  [1m[36mSpree::Adjustment Load (0.2ms)[0m  [1mSELECT "spree_adjustments".* FROM "spree_adjustments" WHERE "spree_adjustments"."adjustable_id" IS NULL AND "spree_adjustments"."adjustable_type" = 'Spree::Order' AND "spree_adjustments"."eligible" = 't' ORDER BY created_at ASC[0m
+  [1m[35mSpree::Payment Load (0.1ms)[0m  SELECT "spree_payments".* FROM "spree_payments" WHERE "spree_payments"."order_id" IS NULL AND ("spree_payments".state NOT IN ('failed','invalid'))
+  [1m[36mSpree::Payment Load (0.1ms)[0m  [1mSELECT "spree_payments".* FROM "spree_payments" WHERE "spree_payments"."order_id" IS NULL AND "spree_payments"."state" = 'completed'[0m
+  [1m[35mSpree::Adjustment Load (0.1ms)[0m  SELECT "spree_adjustments".* FROM "spree_adjustments" WHERE "spree_adjustments"."adjustable_id" IS NULL AND "spree_adjustments"."adjustable_type" = 'Spree::Order' AND "spree_adjustments"."eligible" = 't' ORDER BY created_at ASC
+  [1m[36mSpree::Payment Load (0.1ms)[0m  [1mSELECT "spree_payments".* FROM "spree_payments" WHERE "spree_payments"."order_id" IS NULL AND ("spree_payments".state NOT IN ('failed','invalid'))[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "spree_orders" ("adjustment_total", "bill_address_id", "channel", "completed_at", "created_at", "created_by_id", "currency", "email", "item_total", "last_ip_address", "number", "payment_state", "payment_total", "ship_address_id", "shipment_state", "shipping_method_id", "special_instructions", "state", "total", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)  [["adjustment_total", #<BigDecimal:7ff0d8aa9a80,'0.0',9(36)>], ["bill_address_id", nil], ["channel", "spree"], ["completed_at", nil], ["created_at", Mon, 24 Mar 2014 12:20:54 UTC +00:00], ["created_by_id", nil], ["currency", "USD"], ["email", nil], ["item_total", #<BigDecimal:7ff0d8aa9b70,'0.0',9(36)>], ["last_ip_address", nil], ["number", "R823270504"], ["payment_state", nil], ["payment_total", #<BigDecimal:7ff0d8aa9940,'0.0',9(36)>], ["ship_address_id", nil], ["shipment_state", nil], ["shipping_method_id", nil], ["special_instructions", nil], ["state", "cart"], ["total", #<BigDecimal:7ff0d8a987d0,'0.0',9(27)>], ["updated_at", Mon, 24 Mar 2014 12:20:54 UTC +00:00], ["user_id", nil]]
+  [1m[36mSpree::TokenizedPermission Load (0.1ms)[0m  [1mSELECT "spree_tokenized_permissions".* FROM "spree_tokenized_permissions" WHERE "spree_tokenized_permissions"."permissable_id" = 1 AND "spree_tokenized_permissions"."permissable_type" = 'Spree::Order' LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "spree_tokenized_permissions" ("created_at", "permissable_id", "permissable_type", "token", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", Mon, 24 Mar 2014 12:20:54 UTC +00:00], ["permissable_id", 1], ["permissable_type", "Spree::Order"], ["token", "4fda06111b1d17b9"], ["updated_at", Mon, 24 Mar 2014 12:20:54 UTC +00:00]]
+  [1m[36mSpree::Adjustment Load (0.1ms)[0m  [1mSELECT "spree_adjustments".* FROM "spree_adjustments" WHERE "spree_adjustments"."adjustable_id" = 1 AND "spree_adjustments"."originator_type" = 'Spree::TaxRate' AND "spree_adjustments"."adjustable_type" = 'Spree::Order' ORDER BY created_at ASC[0m
+  [1m[35mSpree::Adjustment Load (0.1ms)[0m  SELECT "spree_adjustments".* FROM "spree_adjustments" INNER JOIN "spree_line_items" ON "spree_adjustments"."adjustable_id" = "spree_line_items"."id" AND "spree_adjustments"."adjustable_type" = 'Spree::LineItem' WHERE "spree_line_items"."order_id" = 1 AND "spree_adjustments"."originator_type" = 'Spree::TaxRate'
+  [1m[36mSpree::Zone Load (0.1ms)[0m  [1mSELECT "spree_zones".* FROM "spree_zones" ORDER BY zone_members_count, created_at[0m
+  [1m[35mSpree::Zone Load (0.1ms)[0m  SELECT "spree_zones".* FROM "spree_zones" WHERE "spree_zones"."default_tax" = 't' LIMIT 1
+  [1m[36mSpree::Payment Exists (0.1ms)[0m  [1mSELECT 1 AS one FROM "spree_payments" WHERE "spree_payments"."identifier" = 'EGPKR27R' LIMIT 1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "spree_payments" ("amount", "avs_response", "created_at", "cvv_response_code", "cvv_response_message", "identifier", "order_id", "payment_method_id", "response_code", "source_id", "source_type", "state", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)  [["amount", #<BigDecimal:7ff0d348bba8,'0.0',9(45)>], ["avs_response", nil], ["created_at", Mon, 24 Mar 2014 12:20:54 UTC +00:00], ["cvv_response_code", nil], ["cvv_response_message", nil], ["identifier", "EGPKR27R"], ["order_id", 1], ["payment_method_id", 1], ["response_code", nil], ["source_id", nil], ["source_type", nil], ["state", "checkout"], ["updated_at", Mon, 24 Mar 2014 12:20:54 UTC +00:00]]
+  [1m[36mSpree::Payment Load (0.2ms)[0m  [1mSELECT "spree_payments".* FROM "spree_payments" WHERE "spree_payments"."order_id" = 1 AND "spree_payments"."state" = 'checkout' AND (id != 1)[0m
+  [1m[35mSQL (0.2ms)[0m  UPDATE "spree_orders" SET "updated_at" = '2014-03-24 12:20:54.974702' WHERE "spree_orders"."id" = 1
+  [1m[36mSpree::Payment Load (0.1ms)[0m  [1mSELECT "spree_payments".* FROM "spree_payments" WHERE "spree_payments"."order_id" = 1[0m
+  [1m[35mSpree::Payment Load (0.1ms)[0m  SELECT "spree_payments".* FROM "spree_payments" WHERE "spree_payments"."order_id" = 1 AND "spree_payments"."state" = 'completed'
+  [1m[36mSpree::Adjustment Load (0.1ms)[0m  [1mSELECT "spree_adjustments".* FROM "spree_adjustments" WHERE "spree_adjustments"."adjustable_id" = 1 AND "spree_adjustments"."adjustable_type" = 'Spree::Order' AND "spree_adjustments"."eligible" = 't' ORDER BY created_at ASC[0m
+  [1m[35mSpree::Adjustment Load (0.3ms)[0m  SELECT "spree_adjustments".* FROM "spree_adjustments" WHERE "spree_adjustments"."adjustable_id" = 1 AND "spree_adjustments"."adjustable_type" = 'Spree::Order' ORDER BY created_at ASC
+  [1m[36mSpree::Adjustment Load (0.2ms)[0m  [1mSELECT "spree_adjustments".* FROM "spree_adjustments" WHERE "spree_adjustments"."adjustable_id" = 1 AND "spree_adjustments"."adjustable_type" = 'Spree::Order' AND "spree_adjustments"."originator_type" = 'Spree::PromotionAction' AND "spree_adjustments"."eligible" = 't' ORDER BY amount ASC, created_at DESC LIMIT 1[0m
+  [1m[35mSpree::Payment Load (0.1ms)[0m  SELECT "spree_payments".* FROM "spree_payments" WHERE "spree_payments"."order_id" = 1 AND "spree_payments"."state" = 'completed'
+  [1m[36mSpree::Adjustment Load (0.1ms)[0m  [1mSELECT "spree_adjustments".* FROM "spree_adjustments" WHERE "spree_adjustments"."adjustable_id" = 1 AND "spree_adjustments"."adjustable_type" = 'Spree::Order' AND "spree_adjustments"."eligible" = 't' ORDER BY created_at ASC[0m
+  [1m[35mSQL (0.2ms)[0m  UPDATE "spree_orders" SET "payment_state" = NULL, "shipment_state" = NULL, "item_total" = 0.0, "adjustment_total" = 0.0, "payment_total" = 0.0, "total" = 0.0 WHERE "spree_orders"."id" = 1
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  UPDATE "spree_payments" SET "state" = 'void' WHERE "spree_payments"."id" = 1
+  [1m[36m (0.8ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "spree_payment_methods" ("active", "created_at", "deleted_at", "description", "display_on", "environment", "name", "type", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)  [["active", true], ["created_at", Mon, 24 Mar 2014 12:20:54 UTC +00:00], ["deleted_at", nil], ["description", nil], ["display_on", nil], ["environment", "test"], ["name", "Cash On Delivery"], ["type", "Spree::PaymentMethod::CashOnDelivery"], ["updated_at", Mon, 24 Mar 2014 12:20:54 UTC +00:00]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSpree::Order Load (0.2ms)[0m  [1mSELECT "spree_orders".* FROM "spree_orders" WHERE "spree_orders"."number" = 'R120105031' LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "spree_orders" WHERE (spree_orders.number LIKE 'R120105031%')
+  [1m[36mSpree::Payment Load (0.2ms)[0m  [1mSELECT "spree_payments".* FROM "spree_payments" WHERE "spree_payments"."order_id" IS NULL AND "spree_payments"."state" = 'completed'[0m
+  [1m[35mSpree::Adjustment Load (0.2ms)[0m  SELECT "spree_adjustments".* FROM "spree_adjustments" WHERE "spree_adjustments"."adjustable_id" IS NULL AND "spree_adjustments"."adjustable_type" = 'Spree::Order' AND "spree_adjustments"."eligible" = 't' ORDER BY created_at ASC
+  [1m[36mSpree::Payment Load (0.2ms)[0m  [1mSELECT "spree_payments".* FROM "spree_payments" WHERE "spree_payments"."order_id" IS NULL AND ("spree_payments".state NOT IN ('failed','invalid'))[0m
+  [1m[35mSpree::Payment Load (0.1ms)[0m  SELECT "spree_payments".* FROM "spree_payments" WHERE "spree_payments"."order_id" IS NULL AND "spree_payments"."state" = 'completed'
+  [1m[36mSpree::Adjustment Load (0.1ms)[0m  [1mSELECT "spree_adjustments".* FROM "spree_adjustments" WHERE "spree_adjustments"."adjustable_id" IS NULL AND "spree_adjustments"."adjustable_type" = 'Spree::Order' AND "spree_adjustments"."eligible" = 't' ORDER BY created_at ASC[0m
+  [1m[35mSpree::Payment Load (0.1ms)[0m  SELECT "spree_payments".* FROM "spree_payments" WHERE "spree_payments"."order_id" IS NULL AND ("spree_payments".state NOT IN ('failed','invalid'))
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "spree_orders" ("adjustment_total", "bill_address_id", "channel", "completed_at", "created_at", "created_by_id", "currency", "email", "item_total", "last_ip_address", "number", "payment_state", "payment_total", "ship_address_id", "shipment_state", "shipping_method_id", "special_instructions", "state", "total", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["adjustment_total", #<BigDecimal:7ff0d8b92a00,'0.0',9(36)>], ["bill_address_id", nil], ["channel", "spree"], ["completed_at", nil], ["created_at", Mon, 24 Mar 2014 12:20:55 UTC +00:00], ["created_by_id", nil], ["currency", "USD"], ["email", nil], ["item_total", #<BigDecimal:7ff0d8b91880,'0.0',9(36)>], ["last_ip_address", nil], ["number", "R120105031"], ["payment_state", nil], ["payment_total", #<BigDecimal:7ff0d8b936d0,'0.0',9(36)>], ["ship_address_id", nil], ["shipment_state", nil], ["shipping_method_id", nil], ["special_instructions", nil], ["state", "cart"], ["total", #<BigDecimal:7ff0d8b82ec0,'0.0',9(27)>], ["updated_at", Mon, 24 Mar 2014 12:20:55 UTC +00:00], ["user_id", nil]]
+  [1m[35mSpree::TokenizedPermission Load (0.1ms)[0m  SELECT "spree_tokenized_permissions".* FROM "spree_tokenized_permissions" WHERE "spree_tokenized_permissions"."permissable_id" = 1 AND "spree_tokenized_permissions"."permissable_type" = 'Spree::Order' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "spree_tokenized_permissions" ("created_at", "permissable_id", "permissable_type", "token", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", Mon, 24 Mar 2014 12:20:55 UTC +00:00], ["permissable_id", 1], ["permissable_type", "Spree::Order"], ["token", "3a7f071571efe4c4"], ["updated_at", Mon, 24 Mar 2014 12:20:55 UTC +00:00]]
+  [1m[35mSpree::Adjustment Load (0.1ms)[0m  SELECT "spree_adjustments".* FROM "spree_adjustments" WHERE "spree_adjustments"."adjustable_id" = 1 AND "spree_adjustments"."originator_type" = 'Spree::TaxRate' AND "spree_adjustments"."adjustable_type" = 'Spree::Order' ORDER BY created_at ASC
+  [1m[36mSpree::Adjustment Load (0.2ms)[0m  [1mSELECT "spree_adjustments".* FROM "spree_adjustments" INNER JOIN "spree_line_items" ON "spree_adjustments"."adjustable_id" = "spree_line_items"."id" AND "spree_adjustments"."adjustable_type" = 'Spree::LineItem' WHERE "spree_line_items"."order_id" = 1 AND "spree_adjustments"."originator_type" = 'Spree::TaxRate'[0m
+  [1m[35mSpree::Zone Load (0.1ms)[0m  SELECT "spree_zones".* FROM "spree_zones" ORDER BY zone_members_count, created_at
+  [1m[36mSpree::Zone Load (0.1ms)[0m  [1mSELECT "spree_zones".* FROM "spree_zones" WHERE "spree_zones"."default_tax" = 't' LIMIT 1[0m
+  [1m[35mSpree::Payment Exists (0.1ms)[0m  SELECT 1 AS one FROM "spree_payments" WHERE "spree_payments"."identifier" = 'W7RYZT4A' LIMIT 1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "spree_payments" ("amount", "avs_response", "created_at", "cvv_response_code", "cvv_response_message", "identifier", "order_id", "payment_method_id", "response_code", "source_id", "source_type", "state", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["amount", #<BigDecimal:7ff0d83d99f8,'0.0',9(45)>], ["avs_response", nil], ["created_at", Mon, 24 Mar 2014 12:20:55 UTC +00:00], ["cvv_response_code", nil], ["cvv_response_message", nil], ["identifier", "W7RYZT4A"], ["order_id", 1], ["payment_method_id", 1], ["response_code", nil], ["source_id", nil], ["source_type", nil], ["state", "checkout"], ["updated_at", Mon, 24 Mar 2014 12:20:55 UTC +00:00]]
+  [1m[35mSpree::Payment Load (0.2ms)[0m  SELECT "spree_payments".* FROM "spree_payments" WHERE "spree_payments"."order_id" = 1 AND "spree_payments"."state" = 'checkout' AND (id != 1)
+  [1m[36mSQL (0.2ms)[0m  [1mUPDATE "spree_orders" SET "updated_at" = '2014-03-24 12:20:55.031340' WHERE "spree_orders"."id" = 1[0m
+  [1m[35mSpree::Payment Load (0.1ms)[0m  SELECT "spree_payments".* FROM "spree_payments" WHERE "spree_payments"."order_id" = 1
+  [1m[36mSpree::Payment Load (0.1ms)[0m  [1mSELECT "spree_payments".* FROM "spree_payments" WHERE "spree_payments"."order_id" = 1 AND "spree_payments"."state" = 'completed'[0m
+  [1m[35mSpree::Adjustment Load (0.2ms)[0m  SELECT "spree_adjustments".* FROM "spree_adjustments" WHERE "spree_adjustments"."adjustable_id" = 1 AND "spree_adjustments"."adjustable_type" = 'Spree::Order' AND "spree_adjustments"."eligible" = 't' ORDER BY created_at ASC
+  [1m[36mSpree::Adjustment Load (0.2ms)[0m  [1mSELECT "spree_adjustments".* FROM "spree_adjustments" WHERE "spree_adjustments"."adjustable_id" = 1 AND "spree_adjustments"."adjustable_type" = 'Spree::Order' ORDER BY created_at ASC[0m
+  [1m[35mSpree::Adjustment Load (0.2ms)[0m  SELECT "spree_adjustments".* FROM "spree_adjustments" WHERE "spree_adjustments"."adjustable_id" = 1 AND "spree_adjustments"."adjustable_type" = 'Spree::Order' AND "spree_adjustments"."originator_type" = 'Spree::PromotionAction' AND "spree_adjustments"."eligible" = 't' ORDER BY amount ASC, created_at DESC LIMIT 1
+  [1m[36mSpree::Payment Load (0.2ms)[0m  [1mSELECT "spree_payments".* FROM "spree_payments" WHERE "spree_payments"."order_id" = 1 AND "spree_payments"."state" = 'completed'[0m
+  [1m[35mSpree::Adjustment Load (0.1ms)[0m  SELECT "spree_adjustments".* FROM "spree_adjustments" WHERE "spree_adjustments"."adjustable_id" = 1 AND "spree_adjustments"."adjustable_type" = 'Spree::Order' AND "spree_adjustments"."eligible" = 't' ORDER BY created_at ASC
+  [1m[36mSQL (0.1ms)[0m  [1mUPDATE "spree_orders" SET "payment_state" = NULL, "shipment_state" = NULL, "item_total" = 0.0, "adjustment_total" = 0.0, "payment_total" = 0.0, "total" = 0.0 WHERE "spree_orders"."id" = 1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.7ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "spree_payment_methods" ("active", "created_at", "deleted_at", "description", "display_on", "environment", "name", "type", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)  [["active", true], ["created_at", Mon, 24 Mar 2014 12:20:55 UTC +00:00], ["deleted_at", nil], ["description", nil], ["display_on", nil], ["environment", "test"], ["name", "Cash On Delivery"], ["type", "Spree::PaymentMethod::CashOnDelivery"], ["updated_at", Mon, 24 Mar 2014 12:20:55 UTC +00:00]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSpree::Order Load (0.2ms)[0m  [1mSELECT "spree_orders".* FROM "spree_orders" WHERE "spree_orders"."number" = 'R805315363' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "spree_orders" WHERE (spree_orders.number LIKE 'R805315363%')
+  [1m[36mSpree::Payment Load (0.2ms)[0m  [1mSELECT "spree_payments".* FROM "spree_payments" WHERE "spree_payments"."order_id" IS NULL AND "spree_payments"."state" = 'completed'[0m
+  [1m[35mSpree::Adjustment Load (0.1ms)[0m  SELECT "spree_adjustments".* FROM "spree_adjustments" WHERE "spree_adjustments"."adjustable_id" IS NULL AND "spree_adjustments"."adjustable_type" = 'Spree::Order' AND "spree_adjustments"."eligible" = 't' ORDER BY created_at ASC
+  [1m[36mSpree::Payment Load (0.1ms)[0m  [1mSELECT "spree_payments".* FROM "spree_payments" WHERE "spree_payments"."order_id" IS NULL AND ("spree_payments".state NOT IN ('failed','invalid'))[0m
+  [1m[35mSpree::Payment Load (0.1ms)[0m  SELECT "spree_payments".* FROM "spree_payments" WHERE "spree_payments"."order_id" IS NULL AND "spree_payments"."state" = 'completed'
+  [1m[36mSpree::Adjustment Load (0.1ms)[0m  [1mSELECT "spree_adjustments".* FROM "spree_adjustments" WHERE "spree_adjustments"."adjustable_id" IS NULL AND "spree_adjustments"."adjustable_type" = 'Spree::Order' AND "spree_adjustments"."eligible" = 't' ORDER BY created_at ASC[0m
+  [1m[35mSpree::Payment Load (0.1ms)[0m  SELECT "spree_payments".* FROM "spree_payments" WHERE "spree_payments"."order_id" IS NULL AND ("spree_payments".state NOT IN ('failed','invalid'))
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "spree_orders" ("adjustment_total", "bill_address_id", "channel", "completed_at", "created_at", "created_by_id", "currency", "email", "item_total", "last_ip_address", "number", "payment_state", "payment_total", "ship_address_id", "shipment_state", "shipping_method_id", "special_instructions", "state", "total", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["adjustment_total", #<BigDecimal:7ff0d8429e58,'0.0',9(36)>], ["bill_address_id", nil], ["channel", "spree"], ["completed_at", nil], ["created_at", Mon, 24 Mar 2014 12:20:55 UTC +00:00], ["created_by_id", nil], ["currency", "USD"], ["email", nil], ["item_total", #<BigDecimal:7ff0d8429f48,'0.0',9(36)>], ["last_ip_address", nil], ["number", "R805315363"], ["payment_state", nil], ["payment_total", #<BigDecimal:7ff0d8429d18,'0.0',9(36)>], ["ship_address_id", nil], ["shipment_state", nil], ["shipping_method_id", nil], ["special_instructions", nil], ["state", "cart"], ["total", #<BigDecimal:7ff0d84188d8,'0.0',9(27)>], ["updated_at", Mon, 24 Mar 2014 12:20:55 UTC +00:00], ["user_id", nil]]
+  [1m[35mSpree::TokenizedPermission Load (0.1ms)[0m  SELECT "spree_tokenized_permissions".* FROM "spree_tokenized_permissions" WHERE "spree_tokenized_permissions"."permissable_id" = 1 AND "spree_tokenized_permissions"."permissable_type" = 'Spree::Order' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "spree_tokenized_permissions" ("created_at", "permissable_id", "permissable_type", "token", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", Mon, 24 Mar 2014 12:20:55 UTC +00:00], ["permissable_id", 1], ["permissable_type", "Spree::Order"], ["token", "1c27c6eb787b0dde"], ["updated_at", Mon, 24 Mar 2014 12:20:55 UTC +00:00]]
+  [1m[35mSpree::Adjustment Load (0.2ms)[0m  SELECT "spree_adjustments".* FROM "spree_adjustments" WHERE "spree_adjustments"."adjustable_id" = 1 AND "spree_adjustments"."originator_type" = 'Spree::TaxRate' AND "spree_adjustments"."adjustable_type" = 'Spree::Order' ORDER BY created_at ASC
+  [1m[36mSpree::Adjustment Load (0.1ms)[0m  [1mSELECT "spree_adjustments".* FROM "spree_adjustments" INNER JOIN "spree_line_items" ON "spree_adjustments"."adjustable_id" = "spree_line_items"."id" AND "spree_adjustments"."adjustable_type" = 'Spree::LineItem' WHERE "spree_line_items"."order_id" = 1 AND "spree_adjustments"."originator_type" = 'Spree::TaxRate'[0m
+  [1m[35mSpree::Zone Load (0.1ms)[0m  SELECT "spree_zones".* FROM "spree_zones" ORDER BY zone_members_count, created_at
+  [1m[36mSpree::Zone Load (0.1ms)[0m  [1mSELECT "spree_zones".* FROM "spree_zones" WHERE "spree_zones"."default_tax" = 't' LIMIT 1[0m
+  [1m[35mSpree::Payment Exists (0.1ms)[0m  SELECT 1 AS one FROM "spree_payments" WHERE "spree_payments"."identifier" = 'DQRKQJUF' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "spree_payments" ("amount", "avs_response", "created_at", "cvv_response_code", "cvv_response_message", "identifier", "order_id", "payment_method_id", "response_code", "source_id", "source_type", "state", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["amount", #<BigDecimal:7ff0d8c38068,'0.0',9(45)>], ["avs_response", nil], ["created_at", Mon, 24 Mar 2014 12:20:55 UTC +00:00], ["cvv_response_code", nil], ["cvv_response_message", nil], ["identifier", "DQRKQJUF"], ["order_id", 1], ["payment_method_id", 1], ["response_code", nil], ["source_id", nil], ["source_type", nil], ["state", "checkout"], ["updated_at", Mon, 24 Mar 2014 12:20:55 UTC +00:00]]
+  [1m[35mSpree::Payment Load (0.1ms)[0m  SELECT "spree_payments".* FROM "spree_payments" WHERE "spree_payments"."order_id" = 1 AND "spree_payments"."state" = 'checkout' AND (id != 1)
+  [1m[36mSQL (0.1ms)[0m  [1mUPDATE "spree_orders" SET "updated_at" = '2014-03-24 12:20:55.078776' WHERE "spree_orders"."id" = 1[0m
+  [1m[35mSpree::Payment Load (0.1ms)[0m  SELECT "spree_payments".* FROM "spree_payments" WHERE "spree_payments"."order_id" = 1
+  [1m[36mSpree::Payment Load (0.5ms)[0m  [1mSELECT "spree_payments".* FROM "spree_payments" WHERE "spree_payments"."order_id" = 1 AND "spree_payments"."state" = 'completed'[0m
+  [1m[35mSpree::Adjustment Load (0.1ms)[0m  SELECT "spree_adjustments".* FROM "spree_adjustments" WHERE "spree_adjustments"."adjustable_id" = 1 AND "spree_adjustments"."adjustable_type" = 'Spree::Order' AND "spree_adjustments"."eligible" = 't' ORDER BY created_at ASC
+  [1m[36mSpree::Adjustment Load (0.1ms)[0m  [1mSELECT "spree_adjustments".* FROM "spree_adjustments" WHERE "spree_adjustments"."adjustable_id" = 1 AND "spree_adjustments"."adjustable_type" = 'Spree::Order' ORDER BY created_at ASC[0m
+  [1m[35mSpree::Adjustment Load (0.2ms)[0m  SELECT "spree_adjustments".* FROM "spree_adjustments" WHERE "spree_adjustments"."adjustable_id" = 1 AND "spree_adjustments"."adjustable_type" = 'Spree::Order' AND "spree_adjustments"."originator_type" = 'Spree::PromotionAction' AND "spree_adjustments"."eligible" = 't' ORDER BY amount ASC, created_at DESC LIMIT 1
+  [1m[36mSpree::Payment Load (0.1ms)[0m  [1mSELECT "spree_payments".* FROM "spree_payments" WHERE "spree_payments"."order_id" = 1 AND "spree_payments"."state" = 'completed'[0m
+  [1m[35mSpree::Adjustment Load (0.2ms)[0m  SELECT "spree_adjustments".* FROM "spree_adjustments" WHERE "spree_adjustments"."adjustable_id" = 1 AND "spree_adjustments"."adjustable_type" = 'Spree::Order' AND "spree_adjustments"."eligible" = 't' ORDER BY created_at ASC
+  [1m[36mSQL (0.2ms)[0m  [1mUPDATE "spree_orders" SET "payment_state" = NULL, "shipment_state" = NULL, "item_total" = 0.0, "adjustment_total" = 0.0, "payment_total" = 0.0, "total" = 0.0 WHERE "spree_orders"."id" = 1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.8ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "spree_payment_methods" ("active", "created_at", "deleted_at", "description", "display_on", "environment", "name", "type", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)  [["active", true], ["created_at", Mon, 24 Mar 2014 12:20:55 UTC +00:00], ["deleted_at", nil], ["description", nil], ["display_on", nil], ["environment", "test"], ["name", "Cash On Delivery"], ["type", "Spree::PaymentMethod::CashOnDelivery"], ["updated_at", Mon, 24 Mar 2014 12:20:55 UTC +00:00]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSpree::Order Load (0.2ms)[0m  [1mSELECT "spree_orders".* FROM "spree_orders" WHERE "spree_orders"."number" = 'R812114316' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "spree_orders" WHERE (spree_orders.number LIKE 'R812114316%')
+  [1m[36mSpree::Payment Load (0.3ms)[0m  [1mSELECT "spree_payments".* FROM "spree_payments" WHERE "spree_payments"."order_id" IS NULL AND "spree_payments"."state" = 'completed'[0m
+  [1m[35mSpree::Adjustment Load (0.2ms)[0m  SELECT "spree_adjustments".* FROM "spree_adjustments" WHERE "spree_adjustments"."adjustable_id" IS NULL AND "spree_adjustments"."adjustable_type" = 'Spree::Order' AND "spree_adjustments"."eligible" = 't' ORDER BY created_at ASC
+  [1m[36mSpree::Payment Load (0.1ms)[0m  [1mSELECT "spree_payments".* FROM "spree_payments" WHERE "spree_payments"."order_id" IS NULL AND ("spree_payments".state NOT IN ('failed','invalid'))[0m
+  [1m[35mSpree::Payment Load (0.1ms)[0m  SELECT "spree_payments".* FROM "spree_payments" WHERE "spree_payments"."order_id" IS NULL AND "spree_payments"."state" = 'completed'
+  [1m[36mSpree::Adjustment Load (0.2ms)[0m  [1mSELECT "spree_adjustments".* FROM "spree_adjustments" WHERE "spree_adjustments"."adjustable_id" IS NULL AND "spree_adjustments"."adjustable_type" = 'Spree::Order' AND "spree_adjustments"."eligible" = 't' ORDER BY created_at ASC[0m
+  [1m[35mSpree::Payment Load (0.1ms)[0m  SELECT "spree_payments".* FROM "spree_payments" WHERE "spree_payments"."order_id" IS NULL AND ("spree_payments".state NOT IN ('failed','invalid'))
+  [1m[36mSQL (0.9ms)[0m  [1mINSERT INTO "spree_orders" ("adjustment_total", "bill_address_id", "channel", "completed_at", "created_at", "created_by_id", "currency", "email", "item_total", "last_ip_address", "number", "payment_state", "payment_total", "ship_address_id", "shipment_state", "shipping_method_id", "special_instructions", "state", "total", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["adjustment_total", #<BigDecimal:7ff0d8c83db0,'0.0',9(36)>], ["bill_address_id", nil], ["channel", "spree"], ["completed_at", nil], ["created_at", Mon, 24 Mar 2014 12:20:55 UTC +00:00], ["created_by_id", nil], ["currency", "USD"], ["email", nil], ["item_total", #<BigDecimal:7ff0d8c83ea0,'0.0',9(36)>], ["last_ip_address", nil], ["number", "R812114316"], ["payment_state", nil], ["payment_total", #<BigDecimal:7ff0d8c83c70,'0.0',9(36)>], ["ship_address_id", nil], ["shipment_state", nil], ["shipping_method_id", nil], ["special_instructions", nil], ["state", "cart"], ["total", #<BigDecimal:7ff0d849a838,'0.0',9(27)>], ["updated_at", Mon, 24 Mar 2014 12:20:55 UTC +00:00], ["user_id", nil]]
+  [1m[35mSpree::TokenizedPermission Load (0.2ms)[0m  SELECT "spree_tokenized_permissions".* FROM "spree_tokenized_permissions" WHERE "spree_tokenized_permissions"."permissable_id" = 1 AND "spree_tokenized_permissions"."permissable_type" = 'Spree::Order' LIMIT 1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "spree_tokenized_permissions" ("created_at", "permissable_id", "permissable_type", "token", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", Mon, 24 Mar 2014 12:20:55 UTC +00:00], ["permissable_id", 1], ["permissable_type", "Spree::Order"], ["token", "c23450b550058d37"], ["updated_at", Mon, 24 Mar 2014 12:20:55 UTC +00:00]]
+  [1m[35mSpree::Adjustment Load (0.1ms)[0m  SELECT "spree_adjustments".* FROM "spree_adjustments" WHERE "spree_adjustments"."adjustable_id" = 1 AND "spree_adjustments"."originator_type" = 'Spree::TaxRate' AND "spree_adjustments"."adjustable_type" = 'Spree::Order' ORDER BY created_at ASC
+  [1m[36mSpree::Adjustment Load (0.1ms)[0m  [1mSELECT "spree_adjustments".* FROM "spree_adjustments" INNER JOIN "spree_line_items" ON "spree_adjustments"."adjustable_id" = "spree_line_items"."id" AND "spree_adjustments"."adjustable_type" = 'Spree::LineItem' WHERE "spree_line_items"."order_id" = 1 AND "spree_adjustments"."originator_type" = 'Spree::TaxRate'[0m
+  [1m[35mSpree::Zone Load (0.1ms)[0m  SELECT "spree_zones".* FROM "spree_zones" ORDER BY zone_members_count, created_at
+  [1m[36mSpree::Zone Load (0.1ms)[0m  [1mSELECT "spree_zones".* FROM "spree_zones" WHERE "spree_zones"."default_tax" = 't' LIMIT 1[0m
+  [1m[35mSpree::Payment Exists (0.3ms)[0m  SELECT 1 AS one FROM "spree_payments" WHERE "spree_payments"."identifier" = '79RP5LJA' LIMIT 1
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "spree_payments" ("amount", "avs_response", "created_at", "cvv_response_code", "cvv_response_message", "identifier", "order_id", "payment_method_id", "response_code", "source_id", "source_type", "state", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["amount", #<BigDecimal:7ff0d8cd9fd0,'0.0',9(45)>], ["avs_response", nil], ["created_at", Mon, 24 Mar 2014 12:20:55 UTC +00:00], ["cvv_response_code", nil], ["cvv_response_message", nil], ["identifier", "79RP5LJA"], ["order_id", 1], ["payment_method_id", 1], ["response_code", nil], ["source_id", nil], ["source_type", nil], ["state", "checkout"], ["updated_at", Mon, 24 Mar 2014 12:20:55 UTC +00:00]]
+  [1m[35mSpree::Payment Load (0.2ms)[0m  SELECT "spree_payments".* FROM "spree_payments" WHERE "spree_payments"."order_id" = 1 AND "spree_payments"."state" = 'checkout' AND (id != 1)
+  [1m[36mSQL (0.2ms)[0m  [1mUPDATE "spree_orders" SET "updated_at" = '2014-03-24 12:20:55.153834' WHERE "spree_orders"."id" = 1[0m
+  [1m[35mSpree::Payment Load (0.1ms)[0m  SELECT "spree_payments".* FROM "spree_payments" WHERE "spree_payments"."order_id" = 1
+  [1m[36mSpree::Payment Load (0.1ms)[0m  [1mSELECT "spree_payments".* FROM "spree_payments" WHERE "spree_payments"."order_id" = 1 AND "spree_payments"."state" = 'completed'[0m
+  [1m[35mSpree::Adjustment Load (0.1ms)[0m  SELECT "spree_adjustments".* FROM "spree_adjustments" WHERE "spree_adjustments"."adjustable_id" = 1 AND "spree_adjustments"."adjustable_type" = 'Spree::Order' AND "spree_adjustments"."eligible" = 't' ORDER BY created_at ASC
+  [1m[36mSpree::Adjustment Load (0.1ms)[0m  [1mSELECT "spree_adjustments".* FROM "spree_adjustments" WHERE "spree_adjustments"."adjustable_id" = 1 AND "spree_adjustments"."adjustable_type" = 'Spree::Order' ORDER BY created_at ASC[0m
+  [1m[35mSpree::Adjustment Load (0.2ms)[0m  SELECT "spree_adjustments".* FROM "spree_adjustments" WHERE "spree_adjustments"."adjustable_id" = 1 AND "spree_adjustments"."adjustable_type" = 'Spree::Order' AND "spree_adjustments"."originator_type" = 'Spree::PromotionAction' AND "spree_adjustments"."eligible" = 't' ORDER BY amount ASC, created_at DESC LIMIT 1
+  [1m[36mSpree::Payment Load (0.1ms)[0m  [1mSELECT "spree_payments".* FROM "spree_payments" WHERE "spree_payments"."order_id" = 1 AND "spree_payments"."state" = 'completed'[0m
+  [1m[35mSpree::Adjustment Load (0.1ms)[0m  SELECT "spree_adjustments".* FROM "spree_adjustments" WHERE "spree_adjustments"."adjustable_id" = 1 AND "spree_adjustments"."adjustable_type" = 'Spree::Order' AND "spree_adjustments"."eligible" = 't' ORDER BY created_at ASC
+  [1m[36mSQL (0.1ms)[0m  [1mUPDATE "spree_orders" SET "payment_state" = NULL, "shipment_state" = NULL, "item_total" = 0.0, "adjustment_total" = 0.0, "payment_total" = 0.0, "total" = 0.0 WHERE "spree_orders"."id" = 1[0m
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.7ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "spree_payment_methods" ("active", "created_at", "deleted_at", "description", "display_on", "environment", "name", "type", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)  [["active", true], ["created_at", Mon, 24 Mar 2014 12:20:55 UTC +00:00], ["deleted_at", nil], ["description", nil], ["display_on", nil], ["environment", "test"], ["name", "Cash On Delivery"], ["type", "Spree::PaymentMethod::CashOnDelivery"], ["updated_at", Mon, 24 Mar 2014 12:20:55 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSpree::Order Load (0.1ms)[0m  [1mSELECT "spree_orders".* FROM "spree_orders" WHERE "spree_orders"."number" = 'R228560761' LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "spree_orders" WHERE (spree_orders.number LIKE 'R228560761%')
+  [1m[36mSpree::Payment Load (0.1ms)[0m  [1mSELECT "spree_payments".* FROM "spree_payments" WHERE "spree_payments"."order_id" IS NULL AND "spree_payments"."state" = 'completed'[0m
+  [1m[35mSpree::Adjustment Load (0.1ms)[0m  SELECT "spree_adjustments".* FROM "spree_adjustments" WHERE "spree_adjustments"."adjustable_id" IS NULL AND "spree_adjustments"."adjustable_type" = 'Spree::Order' AND "spree_adjustments"."eligible" = 't' ORDER BY created_at ASC
+  [1m[36mSpree::Payment Load (0.1ms)[0m  [1mSELECT "spree_payments".* FROM "spree_payments" WHERE "spree_payments"."order_id" IS NULL AND ("spree_payments".state NOT IN ('failed','invalid'))[0m
+  [1m[35mSpree::Payment Load (0.1ms)[0m  SELECT "spree_payments".* FROM "spree_payments" WHERE "spree_payments"."order_id" IS NULL AND "spree_payments"."state" = 'completed'
+  [1m[36mSpree::Adjustment Load (0.1ms)[0m  [1mSELECT "spree_adjustments".* FROM "spree_adjustments" WHERE "spree_adjustments"."adjustable_id" IS NULL AND "spree_adjustments"."adjustable_type" = 'Spree::Order' AND "spree_adjustments"."eligible" = 't' ORDER BY created_at ASC[0m
+  [1m[35mSpree::Payment Load (0.1ms)[0m  SELECT "spree_payments".* FROM "spree_payments" WHERE "spree_payments"."order_id" IS NULL AND ("spree_payments".state NOT IN ('failed','invalid'))
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "spree_orders" ("adjustment_total", "bill_address_id", "channel", "completed_at", "created_at", "created_by_id", "currency", "email", "item_total", "last_ip_address", "number", "payment_state", "payment_total", "ship_address_id", "shipment_state", "shipping_method_id", "special_instructions", "state", "total", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["adjustment_total", #<BigDecimal:7ff0d8542420,'0.0',9(36)>], ["bill_address_id", nil], ["channel", "spree"], ["completed_at", nil], ["created_at", Mon, 24 Mar 2014 12:20:55 UTC +00:00], ["created_by_id", nil], ["currency", "USD"], ["email", nil], ["item_total", #<BigDecimal:7ff0d8542510,'0.0',9(36)>], ["last_ip_address", nil], ["number", "R228560761"], ["payment_state", nil], ["payment_total", #<BigDecimal:7ff0d85422e0,'0.0',9(36)>], ["ship_address_id", nil], ["shipment_state", nil], ["shipping_method_id", nil], ["special_instructions", nil], ["state", "cart"], ["total", #<BigDecimal:7ff0d8530ea0,'0.0',9(27)>], ["updated_at", Mon, 24 Mar 2014 12:20:55 UTC +00:00], ["user_id", nil]]
+  [1m[35mSpree::TokenizedPermission Load (0.2ms)[0m  SELECT "spree_tokenized_permissions".* FROM "spree_tokenized_permissions" WHERE "spree_tokenized_permissions"."permissable_id" = 1 AND "spree_tokenized_permissions"."permissable_type" = 'Spree::Order' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "spree_tokenized_permissions" ("created_at", "permissable_id", "permissable_type", "token", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", Mon, 24 Mar 2014 12:20:55 UTC +00:00], ["permissable_id", 1], ["permissable_type", "Spree::Order"], ["token", "6addee5d4e43c80a"], ["updated_at", Mon, 24 Mar 2014 12:20:55 UTC +00:00]]
+  [1m[35mSpree::Adjustment Load (0.2ms)[0m  SELECT "spree_adjustments".* FROM "spree_adjustments" WHERE "spree_adjustments"."adjustable_id" = 1 AND "spree_adjustments"."originator_type" = 'Spree::TaxRate' AND "spree_adjustments"."adjustable_type" = 'Spree::Order' ORDER BY created_at ASC
+  [1m[36mSpree::Adjustment Load (0.3ms)[0m  [1mSELECT "spree_adjustments".* FROM "spree_adjustments" INNER JOIN "spree_line_items" ON "spree_adjustments"."adjustable_id" = "spree_line_items"."id" AND "spree_adjustments"."adjustable_type" = 'Spree::LineItem' WHERE "spree_line_items"."order_id" = 1 AND "spree_adjustments"."originator_type" = 'Spree::TaxRate'[0m
+  [1m[35mSpree::Zone Load (0.1ms)[0m  SELECT "spree_zones".* FROM "spree_zones" ORDER BY zone_members_count, created_at
+  [1m[36mSpree::Zone Load (0.1ms)[0m  [1mSELECT "spree_zones".* FROM "spree_zones" WHERE "spree_zones"."default_tax" = 't' LIMIT 1[0m
+  [1m[35mSpree::Payment Exists (0.1ms)[0m  SELECT 1 AS one FROM "spree_payments" WHERE "spree_payments"."identifier" = 'PGUK6DSN' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "spree_payments" ("amount", "avs_response", "created_at", "cvv_response_code", "cvv_response_message", "identifier", "order_id", "payment_method_id", "response_code", "source_id", "source_type", "state", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["amount", #<BigDecimal:7ff0d8598640,'0.0',9(45)>], ["avs_response", nil], ["created_at", Mon, 24 Mar 2014 12:20:55 UTC +00:00], ["cvv_response_code", nil], ["cvv_response_message", nil], ["identifier", "PGUK6DSN"], ["order_id", 1], ["payment_method_id", 1], ["response_code", nil], ["source_id", nil], ["source_type", nil], ["state", "checkout"], ["updated_at", Mon, 24 Mar 2014 12:20:55 UTC +00:00]]
+  [1m[35mSpree::Payment Load (0.2ms)[0m  SELECT "spree_payments".* FROM "spree_payments" WHERE "spree_payments"."order_id" = 1 AND "spree_payments"."state" = 'checkout' AND (id != 1)
+  [1m[36mSQL (0.2ms)[0m  [1mUPDATE "spree_orders" SET "updated_at" = '2014-03-24 12:20:55.199492' WHERE "spree_orders"."id" = 1[0m
+  [1m[35mSpree::Payment Load (0.1ms)[0m  SELECT "spree_payments".* FROM "spree_payments" WHERE "spree_payments"."order_id" = 1
+  [1m[36mSpree::Payment Load (0.2ms)[0m  [1mSELECT "spree_payments".* FROM "spree_payments" WHERE "spree_payments"."order_id" = 1 AND "spree_payments"."state" = 'completed'[0m
+  [1m[35mSpree::Adjustment Load (0.3ms)[0m  SELECT "spree_adjustments".* FROM "spree_adjustments" WHERE "spree_adjustments"."adjustable_id" = 1 AND "spree_adjustments"."adjustable_type" = 'Spree::Order' AND "spree_adjustments"."eligible" = 't' ORDER BY created_at ASC
+  [1m[36mSpree::Adjustment Load (0.1ms)[0m  [1mSELECT "spree_adjustments".* FROM "spree_adjustments" WHERE "spree_adjustments"."adjustable_id" = 1 AND "spree_adjustments"."adjustable_type" = 'Spree::Order' ORDER BY created_at ASC[0m
+  [1m[35mSpree::Adjustment Load (0.2ms)[0m  SELECT "spree_adjustments".* FROM "spree_adjustments" WHERE "spree_adjustments"."adjustable_id" = 1 AND "spree_adjustments"."adjustable_type" = 'Spree::Order' AND "spree_adjustments"."originator_type" = 'Spree::PromotionAction' AND "spree_adjustments"."eligible" = 't' ORDER BY amount ASC, created_at DESC LIMIT 1
+  [1m[36mSpree::Payment Load (0.1ms)[0m  [1mSELECT "spree_payments".* FROM "spree_payments" WHERE "spree_payments"."order_id" = 1 AND "spree_payments"."state" = 'completed'[0m
+  [1m[35mSpree::Adjustment Load (0.1ms)[0m  SELECT "spree_adjustments".* FROM "spree_adjustments" WHERE "spree_adjustments"."adjustable_id" = 1 AND "spree_adjustments"."adjustable_type" = 'Spree::Order' AND "spree_adjustments"."eligible" = 't' ORDER BY created_at ASC
+  [1m[36mSQL (0.1ms)[0m  [1mUPDATE "spree_orders" SET "payment_state" = NULL, "shipment_state" = NULL, "item_total" = 0.0, "adjustment_total" = 0.0, "payment_total" = 0.0, "total" = 0.0 WHERE "spree_orders"."id" = 1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.8ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "spree_payment_methods" ("active", "created_at", "deleted_at", "description", "display_on", "environment", "name", "type", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)  [["active", true], ["created_at", Mon, 24 Mar 2014 12:20:55 UTC +00:00], ["deleted_at", nil], ["description", nil], ["display_on", nil], ["environment", "test"], ["name", "Cash On Delivery"], ["type", "Spree::PaymentMethod::CashOnDelivery"], ["updated_at", Mon, 24 Mar 2014 12:20:55 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSpree::Order Load (0.2ms)[0m  [1mSELECT "spree_orders".* FROM "spree_orders" WHERE "spree_orders"."number" = 'R882470451' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "spree_orders" WHERE (spree_orders.number LIKE 'R882470451%')
+  [1m[36mSpree::Payment Load (0.1ms)[0m  [1mSELECT "spree_payments".* FROM "spree_payments" WHERE "spree_payments"."order_id" IS NULL AND "spree_payments"."state" = 'completed'[0m
+  [1m[35mSpree::Adjustment Load (0.1ms)[0m  SELECT "spree_adjustments".* FROM "spree_adjustments" WHERE "spree_adjustments"."adjustable_id" IS NULL AND "spree_adjustments"."adjustable_type" = 'Spree::Order' AND "spree_adjustments"."eligible" = 't' ORDER BY created_at ASC
+  [1m[36mSpree::Payment Load (0.1ms)[0m  [1mSELECT "spree_payments".* FROM "spree_payments" WHERE "spree_payments"."order_id" IS NULL AND ("spree_payments".state NOT IN ('failed','invalid'))[0m
+  [1m[35mSpree::Payment Load (0.1ms)[0m  SELECT "spree_payments".* FROM "spree_payments" WHERE "spree_payments"."order_id" IS NULL AND "spree_payments"."state" = 'completed'
+  [1m[36mSpree::Adjustment Load (0.1ms)[0m  [1mSELECT "spree_adjustments".* FROM "spree_adjustments" WHERE "spree_adjustments"."adjustable_id" IS NULL AND "spree_adjustments"."adjustable_type" = 'Spree::Order' AND "spree_adjustments"."eligible" = 't' ORDER BY created_at ASC[0m
+  [1m[35mSpree::Payment Load (0.1ms)[0m  SELECT "spree_payments".* FROM "spree_payments" WHERE "spree_payments"."order_id" IS NULL AND ("spree_payments".state NOT IN ('failed','invalid'))
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "spree_orders" ("adjustment_total", "bill_address_id", "channel", "completed_at", "created_at", "created_by_id", "currency", "email", "item_total", "last_ip_address", "number", "payment_state", "payment_total", "ship_address_id", "shipment_state", "shipping_method_id", "special_instructions", "state", "total", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["adjustment_total", #<BigDecimal:7ff0d8641b50,'0.0',9(36)>], ["bill_address_id", nil], ["channel", "spree"], ["completed_at", nil], ["created_at", Mon, 24 Mar 2014 12:20:55 UTC +00:00], ["created_by_id", nil], ["currency", "USD"], ["email", nil], ["item_total", #<BigDecimal:7ff0d8641c40,'0.0',9(36)>], ["last_ip_address", nil], ["number", "R882470451"], ["payment_state", nil], ["payment_total", #<BigDecimal:7ff0d8641a10,'0.0',9(36)>], ["ship_address_id", nil], ["shipment_state", nil], ["shipping_method_id", nil], ["special_instructions", nil], ["state", "cart"], ["total", #<BigDecimal:7ff0d86305d0,'0.0',9(27)>], ["updated_at", Mon, 24 Mar 2014 12:20:55 UTC +00:00], ["user_id", nil]]
+  [1m[35mSpree::TokenizedPermission Load (0.1ms)[0m  SELECT "spree_tokenized_permissions".* FROM "spree_tokenized_permissions" WHERE "spree_tokenized_permissions"."permissable_id" = 1 AND "spree_tokenized_permissions"."permissable_type" = 'Spree::Order' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "spree_tokenized_permissions" ("created_at", "permissable_id", "permissable_type", "token", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", Mon, 24 Mar 2014 12:20:55 UTC +00:00], ["permissable_id", 1], ["permissable_type", "Spree::Order"], ["token", "085d872aad251021"], ["updated_at", Mon, 24 Mar 2014 12:20:55 UTC +00:00]]
+  [1m[35mSpree::Adjustment Load (0.1ms)[0m  SELECT "spree_adjustments".* FROM "spree_adjustments" WHERE "spree_adjustments"."adjustable_id" = 1 AND "spree_adjustments"."originator_type" = 'Spree::TaxRate' AND "spree_adjustments"."adjustable_type" = 'Spree::Order' ORDER BY created_at ASC
+  [1m[36mSpree::Adjustment Load (0.1ms)[0m  [1mSELECT "spree_adjustments".* FROM "spree_adjustments" INNER JOIN "spree_line_items" ON "spree_adjustments"."adjustable_id" = "spree_line_items"."id" AND "spree_adjustments"."adjustable_type" = 'Spree::LineItem' WHERE "spree_line_items"."order_id" = 1 AND "spree_adjustments"."originator_type" = 'Spree::TaxRate'[0m
+  [1m[35mSpree::Zone Load (0.1ms)[0m  SELECT "spree_zones".* FROM "spree_zones" ORDER BY zone_members_count, created_at
+  [1m[36mSpree::Zone Load (0.1ms)[0m  [1mSELECT "spree_zones".* FROM "spree_zones" WHERE "spree_zones"."default_tax" = 't' LIMIT 1[0m
+  [1m[35mSpree::Payment Exists (0.1ms)[0m  SELECT 1 AS one FROM "spree_payments" WHERE "spree_payments"."identifier" = '4VMQ5H5U' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "spree_payments" ("amount", "avs_response", "created_at", "cvv_response_code", "cvv_response_message", "identifier", "order_id", "payment_method_id", "response_code", "source_id", "source_type", "state", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["amount", #<BigDecimal:7ff0d86a3d00,'0.0',9(45)>], ["avs_response", nil], ["created_at", Mon, 24 Mar 2014 12:20:55 UTC +00:00], ["cvv_response_code", nil], ["cvv_response_message", nil], ["identifier", "4VMQ5H5U"], ["order_id", 1], ["payment_method_id", 1], ["response_code", nil], ["source_id", nil], ["source_type", nil], ["state", "checkout"], ["updated_at", Mon, 24 Mar 2014 12:20:55 UTC +00:00]]
+  [1m[35mSpree::Payment Load (0.1ms)[0m  SELECT "spree_payments".* FROM "spree_payments" WHERE "spree_payments"."order_id" = 1 AND "spree_payments"."state" = 'checkout' AND (id != 1)
+  [1m[36mSQL (0.1ms)[0m  [1mUPDATE "spree_orders" SET "updated_at" = '2014-03-24 12:20:55.244758' WHERE "spree_orders"."id" = 1[0m
+  [1m[35mSpree::Payment Load (0.2ms)[0m  SELECT "spree_payments".* FROM "spree_payments" WHERE "spree_payments"."order_id" = 1
+  [1m[36mSpree::Payment Load (0.1ms)[0m  [1mSELECT "spree_payments".* FROM "spree_payments" WHERE "spree_payments"."order_id" = 1 AND "spree_payments"."state" = 'completed'[0m
+  [1m[35mSpree::Adjustment Load (0.2ms)[0m  SELECT "spree_adjustments".* FROM "spree_adjustments" WHERE "spree_adjustments"."adjustable_id" = 1 AND "spree_adjustments"."adjustable_type" = 'Spree::Order' AND "spree_adjustments"."eligible" = 't' ORDER BY created_at ASC
+  [1m[36mSpree::Adjustment Load (0.1ms)[0m  [1mSELECT "spree_adjustments".* FROM "spree_adjustments" WHERE "spree_adjustments"."adjustable_id" = 1 AND "spree_adjustments"."adjustable_type" = 'Spree::Order' ORDER BY created_at ASC[0m
+  [1m[35mSpree::Adjustment Load (0.2ms)[0m  SELECT "spree_adjustments".* FROM "spree_adjustments" WHERE "spree_adjustments"."adjustable_id" = 1 AND "spree_adjustments"."adjustable_type" = 'Spree::Order' AND "spree_adjustments"."originator_type" = 'Spree::PromotionAction' AND "spree_adjustments"."eligible" = 't' ORDER BY amount ASC, created_at DESC LIMIT 1
+  [1m[36mSpree::Payment Load (0.1ms)[0m  [1mSELECT "spree_payments".* FROM "spree_payments" WHERE "spree_payments"."order_id" = 1 AND "spree_payments"."state" = 'completed'[0m
+  [1m[35mSpree::Adjustment Load (0.1ms)[0m  SELECT "spree_adjustments".* FROM "spree_adjustments" WHERE "spree_adjustments"."adjustable_id" = 1 AND "spree_adjustments"."adjustable_type" = 'Spree::Order' AND "spree_adjustments"."eligible" = 't' ORDER BY created_at ASC
+  [1m[36mSQL (0.1ms)[0m  [1mUPDATE "spree_orders" SET "payment_state" = NULL, "shipment_state" = NULL, "item_total" = 0.0, "adjustment_total" = 0.0, "payment_total" = 0.0, "total" = 0.0 WHERE "spree_orders"."id" = 1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.8ms)[0m  [1mrollback transaction[0m

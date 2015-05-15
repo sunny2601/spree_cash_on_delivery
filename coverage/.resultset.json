@@ -1,0 +1,84 @@
+{
+  "RSpec": {
+    "coverage": {
+      "/Users/lebin/Workspace/Levi_MY/custom_extensions/spree_cash_on_delivery/lib/spree_cash_on_delivery.rb": [
+        1,
+        1
+      ],
+      "/Users/lebin/Workspace/Levi_MY/custom_extensions/spree_cash_on_delivery/lib/spree_cash_on_delivery/engine.rb": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        null,
+        1,
+        null,
+        null,
+        1,
+        1,
+        null,
+        null,
+        1,
+        1,
+        0,
+        null,
+        null,
+        null,
+        1,
+        1,
+        null,
+        null,
+        1,
+        null,
+        null
+      ],
+      "/Users/lebin/Workspace/Levi_MY/custom_extensions/spree_cash_on_delivery/app/models/spree/payment_method/cash_on_delivery.rb": [
+        1,
+        1,
+        null,
+        1,
+        1,
+        null,
+        null,
+        null,
+        1,
+        3,
+        null,
+        null,
+        null,
+        1,
+        2,
+        null,
+        null,
+        1,
+        2,
+        null,
+        null,
+        1,
+        2,
+        null,
+        null,
+        1,
+        1,
+        null,
+        null,
+        null
+      ],
+      "/Users/lebin/Workspace/Levi_MY/custom_extensions/spree_cash_on_delivery/config/routes.rb": [
+        1,
+        null,
+        null
+      ],
+      "/Users/lebin/Workspace/Levi_MY/custom_extensions/spree_cash_on_delivery/lib/spree_cash_on_delivery/factories.rb": [
+        1,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    "timestamp": 1395663655
+  }
+}

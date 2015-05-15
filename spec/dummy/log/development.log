@@ -1,0 +1,1339 @@
+Connecting to database specified by database.yml
+  [1m[36m (17.4ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (72.3ms)[0m  CREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) 
+  [1m[36m (1.7ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35m (0.1ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+Migrating to SpreeOneTwo (20140324121939)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.7ms)[0m  CREATE TABLE "spree_activators" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "description" varchar(255), "expires_at" datetime, "starts_at" datetime, "name" varchar(255), "event_name" varchar(255), "type" varchar(255), "usage_limit" integer, "match_policy" varchar(255) DEFAULT 'all', "code" varchar(255), "advertise" boolean DEFAULT 'f', "path" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.2ms)[0m  [1mCREATE TABLE "spree_addresses" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "firstname" varchar(255), "lastname" varchar(255), "address1" varchar(255), "address2" varchar(255), "city" varchar(255), "zipcode" varchar(255), "phone" varchar(255), "state_name" varchar(255), "alternative_phone" varchar(255), "company" varchar(255), "state_id" integer, "country_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  CREATE INDEX "index_addresses_on_firstname" ON "spree_addresses" ("firstname")
+  [1m[36m (0.1ms)[0m  [1mCREATE INDEX "index_addresses_on_lastname" ON "spree_addresses" ("lastname")[0m
+  [1m[35m (0.2ms)[0m  CREATE TABLE "spree_adjustments" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "source_id" integer, "source_type" varchar(255), "adjustable_id" integer, "adjustable_type" varchar(255), "originator_id" integer, "originator_type" varchar(255), "amount" decimal(8,2), "label" varchar(255), "mandatory" boolean, "locked" boolean, "eligible" boolean DEFAULT 't', "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1mCREATE INDEX "index_adjustments_on_order_id" ON "spree_adjustments" ("adjustable_id")[0m
+  [1m[35m (0.1ms)[0m  CREATE TABLE "spree_assets" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "viewable_id" integer, "viewable_type" varchar(255), "attachment_width" integer, "attachment_height" integer, "attachment_file_size" integer, "position" integer, "attachment_content_type" varchar(255), "attachment_file_name" varchar(255), "type" varchar(75), "attachment_updated_at" datetime, "alt" text) 
+  [1m[36m (0.1ms)[0m  [1mCREATE INDEX "index_assets_on_viewable_id" ON "spree_assets" ("viewable_id")[0m
+  [1m[35m (0.1ms)[0m  CREATE INDEX "index_assets_on_viewable_type_and_type" ON "spree_assets" ("viewable_type", "type")
+  [1m[36m (0.1ms)[0m  [1mCREATE TABLE "spree_calculators" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "type" varchar(255), "calculable_id" integer, "calculable_type" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  CREATE TABLE "spree_configurations" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "type" varchar(50), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1mCREATE INDEX "index_spree_configurations_on_name_and_type" ON "spree_configurations" ("name", "type")[0m
+  [1m[35m (0.1ms)[0m  CREATE TABLE "spree_countries" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "iso_name" varchar(255), "iso" varchar(255), "iso3" varchar(255), "name" varchar(255), "numcode" integer) 
+  [1m[36m (0.1ms)[0m  [1mCREATE TABLE "spree_credit_cards" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "month" varchar(255), "year" varchar(255), "cc_type" varchar(255), "last_digits" varchar(255), "first_name" varchar(255), "last_name" varchar(255), "start_month" varchar(255), "start_year" varchar(255), "issue_number" varchar(255), "address_id" integer, "gateway_customer_profile_id" varchar(255), "gateway_payment_profile_id" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.2ms)[0m  CREATE TABLE "spree_gateways" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "type" varchar(255), "name" varchar(255), "description" text, "active" boolean DEFAULT 't', "environment" varchar(255) DEFAULT 'development', "server" varchar(255) DEFAULT 'test', "test_mode" boolean DEFAULT 't', "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1mCREATE TABLE "spree_inventory_units" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "lock_version" integer DEFAULT 0, "state" varchar(255), "variant_id" integer, "order_id" integer, "shipment_id" integer, "return_authorization_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  CREATE INDEX "index_inventory_units_on_order_id" ON "spree_inventory_units" ("order_id")
+  [1m[36m (0.1ms)[0m  [1mCREATE INDEX "index_inventory_units_on_shipment_id" ON "spree_inventory_units" ("shipment_id")[0m
+  [1m[35m (0.1ms)[0m  CREATE INDEX "index_inventory_units_on_variant_id" ON "spree_inventory_units" ("variant_id")
+  [1m[36m (0.1ms)[0m  [1mCREATE TABLE "spree_line_items" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "variant_id" integer, "order_id" integer, "quantity" integer NOT NULL, "price" decimal(8,2) NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  CREATE INDEX "index_spree_line_items_on_order_id" ON "spree_line_items" ("order_id")
+  [1m[36m (0.1ms)[0m  [1mCREATE INDEX "index_spree_line_items_on_variant_id" ON "spree_line_items" ("variant_id")[0m
+  [1m[35m (0.1ms)[0m  CREATE TABLE "spree_log_entries" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "source_id" integer, "source_type" varchar(255), "details" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1mCREATE TABLE "spree_mail_methods" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "environment" varchar(255), "active" boolean DEFAULT 't', "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  CREATE TABLE "spree_option_types" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(100), "presentation" varchar(100), "position" integer DEFAULT 0 NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.2ms)[0m  [1mCREATE TABLE "spree_option_types_prototypes" ("prototype_id" integer, "option_type_id" integer) [0m
+  [1m[35m (0.2ms)[0m  CREATE TABLE "spree_option_values" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "position" integer, "name" varchar(255), "presentation" varchar(255), "option_type_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1mCREATE TABLE "spree_option_values_variants" ("variant_id" integer, "option_value_id" integer) [0m
+  [1m[35m (0.1ms)[0m  CREATE INDEX "index_option_values_variants_on_variant_id_and_option_value_id" ON "spree_option_values_variants" ("variant_id", "option_value_id")
+  [1m[36m (0.1ms)[0m  [1mCREATE INDEX "index_spree_option_values_variants_on_variant_id" ON "spree_option_values_variants" ("variant_id")[0m
+  [1m[35m (0.2ms)[0m  CREATE TABLE "spree_orders" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "number" varchar(15), "item_total" decimal(8,2) DEFAULT 0.0 NOT NULL, "total" decimal(8,2) DEFAULT 0.0 NOT NULL, "state" varchar(255), "adjustment_total" decimal(8,2) DEFAULT 0.0 NOT NULL, "user_id" integer, "completed_at" datetime, "bill_address_id" integer, "ship_address_id" integer, "payment_total" decimal(8,2) DEFAULT 0.0, "shipping_method_id" integer, "shipment_state" varchar(255), "payment_state" varchar(255), "email" varchar(255), "special_instructions" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1mCREATE INDEX "index_spree_orders_on_number" ON "spree_orders" ("number")[0m
+  [1m[35m (0.1ms)[0m  CREATE TABLE "spree_payment_methods" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "type" varchar(255), "name" varchar(255), "description" text, "active" boolean DEFAULT 't', "environment" varchar(255) DEFAULT 'development', "deleted_at" datetime, "display_on" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1mCREATE TABLE "spree_payments" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "amount" decimal(8,2) DEFAULT 0.0 NOT NULL, "order_id" integer, "source_id" integer, "source_type" varchar(255), "payment_method_id" integer, "state" varchar(255), "response_code" varchar(255), "avs_response" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  CREATE TABLE "spree_preferences" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(100), "owner_id" integer, "owner_type" varchar(255), "value" text, "key" varchar(255), "value_type" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.8ms)[0m  [1mCREATE UNIQUE INDEX "index_spree_preferences_on_key" ON "spree_preferences" ("key")[0m
+  [1m[35m (0.1ms)[0m  CREATE TABLE "spree_product_option_types" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "position" integer, "product_id" integer, "option_type_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1mCREATE TABLE "spree_product_properties" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "value" varchar(255), "product_id" integer, "property_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  CREATE INDEX "index_product_properties_on_product_id" ON "spree_product_properties" ("product_id")
+  [1m[36m (0.1ms)[0m  [1mCREATE TABLE "spree_products" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255) DEFAULT '' NOT NULL, "description" text, "available_on" datetime, "deleted_at" datetime, "permalink" varchar(255), "meta_description" varchar(255), "meta_keywords" varchar(255), "tax_category_id" integer, "shipping_category_id" integer, "count_on_hand" integer DEFAULT 0 NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  CREATE INDEX "index_spree_products_on_available_on" ON "spree_products" ("available_on")
+  [1m[36m (0.1ms)[0m  [1mCREATE INDEX "index_spree_products_on_deleted_at" ON "spree_products" ("deleted_at")[0m
+  [1m[35m (0.1ms)[0m  CREATE INDEX "index_spree_products_on_name" ON "spree_products" ("name")
+  [1m[36m (0.1ms)[0m  [1mCREATE INDEX "index_spree_products_on_permalink" ON "spree_products" ("permalink")[0m
+  [1m[35m (0.1ms)[0m  CREATE TABLE "spree_products_taxons" ("product_id" integer, "taxon_id" integer) 
+  [1m[36m (0.1ms)[0m  [1mCREATE INDEX "index_spree_products_taxons_on_product_id" ON "spree_products_taxons" ("product_id")[0m
+  [1m[35m (0.1ms)[0m  CREATE INDEX "index_spree_products_taxons_on_taxon_id" ON "spree_products_taxons" ("taxon_id")
+  [1m[36m (0.1ms)[0m  [1mCREATE TABLE "spree_properties" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "presentation" varchar(255) NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  CREATE TABLE "spree_properties_prototypes" ("prototype_id" integer, "property_id" integer) 
+  [1m[36m (0.1ms)[0m  [1mCREATE TABLE "spree_prototypes" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  CREATE TABLE "spree_return_authorizations" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "number" varchar(255), "state" varchar(255), "amount" decimal(8,2) DEFAULT 0.0 NOT NULL, "order_id" integer, "reason" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1mCREATE TABLE "spree_roles" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255)) [0m
+  [1m[35m (0.1ms)[0m  CREATE TABLE "spree_roles_users" ("role_id" integer, "user_id" integer) 
+  [1m[36m (0.1ms)[0m  [1mCREATE INDEX "index_spree_roles_users_on_role_id" ON "spree_roles_users" ("role_id")[0m
+  [1m[35m (0.1ms)[0m  CREATE INDEX "index_spree_roles_users_on_user_id" ON "spree_roles_users" ("user_id")
+  [1m[36m (0.1ms)[0m  [1mCREATE TABLE "spree_shipments" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "tracking" varchar(255), "number" varchar(255), "cost" decimal(8,2), "shipped_at" datetime, "order_id" integer, "shipping_method_id" integer, "address_id" integer, "state" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.3ms)[0m  CREATE INDEX "index_shipments_on_number" ON "spree_shipments" ("number")
+  [1m[36m (0.3ms)[0m  [1mCREATE TABLE "spree_shipping_categories" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.2ms)[0m  CREATE TABLE "spree_shipping_methods" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "zone_id" integer, "display_on" varchar(255), "shipping_category_id" integer, "match_none" boolean, "match_all" boolean, "match_one" boolean, "deleted_at" datetime, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.3ms)[0m  [1mCREATE TABLE "spree_state_changes" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "previous_state" varchar(255), "stateful_id" integer, "user_id" integer, "stateful_type" varchar(255), "next_state" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.2ms)[0m  CREATE TABLE "spree_states" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "abbr" varchar(255), "country_id" integer) 
+  [1m[36m (0.2ms)[0m  [1mCREATE TABLE "spree_tax_categories" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "description" varchar(255), "is_default" boolean DEFAULT 'f', "deleted_at" datetime, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.2ms)[0m  CREATE TABLE "spree_tax_rates" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "amount" decimal(8,5), "zone_id" integer, "tax_category_id" integer, "included_in_price" boolean DEFAULT 'f', "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.2ms)[0m  [1mCREATE TABLE "spree_taxonomies" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255) NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.2ms)[0m  CREATE TABLE "spree_taxons" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "parent_id" integer, "position" integer DEFAULT 0, "name" varchar(255) NOT NULL, "permalink" varchar(255), "taxonomy_id" integer, "lft" integer, "rgt" integer, "icon_file_name" varchar(255), "icon_content_type" varchar(255), "icon_file_size" integer, "icon_updated_at" datetime, "description" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.2ms)[0m  [1mCREATE INDEX "index_taxons_on_parent_id" ON "spree_taxons" ("parent_id")[0m
+  [1m[35m (0.1ms)[0m  CREATE INDEX "index_taxons_on_permalink" ON "spree_taxons" ("permalink")
+  [1m[36m (0.1ms)[0m  [1mCREATE INDEX "index_taxons_on_taxonomy_id" ON "spree_taxons" ("taxonomy_id")[0m
+  [1m[35m (0.1ms)[0m  CREATE TABLE "spree_tokenized_permissions" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "permissable_id" integer, "permissable_type" varchar(255), "token" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1mCREATE INDEX "index_tokenized_name_and_type" ON "spree_tokenized_permissions" ("permissable_id", "permissable_type")[0m
+  [1m[35m (0.1ms)[0m  CREATE TABLE "spree_trackers" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "environment" varchar(255), "analytics_id" varchar(255), "active" boolean DEFAULT 't', "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.2ms)[0m  [1mCREATE TABLE "spree_users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "encrypted_password" varchar(128), "password_salt" varchar(128), "email" varchar(255), "remember_token" varchar(255), "persistence_token" varchar(255), "reset_password_token" varchar(255), "perishable_token" varchar(255), "sign_in_count" integer DEFAULT 0 NOT NULL, "failed_attempts" integer DEFAULT 0 NOT NULL, "last_request_at" datetime, "current_sign_in_at" datetime, "last_sign_in_at" datetime, "current_sign_in_ip" varchar(255), "last_sign_in_ip" varchar(255), "login" varchar(255), "ship_address_id" integer, "bill_address_id" integer, "authentication_token" varchar(255), "unlock_token" varchar(255), "locked_at" datetime, "remember_created_at" datetime, "reset_password_sent_at" datetime, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  CREATE TABLE "spree_variants" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "sku" varchar(255) DEFAULT '' NOT NULL, "price" decimal(8,2) NOT NULL, "weight" decimal(8,2), "height" decimal(8,2), "width" decimal(8,2), "depth" decimal(8,2), "deleted_at" datetime, "is_master" boolean DEFAULT 'f', "product_id" integer, "count_on_hand" integer DEFAULT 0 NOT NULL, "cost_price" decimal(8,2), "position" integer) 
+  [1m[36m (0.1ms)[0m  [1mCREATE INDEX "index_spree_variants_on_product_id" ON "spree_variants" ("product_id")[0m
+  [1m[35m (0.1ms)[0m  CREATE TABLE "spree_zone_members" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "zoneable_id" integer, "zoneable_type" varchar(255), "zone_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1mCREATE TABLE "spree_zones" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "description" varchar(255), "default_tax" boolean DEFAULT 'f', "zone_members_count" integer DEFAULT 0, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20140324121939')
+  [1m[36m (5.3ms)[0m  [1mcommit transaction[0m
+Migrating to SpreePromoOneTwo (20140324121940)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.5ms)[0m  [1mCREATE TABLE "spree_products_promotion_rules" ("product_id" integer, "promotion_rule_id" integer) [0m
+  [1m[35m (0.3ms)[0m  CREATE INDEX "index_products_promotion_rules_on_product_id" ON "spree_products_promotion_rules" ("product_id")
+  [1m[36m (0.2ms)[0m  [1mCREATE INDEX "index_products_promotion_rules_on_promotion_rule_id" ON "spree_products_promotion_rules" ("promotion_rule_id")[0m
+  [1m[35m (0.2ms)[0m  CREATE TABLE "spree_promotion_action_line_items" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "promotion_action_id" integer, "variant_id" integer, "quantity" integer DEFAULT 1) 
+  [1m[36m (0.2ms)[0m  [1mCREATE TABLE "spree_promotion_actions" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "activator_id" integer, "position" integer, "type" varchar(255)) [0m
+  [1m[35m (0.1ms)[0m  CREATE TABLE "spree_promotion_rules" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "activator_id" integer, "user_id" integer, "product_group_id" integer, "type" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1mCREATE INDEX "index_promotion_rules_on_product_group_id" ON "spree_promotion_rules" ("product_group_id")[0m
+  [1m[35m (0.2ms)[0m  CREATE INDEX "index_promotion_rules_on_user_id" ON "spree_promotion_rules" ("user_id")
+  [1m[36m (0.1ms)[0m  [1mCREATE TABLE "spree_promotion_rules_users" ("user_id" integer, "promotion_rule_id" integer) [0m
+  [1m[35m (0.1ms)[0m  CREATE INDEX "index_promotion_rules_users_on_promotion_rule_id" ON "spree_promotion_rules_users" ("promotion_rule_id")
+  [1m[36m (0.1ms)[0m  [1mCREATE INDEX "index_promotion_rules_users_on_user_id" ON "spree_promotion_rules_users" ("user_id")[0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20140324121940')
+  [1m[36m (2.0ms)[0m  [1mcommit transaction[0m
+Migrating to AddTaxRateLabel (20140324121941)
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (15.0ms)[0m  [1mALTER TABLE "spree_tax_rates" ADD "name" varchar(255)[0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20140324121941')
+  [1m[36m (1.5ms)[0m  [1mcommit transaction[0m
+Migrating to AddToggleTaxRateDisplay (20140324121942)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.7ms)[0m  [1mALTER TABLE "spree_tax_rates" ADD "show_rate_in_label" boolean DEFAULT 't'[0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20140324121942')
+  [1m[36m (2.0ms)[0m  [1mcommit transaction[0m
+Migrating to RemoveUnusedPreferenceColumns (20140324121943)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.6ms)[0m  [1mCREATE TEMPORARY TABLE "altered_spree_preferences" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(100), "owner_id" integer, "owner_type" varchar(255), "value" text, "key" varchar(255), "value_type" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.3ms)[0m  CREATE UNIQUE INDEX "temp_index_altered_spree_preferences_on_key" ON "altered_spree_preferences" ("key")
+  [1m[36m (0.1ms)[0m  [1mSELECT * FROM "spree_preferences"[0m
+  [1m[35m (1.1ms)[0m  DROP TABLE "spree_preferences"
+  [1m[36m (0.2ms)[0m  [1mCREATE TABLE "spree_preferences" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "owner_id" integer, "owner_type" varchar(255), "value" text, "key" varchar(255), "value_type" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.3ms)[0m  CREATE UNIQUE INDEX "index_spree_preferences_on_key" ON "spree_preferences" ("key")
+  [1m[36m (0.0ms)[0m  [1mSELECT * FROM "altered_spree_preferences"[0m
+  [1m[35m (0.1ms)[0m  DROP TABLE "altered_spree_preferences"
+  [1m[36m (0.1ms)[0m  [1mCREATE TEMPORARY TABLE "altered_spree_preferences" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "owner_id" integer, "owner_type" varchar(255), "value" text, "key" varchar(255), "value_type" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  CREATE UNIQUE INDEX "temp_index_altered_spree_preferences_on_key" ON "altered_spree_preferences" ("key")
+  [1m[36m (0.0ms)[0m  [1mSELECT * FROM "spree_preferences"[0m
+  [1m[35m (0.2ms)[0m  DROP TABLE "spree_preferences"
+  [1m[36m (0.2ms)[0m  [1mCREATE TABLE "spree_preferences" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "owner_type" varchar(255), "value" text, "key" varchar(255), "value_type" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  CREATE UNIQUE INDEX "index_spree_preferences_on_key" ON "spree_preferences" ("key")
+  [1m[36m (0.0ms)[0m  [1mSELECT * FROM "altered_spree_preferences"[0m
+  [1m[35m (0.1ms)[0m  DROP TABLE "altered_spree_preferences"
+  [1m[36m (0.2ms)[0m  [1mCREATE TEMPORARY TABLE "altered_spree_preferences" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "owner_type" varchar(255), "value" text, "key" varchar(255), "value_type" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  CREATE UNIQUE INDEX "temp_index_altered_spree_preferences_on_key" ON "altered_spree_preferences" ("key")
+  [1m[36m (0.0ms)[0m  [1mSELECT * FROM "spree_preferences"[0m
+  [1m[35m (0.1ms)[0m  DROP TABLE "spree_preferences"
+  [1m[36m (0.1ms)[0m  [1mCREATE TABLE "spree_preferences" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "value" text, "key" varchar(255), "value_type" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.2ms)[0m  CREATE UNIQUE INDEX "index_spree_preferences_on_key" ON "spree_preferences" ("key")
+  [1m[36m (0.0ms)[0m  [1mSELECT * FROM "altered_spree_preferences"[0m
+  [1m[35m (0.1ms)[0m  DROP TABLE "altered_spree_preferences"
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20140324121943')[0m
+  [1m[35m (1.8ms)[0m  commit transaction
+Migrating to AddLockVersionToVariant (20140324121944)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  ALTER TABLE "spree_variants" ADD "lock_version" integer DEFAULT 0
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20140324121944')[0m
+  [1m[35m (1.2ms)[0m  commit transaction
+Migrating to AddStatesRequiredToCountries (20140324121945)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "spree_countries" ADD "states_required" boolean DEFAULT 't'
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20140324121945')[0m
+  [1m[35m (1.7ms)[0m  commit transaction
+Migrating to AddOnDemandToProductAndVariant (20140324121946)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  ALTER TABLE "spree_products" ADD "on_demand" boolean DEFAULT 'f'
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "spree_variants" ADD "on_demand" boolean DEFAULT 'f'[0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20140324121946')
+  [1m[36m (1.5ms)[0m  [1mcommit transaction[0m
+Migrating to RemoveNotNullConstraintFromProductsOnHand (20140324121947)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.2ms)[0m  [1mCREATE TEMPORARY TABLE "altered_spree_products" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255) DEFAULT '' NOT NULL, "description" text, "available_on" datetime, "deleted_at" datetime, "permalink" varchar(255), "meta_description" varchar(255), "meta_keywords" varchar(255), "tax_category_id" integer, "shipping_category_id" integer, "count_on_hand" integer DEFAULT 0 NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "on_demand" boolean DEFAULT 'f') [0m
+  [1m[35m (0.1ms)[0m  CREATE INDEX "temp_index_altered_spree_products_on_permalink" ON "altered_spree_products" ("permalink")
+  [1m[36m (0.1ms)[0m  [1mCREATE INDEX "temp_index_altered_spree_products_on_name" ON "altered_spree_products" ("name")[0m
+  [1m[35m (0.1ms)[0m  CREATE INDEX "temp_index_altered_spree_products_on_deleted_at" ON "altered_spree_products" ("deleted_at")
+  [1m[36m (0.1ms)[0m  [1mCREATE INDEX "temp_index_altered_spree_products_on_available_on" ON "altered_spree_products" ("available_on")[0m
+  [1m[35m (0.1ms)[0m  SELECT * FROM "spree_products"
+  [1m[36m (0.4ms)[0m  [1mDROP TABLE "spree_products"[0m
+  [1m[35m (0.2ms)[0m  CREATE TABLE "spree_products" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255) DEFAULT '' NOT NULL, "description" text, "available_on" datetime, "deleted_at" datetime, "permalink" varchar(255), "meta_description" varchar(255), "meta_keywords" varchar(255), "tax_category_id" integer, "shipping_category_id" integer, "count_on_hand" integer DEFAULT 0, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "on_demand" boolean DEFAULT 'f') 
+  [1m[36m (0.1ms)[0m  [1mCREATE INDEX "index_spree_products_on_available_on" ON "spree_products" ("available_on")[0m
+  [1m[35m (0.1ms)[0m  CREATE INDEX "index_spree_products_on_deleted_at" ON "spree_products" ("deleted_at")
+  [1m[36m (0.4ms)[0m  [1mCREATE INDEX "index_spree_products_on_name" ON "spree_products" ("name")[0m
+  [1m[35m (0.2ms)[0m  CREATE INDEX "index_spree_products_on_permalink" ON "spree_products" ("permalink")
+  [1m[36m (0.1ms)[0m  [1mSELECT * FROM "altered_spree_products"[0m
+  [1m[35m (0.2ms)[0m  DROP TABLE "altered_spree_products"
+  [1m[36m (0.1ms)[0m  [1mCREATE TEMPORARY TABLE "altered_spree_variants" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "sku" varchar(255) DEFAULT '' NOT NULL, "price" decimal(8,2) NOT NULL, "weight" decimal(8,2), "height" decimal(8,2), "width" decimal(8,2), "depth" decimal(8,2), "deleted_at" datetime, "is_master" boolean DEFAULT 'f', "product_id" integer, "count_on_hand" integer DEFAULT 0 NOT NULL, "cost_price" decimal(8,2), "position" integer, "lock_version" integer DEFAULT 0, "on_demand" boolean DEFAULT 'f') [0m
+  [1m[35m (0.1ms)[0m  CREATE INDEX "temp_index_altered_spree_variants_on_product_id" ON "altered_spree_variants" ("product_id")
+  [1m[36m (0.1ms)[0m  [1mSELECT * FROM "spree_variants"[0m
+  [1m[35m (0.4ms)[0m  DROP TABLE "spree_variants"
+  [1m[36m (0.2ms)[0m  [1mCREATE TABLE "spree_variants" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "sku" varchar(255) DEFAULT '' NOT NULL, "price" decimal(8,2) NOT NULL, "weight" decimal(8,2), "height" decimal(8,2), "width" decimal(8,2), "depth" decimal(8,2), "deleted_at" datetime, "is_master" boolean DEFAULT 'f', "product_id" integer, "count_on_hand" integer DEFAULT 0, "cost_price" decimal(8,2), "position" integer, "lock_version" integer DEFAULT 0, "on_demand" boolean DEFAULT 'f') [0m
+  [1m[35m (0.1ms)[0m  CREATE INDEX "index_spree_variants_on_product_id" ON "spree_variants" ("product_id")
+  [1m[36m (0.1ms)[0m  [1mSELECT * FROM "altered_spree_variants"[0m
+  [1m[35m (0.1ms)[0m  DROP TABLE "altered_spree_variants"
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20140324121947')[0m
+  [1m[35m (2.1ms)[0m  commit transaction
+Migrating to SplitPricesFromVariants (20140324121948)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  CREATE TABLE "spree_prices" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "variant_id" integer NOT NULL, "amount" decimal(8,2) NOT NULL, "currency" varchar(255)) 
+Creating scope :deleted. Overwriting existing method Spree::Variant.deleted.
+  [1m[36mSpree::Variant Load (0.1ms)[0m  [1mSELECT "spree_variants".* FROM "spree_variants" WHERE ("spree_variants".deleted_at IS NULL)[0m
+  [1m[35m (0.2ms)[0m  CREATE TEMPORARY TABLE "altered_spree_variants" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "sku" varchar(255) DEFAULT '' NOT NULL, "price" decimal(8,2) NOT NULL, "weight" decimal(8,2), "height" decimal(8,2), "width" decimal(8,2), "depth" decimal(8,2), "deleted_at" datetime, "is_master" boolean DEFAULT 'f', "product_id" integer, "count_on_hand" integer DEFAULT 0, "cost_price" decimal(8,2), "position" integer, "lock_version" integer DEFAULT 0, "on_demand" boolean DEFAULT 'f') 
+  [1m[36m (0.1ms)[0m  [1mCREATE INDEX "temp_index_altered_spree_variants_on_product_id" ON "altered_spree_variants" ("product_id")[0m
+  [1m[35m (0.1ms)[0m  SELECT * FROM "spree_variants"
+  [1m[36m (0.7ms)[0m  [1mDROP TABLE "spree_variants"[0m
+  [1m[35m (0.2ms)[0m  CREATE TABLE "spree_variants" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "sku" varchar(255) DEFAULT '' NOT NULL, "weight" decimal(8,2), "height" decimal(8,2), "width" decimal(8,2), "depth" decimal(8,2), "deleted_at" datetime, "is_master" boolean DEFAULT 'f', "product_id" integer, "count_on_hand" integer DEFAULT 0, "cost_price" decimal(8,2), "position" integer, "lock_version" integer DEFAULT 0, "on_demand" boolean DEFAULT 'f') 
+  [1m[36m (0.1ms)[0m  [1mCREATE INDEX "index_spree_variants_on_product_id" ON "spree_variants" ("product_id")[0m
+  [1m[35m (0.0ms)[0m  SELECT * FROM "altered_spree_variants"
+  [1m[36m (0.1ms)[0m  [1mDROP TABLE "altered_spree_variants"[0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20140324121948')
+  [1m[36m (3.1ms)[0m  [1mcommit transaction[0m
+Migrating to RemoveNotNullFromSpreePricesAmount (20140324121949)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.2ms)[0m  [1mCREATE TEMPORARY TABLE "altered_spree_prices" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "variant_id" integer NOT NULL, "amount" decimal(8,2) NOT NULL, "currency" varchar(255)) [0m
+  [1m[35m (0.1ms)[0m  SELECT * FROM "spree_prices"
+  [1m[36m (0.3ms)[0m  [1mDROP TABLE "spree_prices"[0m
+  [1m[35m (0.2ms)[0m  CREATE TABLE "spree_prices" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "variant_id" integer NOT NULL, "amount" decimal(8,2), "currency" varchar(255)) 
+  [1m[36m (0.0ms)[0m  [1mSELECT * FROM "altered_spree_prices"[0m
+  [1m[35m (0.1ms)[0m  DROP TABLE "altered_spree_prices"
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20140324121949')[0m
+  [1m[35m (1.2ms)[0m  commit transaction
+Migrating to AddCurrencyToLineItems (20140324121950)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  ALTER TABLE "spree_line_items" ADD "currency" varchar(255)
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20140324121950')[0m
+  [1m[35m (1.8ms)[0m  commit transaction
+Migrating to AddCurrencyToOrders (20140324121951)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  ALTER TABLE "spree_orders" ADD "currency" varchar(255)
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20140324121951')[0m
+  [1m[35m (1.3ms)[0m  commit transaction
+Migrating to AddCostCurrencyToVariants (20140324121952)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  ALTER TABLE "spree_variants" ADD "cost_currency" varchar(255)
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20140324121952')[0m
+  [1m[35m (1.5ms)[0m  commit transaction
+Migrating to RemoveDisplayOnFromPaymentMethods (20140324121953)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  CREATE TEMPORARY TABLE "altered_spree_payment_methods" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "type" varchar(255), "name" varchar(255), "description" text, "active" boolean DEFAULT 't', "environment" varchar(255) DEFAULT 'development', "deleted_at" datetime, "display_on" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1mSELECT * FROM "spree_payment_methods"[0m
+  [1m[35m (0.5ms)[0m  DROP TABLE "spree_payment_methods"
+  [1m[36m (0.3ms)[0m  [1mCREATE TABLE "spree_payment_methods" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "type" varchar(255), "name" varchar(255), "description" text, "active" boolean DEFAULT 't', "environment" varchar(255) DEFAULT 'development', "deleted_at" datetime, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  SELECT * FROM "altered_spree_payment_methods"
+  [1m[36m (0.2ms)[0m  [1mDROP TABLE "altered_spree_payment_methods"[0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20140324121953')
+  [1m[36m (1.9ms)[0m  [1mcommit transaction[0m
+Migrating to AddPositionToTaxonomies (20140324121954)
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.6ms)[0m  [1mALTER TABLE "spree_taxonomies" ADD "position" integer DEFAULT 0[0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20140324121954')
+  [1m[36m (1.3ms)[0m  [1mcommit transaction[0m
+Migrating to AddLastIpToSpreeOrders (20140324121955)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.5ms)[0m  [1mALTER TABLE "spree_orders" ADD "last_ip_address" varchar(255)[0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20140324121955')
+  [1m[36m (1.7ms)[0m  [1mcommit transaction[0m
+Migrating to AddStateToSpreeAdjustments (20140324121956)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.5ms)[0m  [1mALTER TABLE "spree_adjustments" ADD "state" varchar(255)[0m
+  [1m[35m (0.3ms)[0m  CREATE TEMPORARY TABLE "altered_spree_adjustments" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "source_id" integer, "source_type" varchar(255), "adjustable_id" integer, "adjustable_type" varchar(255), "originator_id" integer, "originator_type" varchar(255), "amount" decimal(8,2), "label" varchar(255), "mandatory" boolean, "locked" boolean, "eligible" boolean DEFAULT 't', "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "state" varchar(255)) 
+  [1m[36m (0.2ms)[0m  [1mCREATE INDEX "temp_index_adjustments_on_order_id" ON "altered_spree_adjustments" ("adjustable_id")[0m
+  [1m[35m (0.1ms)[0m  SELECT * FROM "spree_adjustments"
+  [1m[36m (0.4ms)[0m  [1mDROP TABLE "spree_adjustments"[0m
+  [1m[35m (0.2ms)[0m  CREATE TABLE "spree_adjustments" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "source_id" integer, "source_type" varchar(255), "adjustable_id" integer, "adjustable_type" varchar(255), "originator_id" integer, "originator_type" varchar(255), "amount" decimal(8,2), "label" varchar(255), "mandatory" boolean, "eligible" boolean DEFAULT 't', "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "state" varchar(255)) 
+  [1m[36m (0.1ms)[0m  [1mCREATE INDEX "index_adjustments_on_order_id" ON "spree_adjustments" ("adjustable_id")[0m
+  [1m[35m (0.1ms)[0m  SELECT * FROM "altered_spree_adjustments"
+  [1m[36m (0.2ms)[0m  [1mDROP TABLE "altered_spree_adjustments"[0m
+  [1m[35m (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20140324121956')
+  [1m[36m (2.2ms)[0m  [1mcommit transaction[0m
+Migrating to AddDisplayOnToSpreePaymentMethods (20140324121957)
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.6ms)[0m  [1mALTER TABLE "spree_payment_methods" ADD "display_on" varchar(255)[0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20140324121957')
+  [1m[36m (1.4ms)[0m  [1mcommit transaction[0m
+Migrating to AddPositionToProductProperties (20140324121958)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.5ms)[0m  [1mALTER TABLE "spree_product_properties" ADD "position" integer DEFAULT 0[0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20140324121958')
+  [1m[36m (1.5ms)[0m  [1mcommit transaction[0m
+Migrating to AddIdentifierToSpreePayments (20140324121959)
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.5ms)[0m  [1mALTER TABLE "spree_payments" ADD "identifier" varchar(255)[0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20140324121959')
+  [1m[36m (1.9ms)[0m  [1mcommit transaction[0m
+Migrating to AddOrderIdIndexToPayments (20140324121960)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mCREATE INDEX "index_spree_payments_on_order_id" ON "spree_payments" ("order_id")[0m
+  [1m[35m (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20140324121960')
+  [1m[36m (1.5ms)[0m  [1mcommit transaction[0m
+Migrating to AddPrimaryToSpreeProductsTaxons (20140324121961)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.2ms)[0m  [1mCREATE TEMPORARY TABLE "altered_spree_products_taxons" ("product_id" integer, "taxon_id" integer) [0m
+  [1m[35m (0.2ms)[0m  CREATE INDEX "temp_index_altered_spree_products_taxons_on_taxon_id" ON "altered_spree_products_taxons" ("taxon_id")
+  [1m[36m (0.2ms)[0m  [1mCREATE INDEX "temp_index_altered_spree_products_taxons_on_product_id" ON "altered_spree_products_taxons" ("product_id")[0m
+  [1m[35m (0.1ms)[0m  SELECT * FROM "spree_products_taxons"
+  [1m[36m (0.4ms)[0m  [1mDROP TABLE "spree_products_taxons"[0m
+  [1m[35m (0.1ms)[0m  CREATE TABLE "spree_products_taxons" ("product_id" integer, "taxon_id" integer, "id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1mCREATE INDEX "index_spree_products_taxons_on_product_id" ON "spree_products_taxons" ("product_id")[0m
+  [1m[35m (0.1ms)[0m  CREATE INDEX "index_spree_products_taxons_on_taxon_id" ON "spree_products_taxons" ("taxon_id")
+  [1m[36m (0.0ms)[0m  [1mSELECT * FROM "altered_spree_products_taxons"[0m
+  [1m[35m (0.1ms)[0m  DROP TABLE "altered_spree_products_taxons"
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20140324121961')[0m
+  [1m[35m (2.1ms)[0m  commit transaction
+Migrating to CreateSpreeStockItems (20140324121962)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  CREATE TABLE "spree_stock_items" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "stock_location_id" integer, "variant_id" integer, "count_on_hand" integer DEFAULT 0 NOT NULL, "lock_version" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.2ms)[0m  [1mCREATE INDEX "index_spree_stock_items_on_stock_location_id" ON "spree_stock_items" ("stock_location_id")[0m
+  [1m[35m (0.1ms)[0m  CREATE INDEX "stock_item_by_loc_and_var_id" ON "spree_stock_items" ("stock_location_id", "variant_id")
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20140324121962')[0m
+  [1m[35m (2.6ms)[0m  commit transaction
+Migrating to CreateSpreeStockLocations (20140324121963)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  CREATE TABLE "spree_stock_locations" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "address_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.2ms)[0m  [1mCREATE INDEX "index_spree_stock_locations_on_address_id" ON "spree_stock_locations" ("address_id")[0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20140324121963')
+  [1m[36m (2.0ms)[0m  [1mcommit transaction[0m
+Migrating to CreateDefaultStock (20140324121964)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (73.9ms)[0m  [1mINSERT INTO "spree_stock_locations" ("address_id", "created_at", "name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["address_id", nil], ["created_at", Mon, 24 Mar 2014 12:20:07 UTC +00:00], ["name", "default"], ["updated_at", Mon, 24 Mar 2014 12:20:07 UTC +00:00]]
+  [1m[35mSpree::Variant Load (0.2ms)[0m  SELECT "spree_variants".* FROM "spree_variants" WHERE ("spree_variants".deleted_at IS NULL)
+  [1m[36m (0.3ms)[0m  [1mCREATE TEMPORARY TABLE "altered_spree_variants" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "sku" varchar(255) DEFAULT '' NOT NULL, "weight" decimal(8,2), "height" decimal(8,2), "width" decimal(8,2), "depth" decimal(8,2), "deleted_at" datetime, "is_master" boolean DEFAULT 'f', "product_id" integer, "count_on_hand" integer DEFAULT 0, "cost_price" decimal(8,2), "position" integer, "lock_version" integer DEFAULT 0, "on_demand" boolean DEFAULT 'f', "cost_currency" varchar(255)) [0m
+  [1m[35m (0.1ms)[0m  CREATE INDEX "temp_index_altered_spree_variants_on_product_id" ON "altered_spree_variants" ("product_id")
+  [1m[36m (0.1ms)[0m  [1mSELECT * FROM "spree_variants"[0m
+  [1m[35m (0.2ms)[0m  DROP TABLE "spree_variants"
+  [1m[36m (0.2ms)[0m  [1mCREATE TABLE "spree_variants" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "sku" varchar(255) DEFAULT '' NOT NULL, "weight" decimal(8,2), "height" decimal(8,2), "width" decimal(8,2), "depth" decimal(8,2), "deleted_at" datetime, "is_master" boolean DEFAULT 'f', "product_id" integer, "cost_price" decimal(8,2), "position" integer, "lock_version" integer DEFAULT 0, "on_demand" boolean DEFAULT 'f', "cost_currency" varchar(255)) [0m
+  [1m[35m (0.1ms)[0m  CREATE INDEX "index_spree_variants_on_product_id" ON "spree_variants" ("product_id")
+  [1m[36m (0.0ms)[0m  [1mSELECT * FROM "altered_spree_variants"[0m
+  [1m[35m (0.1ms)[0m  DROP TABLE "altered_spree_variants"
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20140324121964')[0m
+  [1m[35m (2.8ms)[0m  commit transaction
+Migrating to AddOrderIdIndexToShipments (20140324121965)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  CREATE INDEX "index_spree_shipments_on_order_id" ON "spree_shipments" ("order_id")
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20140324121965')[0m
+  [1m[35m (1.4ms)[0m  commit transaction
+Migrating to ChangeMetaDescriptionOnSpreeProductsToText (20140324121966)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  CREATE TEMPORARY TABLE "altered_spree_products" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255) DEFAULT '' NOT NULL, "description" text, "available_on" datetime, "deleted_at" datetime, "permalink" varchar(255), "meta_description" varchar(255), "meta_keywords" varchar(255), "tax_category_id" integer, "shipping_category_id" integer, "count_on_hand" integer DEFAULT 0, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "on_demand" boolean DEFAULT 'f') 
+  [1m[36m (0.1ms)[0m  [1mCREATE INDEX "temp_index_altered_spree_products_on_permalink" ON "altered_spree_products" ("permalink")[0m
+  [1m[35m (0.1ms)[0m  CREATE INDEX "temp_index_altered_spree_products_on_name" ON "altered_spree_products" ("name")
+  [1m[36m (0.1ms)[0m  [1mCREATE INDEX "temp_index_altered_spree_products_on_deleted_at" ON "altered_spree_products" ("deleted_at")[0m
+  [1m[35m (0.1ms)[0m  CREATE INDEX "temp_index_altered_spree_products_on_available_on" ON "altered_spree_products" ("available_on")
+  [1m[36m (0.1ms)[0m  [1mSELECT * FROM "spree_products"[0m
+  [1m[35m (0.4ms)[0m  DROP TABLE "spree_products"
+  [1m[36m (0.2ms)[0m  [1mCREATE TABLE "spree_products" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255) DEFAULT '' NOT NULL, "description" text, "available_on" datetime, "deleted_at" datetime, "permalink" varchar(255), "meta_description" text, "meta_keywords" varchar(255), "tax_category_id" integer, "shipping_category_id" integer, "count_on_hand" integer DEFAULT 0, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "on_demand" boolean DEFAULT 'f') [0m
+  [1m[35m (0.1ms)[0m  CREATE INDEX "index_spree_products_on_available_on" ON "spree_products" ("available_on")
+  [1m[36m (0.1ms)[0m  [1mCREATE INDEX "index_spree_products_on_deleted_at" ON "spree_products" ("deleted_at")[0m
+  [1m[35m (0.1ms)[0m  CREATE INDEX "index_spree_products_on_name" ON "spree_products" ("name")
+  [1m[36m (0.1ms)[0m  [1mCREATE INDEX "index_spree_products_on_permalink" ON "spree_products" ("permalink")[0m
+  [1m[35m (0.0ms)[0m  SELECT * FROM "altered_spree_products"
+  [1m[36m (0.1ms)[0m  [1mDROP TABLE "altered_spree_products"[0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20140324121966')
+  [1m[36m (2.3ms)[0m  [1mcommit transaction[0m
+Migrating to AddStockLocationIdToSpreeShipments (20140324121967)
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "spree_shipments" ADD "stock_location_id" integer[0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20140324121967')
+  [1m[36m (1.8ms)[0m  [1mcommit transaction[0m
+Migrating to AddPendingToInventoryUnit (20140324121968)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "spree_inventory_units" ADD "pending" boolean DEFAULT 't'[0m
+  [1m[35mSQL (0.1ms)[0m  UPDATE "spree_inventory_units" SET "pending" = 'f'
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20140324121968')[0m
+  [1m[35m (1.5ms)[0m  commit transaction
+Migrating to RemoveOnDemandFromProductAndVariant (20140324121969)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  CREATE TEMPORARY TABLE "altered_spree_products" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255) DEFAULT '' NOT NULL, "description" text, "available_on" datetime, "deleted_at" datetime, "permalink" varchar(255), "meta_description" text, "meta_keywords" varchar(255), "tax_category_id" integer, "shipping_category_id" integer, "count_on_hand" integer DEFAULT 0, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "on_demand" boolean DEFAULT 'f') 
+  [1m[36m (0.1ms)[0m  [1mCREATE INDEX "temp_index_altered_spree_products_on_permalink" ON "altered_spree_products" ("permalink")[0m
+  [1m[35m (0.1ms)[0m  CREATE INDEX "temp_index_altered_spree_products_on_name" ON "altered_spree_products" ("name")
+  [1m[36m (0.1ms)[0m  [1mCREATE INDEX "temp_index_altered_spree_products_on_deleted_at" ON "altered_spree_products" ("deleted_at")[0m
+  [1m[35m (0.1ms)[0m  CREATE INDEX "temp_index_altered_spree_products_on_available_on" ON "altered_spree_products" ("available_on")
+  [1m[36m (0.1ms)[0m  [1mSELECT * FROM "spree_products"[0m
+  [1m[35m (0.3ms)[0m  DROP TABLE "spree_products"
+  [1m[36m (0.1ms)[0m  [1mCREATE TABLE "spree_products" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255) DEFAULT '' NOT NULL, "description" text, "available_on" datetime, "deleted_at" datetime, "permalink" varchar(255), "meta_description" text, "meta_keywords" varchar(255), "tax_category_id" integer, "shipping_category_id" integer, "count_on_hand" integer DEFAULT 0, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  CREATE INDEX "index_spree_products_on_available_on" ON "spree_products" ("available_on")
+  [1m[36m (0.1ms)[0m  [1mCREATE INDEX "index_spree_products_on_deleted_at" ON "spree_products" ("deleted_at")[0m
+  [1m[35m (0.1ms)[0m  CREATE INDEX "index_spree_products_on_name" ON "spree_products" ("name")
+  [1m[36m (0.1ms)[0m  [1mCREATE INDEX "index_spree_products_on_permalink" ON "spree_products" ("permalink")[0m
+  [1m[35m (0.0ms)[0m  SELECT * FROM "altered_spree_products"
+  [1m[36m (0.1ms)[0m  [1mDROP TABLE "altered_spree_products"[0m
+  [1m[35m (0.2ms)[0m  CREATE TEMPORARY TABLE "altered_spree_variants" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "sku" varchar(255) DEFAULT '' NOT NULL, "weight" decimal(8,2), "height" decimal(8,2), "width" decimal(8,2), "depth" decimal(8,2), "deleted_at" datetime, "is_master" boolean DEFAULT 'f', "product_id" integer, "cost_price" decimal(8,2), "position" integer, "lock_version" integer DEFAULT 0, "on_demand" boolean DEFAULT 'f', "cost_currency" varchar(255)) 
+  [1m[36m (0.1ms)[0m  [1mCREATE INDEX "temp_index_altered_spree_variants_on_product_id" ON "altered_spree_variants" ("product_id")[0m
+  [1m[35m (0.0ms)[0m  SELECT * FROM "spree_variants"
+  [1m[36m (0.5ms)[0m  [1mDROP TABLE "spree_variants"[0m
+  [1m[35m (0.2ms)[0m  CREATE TABLE "spree_variants" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "sku" varchar(255) DEFAULT '' NOT NULL, "weight" decimal(8,2), "height" decimal(8,2), "width" decimal(8,2), "depth" decimal(8,2), "deleted_at" datetime, "is_master" boolean DEFAULT 'f', "product_id" integer, "cost_price" decimal(8,2), "position" integer, "lock_version" integer DEFAULT 0, "cost_currency" varchar(255)) 
+  [1m[36m (0.1ms)[0m  [1mCREATE INDEX "index_spree_variants_on_product_id" ON "spree_variants" ("product_id")[0m
+  [1m[35m (0.0ms)[0m  SELECT * FROM "altered_spree_variants"
+  [1m[36m (0.1ms)[0m  [1mDROP TABLE "altered_spree_variants"[0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20140324121969')
+  [1m[36m (2.4ms)[0m  [1mcommit transaction[0m
+Migrating to CreateShippingMethodZone (20140324121970)
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mCREATE TABLE "shipping_methods_zones" ("shipping_method_id" integer, "zone_id" integer) [0m
+  [1m[35mSpree::ShippingMethod Load (0.0ms)[0m  SELECT "spree_shipping_methods".* FROM "spree_shipping_methods" WHERE "spree_shipping_methods"."deleted_at" IS NULL
+  [1m[36m (0.2ms)[0m  [1mCREATE TEMPORARY TABLE "altered_spree_shipping_methods" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "zone_id" integer, "display_on" varchar(255), "shipping_category_id" integer, "match_none" boolean, "match_all" boolean, "match_one" boolean, "deleted_at" datetime, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.0ms)[0m  SELECT * FROM "spree_shipping_methods"
+  [1m[36m (0.3ms)[0m  [1mDROP TABLE "spree_shipping_methods"[0m
+  [1m[35m (0.1ms)[0m  CREATE TABLE "spree_shipping_methods" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "display_on" varchar(255), "shipping_category_id" integer, "match_none" boolean, "match_all" boolean, "match_one" boolean, "deleted_at" datetime, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.0ms)[0m  [1mSELECT * FROM "altered_spree_shipping_methods"[0m
+  [1m[35m (0.1ms)[0m  DROP TABLE "altered_spree_shipping_methods"
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20140324121970')[0m
+  [1m[35m (2.1ms)[0m  commit transaction
+Migrating to RemoveShippingCategoryIdFromShippingMethod (20140324121971)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  CREATE TEMPORARY TABLE "altered_spree_shipping_methods" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "display_on" varchar(255), "shipping_category_id" integer, "match_none" boolean, "match_all" boolean, "match_one" boolean, "deleted_at" datetime, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1mSELECT * FROM "spree_shipping_methods"[0m
+  [1m[35m (0.4ms)[0m  DROP TABLE "spree_shipping_methods"
+  [1m[36m (0.3ms)[0m  [1mCREATE TABLE "spree_shipping_methods" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "display_on" varchar(255), "match_none" boolean, "match_all" boolean, "match_one" boolean, "deleted_at" datetime, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  SELECT * FROM "altered_spree_shipping_methods"
+  [1m[36m (0.1ms)[0m  [1mDROP TABLE "altered_spree_shipping_methods"[0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20140324121971')
+  [1m[36m (1.6ms)[0m  [1mcommit transaction[0m
+Migrating to CreateShippingMethodCategories (20140324121972)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mCREATE TABLE "spree_shipping_method_categories" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "shipping_method_id" integer NOT NULL, "shipping_category_id" integer NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.2ms)[0m  CREATE INDEX "index_spree_shipping_method_categories_on_shipping_method_id" ON "spree_shipping_method_categories" ("shipping_method_id")
+  [1m[36m (0.1ms)[0m  [1mCREATE INDEX "index_spree_shipping_method_categories_on_shipping_category_id" ON "spree_shipping_method_categories" ("shipping_category_id")[0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20140324121972')
+  [1m[36m (17.2ms)[0m  [1mcommit transaction[0m
+Migrating to AddTrackingUrlToSpreeShippingMethods (20140324121973)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.7ms)[0m  [1mALTER TABLE "spree_shipping_methods" ADD "tracking_url" varchar(255)[0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20140324121973')
+  [1m[36m (2.1ms)[0m  [1mcommit transaction[0m
+Migrating to CreateSpreeShippingRates (20140324121974)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.6ms)[0m  [1mCREATE TABLE "spree_shipping_rates" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "shipment_id" integer, "shipping_method_id" integer, "selected" boolean DEFAULT 'f', "cost" decimal(8,2), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.4ms)[0m  CREATE UNIQUE INDEX "spree_shipping_rates_join_index" ON "spree_shipping_rates" ("shipment_id", "shipping_method_id")
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20140324121974')[0m
+  [1m[35m (1.8ms)[0m  commit transaction
+Migrating to RemoveCategoryMatchAttributesFromShippingMethod (20140324121975)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  CREATE TEMPORARY TABLE "altered_spree_shipping_methods" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "display_on" varchar(255), "match_none" boolean, "match_all" boolean, "match_one" boolean, "deleted_at" datetime, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "tracking_url" varchar(255)) 
+  [1m[36m (0.1ms)[0m  [1mSELECT * FROM "spree_shipping_methods"[0m
+  [1m[35m (0.3ms)[0m  DROP TABLE "spree_shipping_methods"
+  [1m[36m (0.1ms)[0m  [1mCREATE TABLE "spree_shipping_methods" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "display_on" varchar(255), "match_all" boolean, "match_one" boolean, "deleted_at" datetime, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "tracking_url" varchar(255)) [0m
+  [1m[35m (0.0ms)[0m  SELECT * FROM "altered_spree_shipping_methods"
+  [1m[36m (0.1ms)[0m  [1mDROP TABLE "altered_spree_shipping_methods"[0m
+  [1m[35m (0.1ms)[0m  CREATE TEMPORARY TABLE "altered_spree_shipping_methods" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "display_on" varchar(255), "match_all" boolean, "match_one" boolean, "deleted_at" datetime, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "tracking_url" varchar(255)) 
+  [1m[36m (0.0ms)[0m  [1mSELECT * FROM "spree_shipping_methods"[0m
+  [1m[35m (0.3ms)[0m  DROP TABLE "spree_shipping_methods"
+  [1m[36m (0.1ms)[0m  [1mCREATE TABLE "spree_shipping_methods" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "display_on" varchar(255), "match_all" boolean, "deleted_at" datetime, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "tracking_url" varchar(255)) [0m
+  [1m[35m (0.0ms)[0m  SELECT * FROM "altered_spree_shipping_methods"
+  [1m[36m (0.1ms)[0m  [1mDROP TABLE "altered_spree_shipping_methods"[0m
+  [1m[35m (0.1ms)[0m  CREATE TEMPORARY TABLE "altered_spree_shipping_methods" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "display_on" varchar(255), "match_all" boolean, "deleted_at" datetime, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "tracking_url" varchar(255)) 
+  [1m[36m (0.1ms)[0m  [1mSELECT * FROM "spree_shipping_methods"[0m
+  [1m[35m (0.1ms)[0m  DROP TABLE "spree_shipping_methods"
+  [1m[36m (0.1ms)[0m  [1mCREATE TABLE "spree_shipping_methods" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "display_on" varchar(255), "deleted_at" datetime, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "tracking_url" varchar(255)) [0m
+  [1m[35m (0.0ms)[0m  SELECT * FROM "altered_spree_shipping_methods"
+  [1m[36m (0.1ms)[0m  [1mDROP TABLE "altered_spree_shipping_methods"[0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20140324121975')
+  [1m[36m (1.7ms)[0m  [1mcommit transaction[0m
+Migrating to CreateStockMovements (20140324121976)
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.3ms)[0m  [1mCREATE TABLE "spree_stock_movements" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "stock_item_id" integer, "quantity" integer, "action" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.2ms)[0m  CREATE INDEX "index_spree_stock_movements_on_stock_item_id" ON "spree_stock_movements" ("stock_item_id")
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20140324121976')[0m
+  [1m[35m (2.6ms)[0m  commit transaction
+Migrating to AddAddressFieldsToStockLocation (20140324121977)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  CREATE TEMPORARY TABLE "altered_spree_stock_locations" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "address_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1mCREATE INDEX "temp_index_altered_spree_stock_locations_on_address_id" ON "altered_spree_stock_locations" ("address_id")[0m
+  [1m[35m (0.1ms)[0m  SELECT * FROM "spree_stock_locations"
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "altered_spree_stock_locations" ("id","name","address_id","created_at","updated_at") VALUES (1, 'default', NULL, '2014-03-24 12:20:07.824596', '2014-03-24 12:20:07.824596')[0m
+  [1m[35m (0.3ms)[0m  DROP TABLE "spree_stock_locations"
+  [1m[36m (0.1ms)[0m  [1mCREATE TABLE "spree_stock_locations" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.0ms)[0m  SELECT * FROM "altered_spree_stock_locations"
+  [1m[36m (0.0ms)[0m  [1mINSERT INTO "spree_stock_locations" ("id","name","created_at","updated_at") VALUES (1, 'default', '2014-03-24 12:20:07.824596', '2014-03-24 12:20:07.824596')[0m
+  [1m[35m (0.1ms)[0m  DROP TABLE "altered_spree_stock_locations"
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "spree_stock_locations" ADD "address1" varchar(255)[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "spree_stock_locations" ADD "address2" varchar(255)
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "spree_stock_locations" ADD "city" varchar(255)[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "spree_stock_locations" ADD "state_id" integer
+  [1m[36m (0.1ms)[0m  [1mALTER TABLE "spree_stock_locations" ADD "state_name" varchar(255)[0m
+  [1m[35m (0.1ms)[0m  ALTER TABLE "spree_stock_locations" ADD "country_id" integer
+  [1m[36m (0.1ms)[0m  [1mALTER TABLE "spree_stock_locations" ADD "zipcode" varchar(255)[0m
+  [1m[35m (0.1ms)[0m  ALTER TABLE "spree_stock_locations" ADD "phone" varchar(255)
+  [1m[36mSpree::Country Load (0.1ms)[0m  [1mSELECT "spree_countries".* FROM "spree_countries" WHERE "spree_countries"."iso" = 'US' LIMIT 1[0m
+  [1m[35mSpree::Country Load (0.1ms)[0m  SELECT "spree_countries".* FROM "spree_countries" LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mUPDATE "spree_stock_locations" SET "country_id" = NULL[0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20140324121977')
+  [1m[36m (2.1ms)[0m  [1mcommit transaction[0m
+Migrating to AddActiveFieldToStockLocations (20140324121978)
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "spree_stock_locations" ADD "active" boolean DEFAULT 't'[0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20140324121978')
+  [1m[36m (1.4ms)[0m  [1mcommit transaction[0m
+Migrating to AddBackorderableToStockItem (20140324121979)
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.5ms)[0m  [1mALTER TABLE "spree_stock_items" ADD "backorderable" boolean DEFAULT 't'[0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20140324121979')
+  [1m[36m (2.0ms)[0m  [1mcommit transaction[0m
+Migrating to AddDefaultQuantityToStockMovement (20140324121980)
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.2ms)[0m  [1mCREATE TEMPORARY TABLE "altered_spree_stock_movements" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "stock_item_id" integer, "quantity" integer, "action" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  CREATE INDEX "temp_index_altered_spree_stock_movements_on_stock_item_id" ON "altered_spree_stock_movements" ("stock_item_id")
+  [1m[36m (0.1ms)[0m  [1mSELECT * FROM "spree_stock_movements"[0m
+  [1m[35m (0.4ms)[0m  DROP TABLE "spree_stock_movements"
+  [1m[36m (0.1ms)[0m  [1mCREATE TABLE "spree_stock_movements" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "stock_item_id" integer, "quantity" integer DEFAULT 0, "action" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  CREATE INDEX "index_spree_stock_movements_on_stock_item_id" ON "spree_stock_movements" ("stock_item_id")
+  [1m[36m (0.0ms)[0m  [1mSELECT * FROM "altered_spree_stock_movements"[0m
+  [1m[35m (0.1ms)[0m  DROP TABLE "altered_spree_stock_movements"
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20140324121980')[0m
+  [1m[35m (1.7ms)[0m  commit transaction
+Migrating to AddSourceAndDestinationToStockMovements (20140324121981)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  ALTER TABLE "spree_stock_movements" ADD "source_id" integer
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "spree_stock_movements" ADD "source_type" varchar(255)[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "spree_stock_movements" ADD "destination_id" integer
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "spree_stock_movements" ADD "destination_type" varchar(255)[0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20140324121981')
+  [1m[36m (20.8ms)[0m  [1mcommit transaction[0m
+Migrating to ChangeOrdersTotalPrecision (20140324121982)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.3ms)[0m  [1mCREATE TEMPORARY TABLE "altered_spree_orders" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "number" varchar(15), "item_total" decimal(8,2) DEFAULT 0.0 NOT NULL, "total" decimal(8,2) DEFAULT 0.0 NOT NULL, "state" varchar(255), "adjustment_total" decimal(8,2) DEFAULT 0.0 NOT NULL, "user_id" integer, "completed_at" datetime, "bill_address_id" integer, "ship_address_id" integer, "payment_total" decimal(8,2) DEFAULT 0.0, "shipping_method_id" integer, "shipment_state" varchar(255), "payment_state" varchar(255), "email" varchar(255), "special_instructions" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "currency" varchar(255), "last_ip_address" varchar(255)) [0m
+  [1m[35m (0.1ms)[0m  CREATE INDEX "temp_index_altered_spree_orders_on_number" ON "altered_spree_orders" ("number")
+  [1m[36m (0.1ms)[0m  [1mSELECT * FROM "spree_orders"[0m
+  [1m[35m (0.4ms)[0m  DROP TABLE "spree_orders"
+  [1m[36m (0.3ms)[0m  [1mCREATE TABLE "spree_orders" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "number" varchar(15), "item_total" decimal(10,2) DEFAULT 0.0 NOT NULL, "total" decimal(8,2) DEFAULT 0.0 NOT NULL, "state" varchar(255), "adjustment_total" decimal(8,2) DEFAULT 0.0 NOT NULL, "user_id" integer, "completed_at" datetime, "bill_address_id" integer, "ship_address_id" integer, "payment_total" decimal(8,2) DEFAULT 0.0, "shipping_method_id" integer, "shipment_state" varchar(255), "payment_state" varchar(255), "email" varchar(255), "special_instructions" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "currency" varchar(255), "last_ip_address" varchar(255)) [0m
+  [1m[35m (0.7ms)[0m  CREATE INDEX "index_spree_orders_on_number" ON "spree_orders" ("number")
+  [1m[36m (0.1ms)[0m  [1mSELECT * FROM "altered_spree_orders"[0m
+  [1m[35m (0.1ms)[0m  DROP TABLE "altered_spree_orders"
+  [1m[36m (0.2ms)[0m  [1mCREATE TEMPORARY TABLE "altered_spree_orders" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "number" varchar(15), "item_total" decimal(10,2) DEFAULT 0.0 NOT NULL, "total" decimal(8,2) DEFAULT 0.0 NOT NULL, "state" varchar(255), "adjustment_total" decimal(8,2) DEFAULT 0.0 NOT NULL, "user_id" integer, "completed_at" datetime, "bill_address_id" integer, "ship_address_id" integer, "payment_total" decimal(8,2) DEFAULT 0.0, "shipping_method_id" integer, "shipment_state" varchar(255), "payment_state" varchar(255), "email" varchar(255), "special_instructions" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "currency" varchar(255), "last_ip_address" varchar(255)) [0m
+  [1m[35m (0.1ms)[0m  CREATE INDEX "temp_index_altered_spree_orders_on_number" ON "altered_spree_orders" ("number")
+  [1m[36m (0.1ms)[0m  [1mSELECT * FROM "spree_orders"[0m
+  [1m[35m (0.4ms)[0m  DROP TABLE "spree_orders"
+  [1m[36m (0.3ms)[0m  [1mCREATE TABLE "spree_orders" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "number" varchar(15), "item_total" decimal(10,2) DEFAULT 0.0 NOT NULL, "total" decimal(10,2) DEFAULT 0.0 NOT NULL, "state" varchar(255), "adjustment_total" decimal(8,2) DEFAULT 0.0 NOT NULL, "user_id" integer, "completed_at" datetime, "bill_address_id" integer, "ship_address_id" integer, "payment_total" decimal(8,2) DEFAULT 0.0, "shipping_method_id" integer, "shipment_state" varchar(255), "payment_state" varchar(255), "email" varchar(255), "special_instructions" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "currency" varchar(255), "last_ip_address" varchar(255)) [0m
+  [1m[35m (0.2ms)[0m  CREATE INDEX "index_spree_orders_on_number" ON "spree_orders" ("number")
+  [1m[36m (0.1ms)[0m  [1mSELECT * FROM "altered_spree_orders"[0m
+  [1m[35m (0.1ms)[0m  DROP TABLE "altered_spree_orders"
+  [1m[36m (0.3ms)[0m  [1mCREATE TEMPORARY TABLE "altered_spree_orders" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "number" varchar(15), "item_total" decimal(10,2) DEFAULT 0.0 NOT NULL, "total" decimal(10,2) DEFAULT 0.0 NOT NULL, "state" varchar(255), "adjustment_total" decimal(8,2) DEFAULT 0.0 NOT NULL, "user_id" integer, "completed_at" datetime, "bill_address_id" integer, "ship_address_id" integer, "payment_total" decimal(8,2) DEFAULT 0.0, "shipping_method_id" integer, "shipment_state" varchar(255), "payment_state" varchar(255), "email" varchar(255), "special_instructions" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "currency" varchar(255), "last_ip_address" varchar(255)) [0m
+  [1m[35m (0.1ms)[0m  CREATE INDEX "temp_index_altered_spree_orders_on_number" ON "altered_spree_orders" ("number")
+  [1m[36m (0.1ms)[0m  [1mSELECT * FROM "spree_orders"[0m
+  [1m[35m (0.2ms)[0m  DROP TABLE "spree_orders"
+  [1m[36m (0.3ms)[0m  [1mCREATE TABLE "spree_orders" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "number" varchar(15), "item_total" decimal(10,2) DEFAULT 0.0 NOT NULL, "total" decimal(10,2) DEFAULT 0.0 NOT NULL, "state" varchar(255), "adjustment_total" decimal(10,2) DEFAULT 0.0 NOT NULL, "user_id" integer, "completed_at" datetime, "bill_address_id" integer, "ship_address_id" integer, "payment_total" decimal(8,2) DEFAULT 0.0, "shipping_method_id" integer, "shipment_state" varchar(255), "payment_state" varchar(255), "email" varchar(255), "special_instructions" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "currency" varchar(255), "last_ip_address" varchar(255)) [0m
+  [1m[35m (0.2ms)[0m  CREATE INDEX "index_spree_orders_on_number" ON "spree_orders" ("number")
+  [1m[36m (0.1ms)[0m  [1mSELECT * FROM "altered_spree_orders"[0m
+  [1m[35m (0.1ms)[0m  DROP TABLE "altered_spree_orders"
+  [1m[36m (0.2ms)[0m  [1mCREATE TEMPORARY TABLE "altered_spree_orders" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "number" varchar(15), "item_total" decimal(10,2) DEFAULT 0.0 NOT NULL, "total" decimal(10,2) DEFAULT 0.0 NOT NULL, "state" varchar(255), "adjustment_total" decimal(10,2) DEFAULT 0.0 NOT NULL, "user_id" integer, "completed_at" datetime, "bill_address_id" integer, "ship_address_id" integer, "payment_total" decimal(8,2) DEFAULT 0.0, "shipping_method_id" integer, "shipment_state" varchar(255), "payment_state" varchar(255), "email" varchar(255), "special_instructions" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "currency" varchar(255), "last_ip_address" varchar(255)) [0m
+  [1m[35m (0.1ms)[0m  CREATE INDEX "temp_index_altered_spree_orders_on_number" ON "altered_spree_orders" ("number")
+  [1m[36m (0.1ms)[0m  [1mSELECT * FROM "spree_orders"[0m
+  [1m[35m (0.2ms)[0m  DROP TABLE "spree_orders"
+  [1m[36m (0.2ms)[0m  [1mCREATE TABLE "spree_orders" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "number" varchar(15), "item_total" decimal(10,2) DEFAULT 0.0 NOT NULL, "total" decimal(10,2) DEFAULT 0.0 NOT NULL, "state" varchar(255), "adjustment_total" decimal(10,2) DEFAULT 0.0 NOT NULL, "user_id" integer, "completed_at" datetime, "bill_address_id" integer, "ship_address_id" integer, "payment_total" decimal(10,2) DEFAULT 0.0, "shipping_method_id" integer, "shipment_state" varchar(255), "payment_state" varchar(255), "email" varchar(255), "special_instructions" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "currency" varchar(255), "last_ip_address" varchar(255)) [0m
+  [1m[35m (0.1ms)[0m  CREATE INDEX "index_spree_orders_on_number" ON "spree_orders" ("number")
+  [1m[36m (0.1ms)[0m  [1mSELECT * FROM "altered_spree_orders"[0m
+  [1m[35m (0.1ms)[0m  DROP TABLE "altered_spree_orders"
+  [1m[36m (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20140324121982')[0m
+  [1m[35m (2.1ms)[0m  commit transaction
+Migrating to ChangeSpreePaymentsAmountPrecision (20140324121983)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  CREATE TEMPORARY TABLE "altered_spree_payments" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "amount" decimal(8,2) DEFAULT 0.0 NOT NULL, "order_id" integer, "source_id" integer, "source_type" varchar(255), "payment_method_id" integer, "state" varchar(255), "response_code" varchar(255), "avs_response" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "identifier" varchar(255)) 
+  [1m[36m (0.1ms)[0m  [1mCREATE INDEX "temp_index_altered_spree_payments_on_order_id" ON "altered_spree_payments" ("order_id")[0m
+  [1m[35m (0.1ms)[0m  SELECT * FROM "spree_payments"
+  [1m[36m (0.3ms)[0m  [1mDROP TABLE "spree_payments"[0m
+  [1m[35m (0.2ms)[0m  CREATE TABLE "spree_payments" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "amount" decimal(10,2) DEFAULT 0.0 NOT NULL, "order_id" integer, "source_id" integer, "source_type" varchar(255), "payment_method_id" integer, "state" varchar(255), "response_code" varchar(255), "avs_response" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "identifier" varchar(255)) 
+  [1m[36m (0.1ms)[0m  [1mCREATE INDEX "index_spree_payments_on_order_id" ON "spree_payments" ("order_id")[0m
+  [1m[35m (0.1ms)[0m  SELECT * FROM "altered_spree_payments"
+  [1m[36m (0.2ms)[0m  [1mDROP TABLE "altered_spree_payments"[0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20140324121983')
+  [1m[36m (2.6ms)[0m  [1mcommit transaction[0m
+Migrating to ChangeSpreeReturnAuthorizationAmountPrecision (20140324121984)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.3ms)[0m  [1mCREATE TEMPORARY TABLE "altered_spree_return_authorizations" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "number" varchar(255), "state" varchar(255), "amount" decimal(8,2) DEFAULT 0.0 NOT NULL, "order_id" integer, "reason" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  SELECT * FROM "spree_return_authorizations"
+  [1m[36m (0.3ms)[0m  [1mDROP TABLE "spree_return_authorizations"[0m
+  [1m[35m (0.2ms)[0m  CREATE TABLE "spree_return_authorizations" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "number" varchar(255), "state" varchar(255), "amount" decimal(10,2) DEFAULT 0.0 NOT NULL, "order_id" integer, "reason" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.0ms)[0m  [1mSELECT * FROM "altered_spree_return_authorizations"[0m
+  [1m[35m (0.1ms)[0m  DROP TABLE "altered_spree_return_authorizations"
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20140324121984')[0m
+  [1m[35m (1.8ms)[0m  commit transaction
+Migrating to ChangeAdjustmentsAmountPrecision (20140324121985)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  CREATE TEMPORARY TABLE "altered_spree_adjustments" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "source_id" integer, "source_type" varchar(255), "adjustable_id" integer, "adjustable_type" varchar(255), "originator_id" integer, "originator_type" varchar(255), "amount" decimal(8,2), "label" varchar(255), "mandatory" boolean, "eligible" boolean DEFAULT 't', "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "state" varchar(255)) 
+  [1m[36m (0.1ms)[0m  [1mCREATE INDEX "temp_index_adjustments_on_order_id" ON "altered_spree_adjustments" ("adjustable_id")[0m
+  [1m[35m (0.1ms)[0m  SELECT * FROM "spree_adjustments"
+  [1m[36m (0.4ms)[0m  [1mDROP TABLE "spree_adjustments"[0m
+  [1m[35m (0.2ms)[0m  CREATE TABLE "spree_adjustments" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "source_id" integer, "source_type" varchar(255), "adjustable_id" integer, "adjustable_type" varchar(255), "originator_id" integer, "originator_type" varchar(255), "amount" decimal(10,2), "label" varchar(255), "mandatory" boolean, "eligible" boolean DEFAULT 't', "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "state" varchar(255)) 
+  [1m[36m (0.1ms)[0m  [1mCREATE INDEX "index_adjustments_on_order_id" ON "spree_adjustments" ("adjustable_id")[0m
+  [1m[35m (0.1ms)[0m  SELECT * FROM "altered_spree_adjustments"
+  [1m[36m (0.1ms)[0m  [1mDROP TABLE "altered_spree_adjustments"[0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20140324121985')
+  [1m[36m (1.5ms)[0m  [1mcommit transaction[0m
+Migrating to AddOriginatorToStockMovement (20140324121986)
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "spree_stock_movements" ADD "originator_id" integer[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "spree_stock_movements" ADD "originator_type" varchar(255)
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20140324121986')[0m
+  [1m[35m (1.5ms)[0m  commit transaction
+Migrating to DropSourceAndDestinationFromStockMovement (20140324121987)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  CREATE TEMPORARY TABLE "altered_spree_stock_movements" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "stock_item_id" integer, "quantity" integer DEFAULT 0, "action" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "source_id" integer, "source_type" varchar(255), "destination_id" integer, "destination_type" varchar(255), "originator_id" integer, "originator_type" varchar(255)) 
+  [1m[36m (0.1ms)[0m  [1mCREATE INDEX "temp_index_altered_spree_stock_movements_on_stock_item_id" ON "altered_spree_stock_movements" ("stock_item_id")[0m
+  [1m[35m (0.1ms)[0m  SELECT * FROM "spree_stock_movements"
+  [1m[36m (0.3ms)[0m  [1mDROP TABLE "spree_stock_movements"[0m
+  [1m[35m (0.2ms)[0m  CREATE TABLE "spree_stock_movements" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "stock_item_id" integer, "quantity" integer DEFAULT 0, "action" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "source_type" varchar(255), "destination_id" integer, "destination_type" varchar(255), "originator_id" integer, "originator_type" varchar(255)) 
+  [1m[36m (0.2ms)[0m  [1mCREATE INDEX "index_spree_stock_movements_on_stock_item_id" ON "spree_stock_movements" ("stock_item_id")[0m
+  [1m[35m (0.1ms)[0m  SELECT * FROM "altered_spree_stock_movements"
+  [1m[36m (0.1ms)[0m  [1mDROP TABLE "altered_spree_stock_movements"[0m
+  [1m[35m (0.2ms)[0m  CREATE TEMPORARY TABLE "altered_spree_stock_movements" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "stock_item_id" integer, "quantity" integer DEFAULT 0, "action" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "source_type" varchar(255), "destination_id" integer, "destination_type" varchar(255), "originator_id" integer, "originator_type" varchar(255)) 
+  [1m[36m (0.1ms)[0m  [1mCREATE INDEX "temp_index_altered_spree_stock_movements_on_stock_item_id" ON "altered_spree_stock_movements" ("stock_item_id")[0m
+  [1m[35m (0.1ms)[0m  SELECT * FROM "spree_stock_movements"
+  [1m[36m (0.7ms)[0m  [1mDROP TABLE "spree_stock_movements"[0m
+  [1m[35m (0.2ms)[0m  CREATE TABLE "spree_stock_movements" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "stock_item_id" integer, "quantity" integer DEFAULT 0, "action" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "destination_id" integer, "destination_type" varchar(255), "originator_id" integer, "originator_type" varchar(255)) 
+  [1m[36m (0.1ms)[0m  [1mCREATE INDEX "index_spree_stock_movements_on_stock_item_id" ON "spree_stock_movements" ("stock_item_id")[0m
+  [1m[35m (0.0ms)[0m  SELECT * FROM "altered_spree_stock_movements"
+  [1m[36m (0.1ms)[0m  [1mDROP TABLE "altered_spree_stock_movements"[0m
+  [1m[35m (0.1ms)[0m  CREATE TEMPORARY TABLE "altered_spree_stock_movements" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "stock_item_id" integer, "quantity" integer DEFAULT 0, "action" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "destination_id" integer, "destination_type" varchar(255), "originator_id" integer, "originator_type" varchar(255)) 
+  [1m[36m (0.1ms)[0m  [1mCREATE INDEX "temp_index_altered_spree_stock_movements_on_stock_item_id" ON "altered_spree_stock_movements" ("stock_item_id")[0m
+  [1m[35m (0.0ms)[0m  SELECT * FROM "spree_stock_movements"
+  [1m[36m (0.2ms)[0m  [1mDROP TABLE "spree_stock_movements"[0m
+  [1m[35m (0.1ms)[0m  CREATE TABLE "spree_stock_movements" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "stock_item_id" integer, "quantity" integer DEFAULT 0, "action" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "destination_type" varchar(255), "originator_id" integer, "originator_type" varchar(255)) 
+  [1m[36m (0.1ms)[0m  [1mCREATE INDEX "index_spree_stock_movements_on_stock_item_id" ON "spree_stock_movements" ("stock_item_id")[0m
+  [1m[35m (0.0ms)[0m  SELECT * FROM "altered_spree_stock_movements"
+  [1m[36m (0.1ms)[0m  [1mDROP TABLE "altered_spree_stock_movements"[0m
+  [1m[35m (0.1ms)[0m  CREATE TEMPORARY TABLE "altered_spree_stock_movements" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "stock_item_id" integer, "quantity" integer DEFAULT 0, "action" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "destination_type" varchar(255), "originator_id" integer, "originator_type" varchar(255)) 
+  [1m[36m (0.1ms)[0m  [1mCREATE INDEX "temp_index_altered_spree_stock_movements_on_stock_item_id" ON "altered_spree_stock_movements" ("stock_item_id")[0m
+  [1m[35m (0.0ms)[0m  SELECT * FROM "spree_stock_movements"
+  [1m[36m (0.2ms)[0m  [1mDROP TABLE "spree_stock_movements"[0m
+  [1m[35m (0.2ms)[0m  CREATE TABLE "spree_stock_movements" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "stock_item_id" integer, "quantity" integer DEFAULT 0, "action" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "originator_id" integer, "originator_type" varchar(255)) 
+  [1m[36m (0.1ms)[0m  [1mCREATE INDEX "index_spree_stock_movements_on_stock_item_id" ON "spree_stock_movements" ("stock_item_id")[0m
+  [1m[35m (0.0ms)[0m  SELECT * FROM "altered_spree_stock_movements"
+  [1m[36m (0.1ms)[0m  [1mDROP TABLE "altered_spree_stock_movements"[0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20140324121987')
+  [1m[36m (21.9ms)[0m  [1mcommit transaction[0m
+Migrating to MigrateInventoryUnitSoldToOnHand (20140324121988)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mUPDATE "spree_inventory_units" SET "state" = 'on_hand' WHERE "spree_inventory_units"."state" = 'sold'[0m
+  [1m[35m (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20140324121988')
+  [1m[36m (1.4ms)[0m  [1mcommit transaction[0m
+Migrating to AddStockLocationToRma (20140324121989)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.7ms)[0m  [1mALTER TABLE "spree_return_authorizations" ADD "stock_location_id" integer[0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20140324121989')
+  [1m[36m (1.6ms)[0m  [1mcommit transaction[0m
+Migrating to UpdateShipmentStateForCanceledOrders (20140324121990)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.3ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20140324121990')[0m
+  [1m[35m (1.2ms)[0m  commit transaction
+Migrating to AddSeoMetasToTaxons (20140324121991)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  ALTER TABLE "spree_taxons" ADD "meta_title" varchar(255)
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "spree_taxons" ADD "meta_description" varchar(255)[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "spree_taxons" ADD "meta_keywords" varchar(255)
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20140324121991')[0m
+  [1m[35m (1.4ms)[0m  commit transaction
+Migrating to RemoveStockItemAndVariantLock (20140324121992)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  CREATE TEMPORARY TABLE "altered_spree_stock_items" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "stock_location_id" integer, "variant_id" integer, "count_on_hand" integer DEFAULT 0 NOT NULL, "lock_version" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "backorderable" boolean DEFAULT 't') 
+  [1m[36m (0.1ms)[0m  [1mCREATE INDEX "temp_stock_item_by_loc_and_var_id" ON "altered_spree_stock_items" ("stock_location_id", "variant_id")[0m
+  [1m[35m (0.1ms)[0m  CREATE INDEX "temp_index_altered_spree_stock_items_on_stock_location_id" ON "altered_spree_stock_items" ("stock_location_id")
+  [1m[36m (0.1ms)[0m  [1mSELECT * FROM "spree_stock_items"[0m
+  [1m[35m (0.3ms)[0m  DROP TABLE "spree_stock_items"
+  [1m[36m (0.3ms)[0m  [1mCREATE TABLE "spree_stock_items" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "stock_location_id" integer, "variant_id" integer, "count_on_hand" integer DEFAULT 0 NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "backorderable" boolean DEFAULT 't') [0m
+  [1m[35m (0.1ms)[0m  CREATE INDEX "index_spree_stock_items_on_stock_location_id" ON "spree_stock_items" ("stock_location_id")
+  [1m[36m (0.1ms)[0m  [1mCREATE INDEX "stock_item_by_loc_and_var_id" ON "spree_stock_items" ("stock_location_id", "variant_id")[0m
+  [1m[35m (0.0ms)[0m  SELECT * FROM "altered_spree_stock_items"
+  [1m[36m (0.1ms)[0m  [1mDROP TABLE "altered_spree_stock_items"[0m
+  [1m[35m (0.2ms)[0m  CREATE TEMPORARY TABLE "altered_spree_variants" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "sku" varchar(255) DEFAULT '' NOT NULL, "weight" decimal(8,2), "height" decimal(8,2), "width" decimal(8,2), "depth" decimal(8,2), "deleted_at" datetime, "is_master" boolean DEFAULT 'f', "product_id" integer, "cost_price" decimal(8,2), "position" integer, "lock_version" integer DEFAULT 0, "cost_currency" varchar(255)) 
+  [1m[36m (0.1ms)[0m  [1mCREATE INDEX "temp_index_altered_spree_variants_on_product_id" ON "altered_spree_variants" ("product_id")[0m
+  [1m[35m (0.1ms)[0m  SELECT * FROM "spree_variants"
+  [1m[36m (0.8ms)[0m  [1mDROP TABLE "spree_variants"[0m
+  [1m[35m (0.3ms)[0m  CREATE TABLE "spree_variants" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "sku" varchar(255) DEFAULT '' NOT NULL, "weight" decimal(8,2), "height" decimal(8,2), "width" decimal(8,2), "depth" decimal(8,2), "deleted_at" datetime, "is_master" boolean DEFAULT 'f', "product_id" integer, "cost_price" decimal(8,2), "position" integer, "cost_currency" varchar(255)) 
+  [1m[36m (0.2ms)[0m  [1mCREATE INDEX "index_spree_variants_on_product_id" ON "spree_variants" ("product_id")[0m
+  [1m[35m (0.1ms)[0m  SELECT * FROM "altered_spree_variants"
+  [1m[36m (0.1ms)[0m  [1mDROP TABLE "altered_spree_variants"[0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20140324121992')
+  [1m[36m (2.5ms)[0m  [1mcommit transaction[0m
+Migrating to AddIndexToSourceColumnsOnAdjustments (20140324121993)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.7ms)[0m  [1mCREATE INDEX "index_spree_adjustments_on_source_type_and_source_id" ON "spree_adjustments" ("source_type", "source_id")[0m
+  [1m[35m (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20140324121993')
+  [1m[36m (1.6ms)[0m  [1mcommit transaction[0m
+Migrating to UpdateAdjustmentStates (20140324121994)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSpree::Order Load (0.2ms)[0m  [1mSELECT "spree_orders".* FROM "spree_orders" WHERE ("spree_orders".completed_at IS NOT NULL)[0m
+  [1m[35mSpree::Shipment Load (0.1ms)[0m  SELECT "spree_shipments".* FROM "spree_shipments" WHERE "spree_shipments"."state" IN ('shipped')
+  [1m[36mSQL (0.1ms)[0m  [1mUPDATE "spree_adjustments" SET "state" = 'open' WHERE "spree_adjustments"."state" IS NULL[0m
+  [1m[35m (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20140324121994')
+  [1m[36m (2.5ms)[0m  [1mcommit transaction[0m
+Migrating to AddShippingRatesToShipments (20140324121995)
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSpree::Shipment Load (0.3ms)[0m  [1mSELECT "spree_shipments".* FROM "spree_shipments" [0m
+  [1m[35m (0.3ms)[0m  CREATE TEMPORARY TABLE "altered_spree_shipments" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "tracking" varchar(255), "number" varchar(255), "cost" decimal(8,2), "shipped_at" datetime, "order_id" integer, "shipping_method_id" integer, "address_id" integer, "state" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "stock_location_id" integer) 
+  [1m[36m (0.2ms)[0m  [1mCREATE INDEX "temp_index_altered_spree_shipments_on_order_id" ON "altered_spree_shipments" ("order_id")[0m
+  [1m[35m (0.1ms)[0m  CREATE INDEX "temp_index_shipments_on_number" ON "altered_spree_shipments" ("number")
+  [1m[36m (0.1ms)[0m  [1mSELECT * FROM "spree_shipments"[0m
+  [1m[35m (0.5ms)[0m  DROP TABLE "spree_shipments"
+  [1m[36m (0.3ms)[0m  [1mCREATE TABLE "spree_shipments" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "tracking" varchar(255), "number" varchar(255), "cost" decimal(8,2), "shipped_at" datetime, "order_id" integer, "address_id" integer, "state" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "stock_location_id" integer) [0m
+  [1m[35m (0.1ms)[0m  CREATE INDEX "index_shipments_on_number" ON "spree_shipments" ("number")
+  [1m[36m (0.1ms)[0m  [1mCREATE INDEX "index_spree_shipments_on_order_id" ON "spree_shipments" ("order_id")[0m
+  [1m[35m (0.1ms)[0m  SELECT * FROM "altered_spree_shipments"
+  [1m[36m (0.1ms)[0m  [1mDROP TABLE "altered_spree_shipments"[0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20140324121995')
+  [1m[36m (2.7ms)[0m  [1mcommit transaction[0m
+Migrating to CreateSpreeStockTransfers (20140324121996)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mCREATE TABLE "spree_stock_transfers" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "type" varchar(255), "reference_number" varchar(255), "source_location_id" integer, "destination_location_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  CREATE INDEX "index_spree_stock_transfers_on_source_location_id" ON "spree_stock_transfers" ("source_location_id")
+  [1m[36m (0.1ms)[0m  [1mCREATE INDEX "index_spree_stock_transfers_on_destination_location_id" ON "spree_stock_transfers" ("destination_location_id")[0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20140324121996')
+  [1m[36m (1.6ms)[0m  [1mcommit transaction[0m
+Migrating to DropProductsCountOnHand (20140324121997)
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.2ms)[0m  [1mCREATE TEMPORARY TABLE "altered_spree_products" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255) DEFAULT '' NOT NULL, "description" text, "available_on" datetime, "deleted_at" datetime, "permalink" varchar(255), "meta_description" text, "meta_keywords" varchar(255), "tax_category_id" integer, "shipping_category_id" integer, "count_on_hand" integer DEFAULT 0, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  CREATE INDEX "temp_index_altered_spree_products_on_permalink" ON "altered_spree_products" ("permalink")
+  [1m[36m (0.1ms)[0m  [1mCREATE INDEX "temp_index_altered_spree_products_on_name" ON "altered_spree_products" ("name")[0m
+  [1m[35m (0.1ms)[0m  CREATE INDEX "temp_index_altered_spree_products_on_deleted_at" ON "altered_spree_products" ("deleted_at")
+  [1m[36m (0.1ms)[0m  [1mCREATE INDEX "temp_index_altered_spree_products_on_available_on" ON "altered_spree_products" ("available_on")[0m
+  [1m[35m (0.1ms)[0m  SELECT * FROM "spree_products"
+  [1m[36m (0.4ms)[0m  [1mDROP TABLE "spree_products"[0m
+  [1m[35m (0.3ms)[0m  CREATE TABLE "spree_products" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255) DEFAULT '' NOT NULL, "description" text, "available_on" datetime, "deleted_at" datetime, "permalink" varchar(255), "meta_description" text, "meta_keywords" varchar(255), "tax_category_id" integer, "shipping_category_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.2ms)[0m  [1mCREATE INDEX "index_spree_products_on_available_on" ON "spree_products" ("available_on")[0m
+  [1m[35m (0.2ms)[0m  CREATE INDEX "index_spree_products_on_deleted_at" ON "spree_products" ("deleted_at")
+  [1m[36m (0.2ms)[0m  [1mCREATE INDEX "index_spree_products_on_name" ON "spree_products" ("name")[0m
+  [1m[35m (0.2ms)[0m  CREATE INDEX "index_spree_products_on_permalink" ON "spree_products" ("permalink")
+  [1m[36m (0.1ms)[0m  [1mSELECT * FROM "altered_spree_products"[0m
+  [1m[35m (0.2ms)[0m  DROP TABLE "altered_spree_products"
+  [1m[36m (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20140324121997')[0m
+  [1m[35m (2.2ms)[0m  commit transaction
+Migrating to SetDefaultShippingRateCost (20140324121998)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  CREATE TEMPORARY TABLE "altered_spree_shipping_rates" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "shipment_id" integer, "shipping_method_id" integer, "selected" boolean DEFAULT 'f', "cost" decimal(8,2), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.2ms)[0m  [1mCREATE UNIQUE INDEX "temp_altered_spree_shipping_rates_join_index" ON "altered_spree_shipping_rates" ("shipment_id", "shipping_method_id")[0m
+  [1m[35m (0.1ms)[0m  SELECT * FROM "spree_shipping_rates"
+  [1m[36m (0.3ms)[0m  [1mDROP TABLE "spree_shipping_rates"[0m
+  [1m[35m (0.3ms)[0m  CREATE TABLE "spree_shipping_rates" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "shipment_id" integer, "shipping_method_id" integer, "selected" boolean DEFAULT 'f', "cost" decimal(8,2) DEFAULT 0, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.3ms)[0m  [1mCREATE UNIQUE INDEX "spree_shipping_rates_join_index" ON "spree_shipping_rates" ("shipment_id", "shipping_method_id")[0m
+  [1m[35m (0.0ms)[0m  SELECT * FROM "altered_spree_shipping_rates"
+  [1m[36m (0.1ms)[0m  [1mDROP TABLE "altered_spree_shipping_rates"[0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20140324121998')
+  [1m[36m (2.1ms)[0m  [1mcommit transaction[0m
+Migrating to AddNumberToStockTransfer (20140324121999)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.5ms)[0m  [1mDROP INDEX "index_spree_stock_transfers_on_source_location_id"[0m
+  [1m[35m (0.5ms)[0m  DROP INDEX "index_spree_stock_transfers_on_destination_location_id"
+  [1m[36m (0.2ms)[0m  [1mCREATE TEMPORARY TABLE "altered_spree_stock_transfers" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "type" varchar(255), "reference" varchar(255), "source_location_id" integer, "destination_location_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  SELECT * FROM "spree_stock_transfers"
+  [1m[36m (0.2ms)[0m  [1mDROP TABLE "spree_stock_transfers"[0m
+  [1m[35m (0.3ms)[0m  CREATE TABLE "spree_stock_transfers" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "type" varchar(255), "reference" varchar(255), "source_location_id" integer, "destination_location_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1mSELECT * FROM "altered_spree_stock_transfers"[0m
+  [1m[35m (0.1ms)[0m  DROP TABLE "altered_spree_stock_transfers"
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "spree_stock_transfers" ADD "number" varchar(255)[0m
+  [1m[35mSpree::StockTransfer Load (0.1ms)[0m  SELECT "spree_stock_transfers".* FROM "spree_stock_transfers" 
+  [1m[36m (0.1ms)[0m  [1mCREATE INDEX "index_spree_stock_transfers_on_number" ON "spree_stock_transfers" ("number")[0m
+  [1m[35m (0.1ms)[0m  CREATE INDEX "index_spree_stock_transfers_on_source_location_id" ON "spree_stock_transfers" ("source_location_id")
+  [1m[36m (0.1ms)[0m  [1mCREATE INDEX "index_spree_stock_transfers_on_destination_location_id" ON "spree_stock_transfers" ("destination_location_id")[0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20140324121999')
+  [1m[36m (17.1ms)[0m  [1mcommit transaction[0m
+Migrating to AddSkuIndexToSpreeVariants (20140324122000)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.5ms)[0m  [1mCREATE INDEX "index_spree_variants_on_sku" ON "spree_variants" ("sku")[0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20140324122000')
+  [1m[36m (1.7ms)[0m  [1mcommit transaction[0m
+Migrating to AddBackorderableDefaultToSpreeStockLocation (20140324122001)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.6ms)[0m  [1mALTER TABLE "spree_stock_locations" ADD "backorderable_default" boolean DEFAULT 't'[0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20140324122001')
+  [1m[36m (1.9ms)[0m  [1mcommit transaction[0m
+Migrating to AddPropageAllVariantsToSpreeStockLocation (20140324122002)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.5ms)[0m  [1mALTER TABLE "spree_stock_locations" ADD "propagate_all_variants" boolean DEFAULT 't'[0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20140324122002')
+  [1m[36m (1.2ms)[0m  [1mcommit transaction[0m
+Migrating to RenameShippingMethodsZonesToSpreeShippingMethodsZones (20140324122003)
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "shipping_methods_zones" RENAME TO "spree_shipping_methods_zones"[0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20140324122003')
+  [1m[36m (1.4ms)[0m  [1mcommit transaction[0m
+Migrating to AddCvvResultCodeAndCvvResultMessageToSpreePayments (20140324122004)
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "spree_payments" ADD "cvv_response_code" varchar(255)[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "spree_payments" ADD "cvv_response_message" varchar(255)
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20140324122004')[0m
+  [1m[35m (1.1ms)[0m  commit transaction
+Migrating to AddUniqueIndexToPermalinkOnSpreeProducts (20140324122005)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  CREATE UNIQUE INDEX "permalink_idx_unique" ON "spree_products" ("permalink")
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20140324122005')[0m
+  [1m[35m (2.6ms)[0m  commit transaction
+Migrating to AddUniqueIndexToOrdersShipmentsAndStockTransfers (20140324122006)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20140324122006')
+  [1m[36m (1.9ms)[0m  [1mcommit transaction[0m
+Migrating to AddDeletedAtToSpreeTaxRates (20140324122007)
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "spree_tax_rates" ADD "deleted_at" datetime[0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20140324122007')
+  [1m[36m (1.2ms)[0m  [1mcommit transaction[0m
+Migrating to RemoveLockVersionFromInventoryUnits (20140324122008)
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.2ms)[0m  [1mCREATE TEMPORARY TABLE "altered_spree_inventory_units" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "lock_version" integer DEFAULT 0, "state" varchar(255), "variant_id" integer, "order_id" integer, "shipment_id" integer, "return_authorization_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "pending" boolean DEFAULT 't') [0m
+  [1m[35m (0.1ms)[0m  CREATE INDEX "temp_index_inventory_units_on_variant_id" ON "altered_spree_inventory_units" ("variant_id")
+  [1m[36m (0.1ms)[0m  [1mCREATE INDEX "temp_index_inventory_units_on_shipment_id" ON "altered_spree_inventory_units" ("shipment_id")[0m
+  [1m[35m (0.1ms)[0m  CREATE INDEX "temp_index_inventory_units_on_order_id" ON "altered_spree_inventory_units" ("order_id")
+  [1m[36m (0.1ms)[0m  [1mSELECT * FROM "spree_inventory_units"[0m
+  [1m[35m (0.3ms)[0m  DROP TABLE "spree_inventory_units"
+  [1m[36m (0.2ms)[0m  [1mCREATE TABLE "spree_inventory_units" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "state" varchar(255), "variant_id" integer, "order_id" integer, "shipment_id" integer, "return_authorization_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "pending" boolean DEFAULT 't') [0m
+  [1m[35m (0.1ms)[0m  CREATE INDEX "index_inventory_units_on_order_id" ON "spree_inventory_units" ("order_id")
+  [1m[36m (0.1ms)[0m  [1mCREATE INDEX "index_inventory_units_on_shipment_id" ON "spree_inventory_units" ("shipment_id")[0m
+  [1m[35m (0.1ms)[0m  CREATE INDEX "index_inventory_units_on_variant_id" ON "spree_inventory_units" ("variant_id")
+  [1m[36m (0.0ms)[0m  [1mSELECT * FROM "altered_spree_inventory_units"[0m
+  [1m[35m (0.1ms)[0m  DROP TABLE "altered_spree_inventory_units"
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20140324122008')[0m
+  [1m[35m (2.2ms)[0m  commit transaction
+Migrating to AddCostPriceToLineItem (20140324122009)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  ALTER TABLE "spree_line_items" ADD "cost_price" decimal(8,2)
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20140324122009')[0m
+  [1m[35m (1.9ms)[0m  commit transaction
+Migrating to SetBackorderableToDefaultToFalse (20140324122010)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  CREATE TEMPORARY TABLE "altered_spree_stock_items" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "stock_location_id" integer, "variant_id" integer, "count_on_hand" integer DEFAULT 0 NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "backorderable" boolean DEFAULT 't') 
+  [1m[36m (0.1ms)[0m  [1mCREATE INDEX "temp_stock_item_by_loc_and_var_id" ON "altered_spree_stock_items" ("stock_location_id", "variant_id")[0m
+  [1m[35m (0.1ms)[0m  CREATE INDEX "temp_index_altered_spree_stock_items_on_stock_location_id" ON "altered_spree_stock_items" ("stock_location_id")
+  [1m[36m (0.1ms)[0m  [1mSELECT * FROM "spree_stock_items"[0m
+  [1m[35m (0.3ms)[0m  DROP TABLE "spree_stock_items"
+  [1m[36m (0.2ms)[0m  [1mCREATE TABLE "spree_stock_items" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "stock_location_id" integer, "variant_id" integer, "count_on_hand" integer DEFAULT 0 NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "backorderable" boolean DEFAULT 'f') [0m
+  [1m[35m (0.1ms)[0m  CREATE INDEX "index_spree_stock_items_on_stock_location_id" ON "spree_stock_items" ("stock_location_id")
+  [1m[36m (0.1ms)[0m  [1mCREATE INDEX "stock_item_by_loc_and_var_id" ON "spree_stock_items" ("stock_location_id", "variant_id")[0m
+  [1m[35m (0.0ms)[0m  SELECT * FROM "altered_spree_stock_items"
+  [1m[36m (0.1ms)[0m  [1mDROP TABLE "altered_spree_stock_items"[0m
+  [1m[35m (0.1ms)[0m  CREATE TEMPORARY TABLE "altered_spree_stock_locations" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "address1" varchar(255), "address2" varchar(255), "city" varchar(255), "state_id" integer, "state_name" varchar(255), "country_id" integer, "zipcode" varchar(255), "phone" varchar(255), "active" boolean DEFAULT 't', "backorderable_default" boolean DEFAULT 't', "propagate_all_variants" boolean DEFAULT 't') 
+  [1m[36m (0.1ms)[0m  [1mSELECT * FROM "spree_stock_locations"[0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "altered_spree_stock_locations" ("id","name","created_at","updated_at","address1","address2","city","state_id","state_name","country_id","zipcode","phone","active","backorderable_default","propagate_all_variants") VALUES (1, 'default', '2014-03-24 12:20:07.824596', '2014-03-24 12:20:07.824596', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 't', 't', 't')
+  [1m[36m (0.3ms)[0m  [1mDROP TABLE "spree_stock_locations"[0m
+  [1m[35m (0.3ms)[0m  CREATE TABLE "spree_stock_locations" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "address1" varchar(255), "address2" varchar(255), "city" varchar(255), "state_id" integer, "state_name" varchar(255), "country_id" integer, "zipcode" varchar(255), "phone" varchar(255), "active" boolean DEFAULT 't', "backorderable_default" boolean DEFAULT 'f', "propagate_all_variants" boolean DEFAULT 't') 
+  [1m[36m (0.1ms)[0m  [1mSELECT * FROM "altered_spree_stock_locations"[0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "spree_stock_locations" ("id","name","created_at","updated_at","address1","address2","city","state_id","state_name","country_id","zipcode","phone","active","backorderable_default","propagate_all_variants") VALUES (1, 'default', '2014-03-24 12:20:07.824596', '2014-03-24 12:20:07.824596', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 't', 't', 't')
+  [1m[36m (0.1ms)[0m  [1mDROP TABLE "altered_spree_stock_locations"[0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20140324122010')
+  [1m[36m (3.0ms)[0m  [1mcommit transaction[0m
+Migrating to AddCreatedByIdToSpreeOrders (20140324122011)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "spree_orders" ADD "created_by_id" integer[0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20140324122011')
+  [1m[36m (2.1ms)[0m  [1mcommit transaction[0m
+Migrating to IndexCompletedAtOnSpreeOrders (20140324122012)
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mCREATE INDEX "index_spree_orders_on_completed_at" ON "spree_orders" ("completed_at")[0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20140324122012')
+  [1m[36m (2.6ms)[0m  [1mcommit transaction[0m
+Migrating to AddTaxCategoryIdToSpreeLineItems (20140324122013)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.5ms)[0m  [1mALTER TABLE "spree_line_items" ADD "tax_category_id" integer[0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20140324122013')
+  [1m[36m (1.3ms)[0m  [1mcommit transaction[0m
+Migrating to MigrateTaxCategoriesToLineItems (20140324122014)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSpree::LineItem Load (0.1ms)[0m  [1mSELECT "spree_line_items".* FROM "spree_line_items" ORDER BY "spree_line_items"."id" ASC LIMIT 1000[0m
+  [1m[35m (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20140324122014')
+  [1m[36m (1.5ms)[0m  [1mcommit transaction[0m
+Migrating to DropSpreeMailMethods (20140324122015)
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mDROP TABLE "spree_mail_methods"[0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20140324122015')
+  [1m[36m (1.6ms)[0m  [1mcommit transaction[0m
+Migrating to SetDefaultStockLocationOnShipments (20140324122016)
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "spree_shipments" WHERE (stock_location_id IS NULL)[0m
+  [1m[35m (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20140324122016')
+  [1m[36m (1.4ms)[0m  [1mcommit transaction[0m
+Migrating to AddAdminNameColumnToSpreeShippingMethods (20140324122017)
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.6ms)[0m  [1mALTER TABLE "spree_shipping_methods" ADD "admin_name" varchar(255)[0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20140324122017')
+  [1m[36m (2.3ms)[0m  [1mcommit transaction[0m
+Migrating to AddAdminNameColumnToSpreeStockLocations (20140324122018)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "spree_stock_locations" ADD "admin_name" varchar(255)[0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20140324122018')
+  [1m[36m (2.3ms)[0m  [1mcommit transaction[0m
+Migrating to ExpandOrderNumberSize (20140324122019)
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.2ms)[0m  [1mCREATE TEMPORARY TABLE "altered_spree_orders" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "number" varchar(15), "item_total" decimal(10,2) DEFAULT 0.0 NOT NULL, "total" decimal(10,2) DEFAULT 0.0 NOT NULL, "state" varchar(255), "adjustment_total" decimal(10,2) DEFAULT 0.0 NOT NULL, "user_id" integer, "completed_at" datetime, "bill_address_id" integer, "ship_address_id" integer, "payment_total" decimal(10,2) DEFAULT 0.0, "shipping_method_id" integer, "shipment_state" varchar(255), "payment_state" varchar(255), "email" varchar(255), "special_instructions" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "currency" varchar(255), "last_ip_address" varchar(255), "created_by_id" integer) [0m
+  [1m[35m (0.1ms)[0m  CREATE INDEX "temp_index_altered_spree_orders_on_completed_at" ON "altered_spree_orders" ("completed_at")
+  [1m[36m (0.1ms)[0m  [1mCREATE INDEX "temp_index_altered_spree_orders_on_number" ON "altered_spree_orders" ("number")[0m
+  [1m[35m (0.1ms)[0m  SELECT * FROM "spree_orders"
+  [1m[36m (0.3ms)[0m  [1mDROP TABLE "spree_orders"[0m
+  [1m[35m (0.2ms)[0m  CREATE TABLE "spree_orders" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "number" varchar(32), "item_total" decimal(10,2) DEFAULT 0.0 NOT NULL, "total" decimal(10,2) DEFAULT 0.0 NOT NULL, "state" varchar(255), "adjustment_total" decimal(10,2) DEFAULT 0.0 NOT NULL, "user_id" integer, "completed_at" datetime, "bill_address_id" integer, "ship_address_id" integer, "payment_total" decimal(10,2) DEFAULT 0.0, "shipping_method_id" integer, "shipment_state" varchar(255), "payment_state" varchar(255), "email" varchar(255), "special_instructions" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "currency" varchar(255), "last_ip_address" varchar(255), "created_by_id" integer) 
+  [1m[36m (0.1ms)[0m  [1mCREATE INDEX "index_spree_orders_on_number" ON "spree_orders" ("number")[0m
+  [1m[35m (0.1ms)[0m  CREATE INDEX "index_spree_orders_on_completed_at" ON "spree_orders" ("completed_at")
+  [1m[36m (0.1ms)[0m  [1mSELECT * FROM "altered_spree_orders"[0m
+  [1m[35m (0.1ms)[0m  DROP TABLE "altered_spree_orders"
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20140324122019')[0m
+  [1m[35m (3.6ms)[0m  commit transaction
+Migrating to AddDepthToSpreeTaxons (20140324122020)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  ALTER TABLE "spree_taxons" ADD "depth" integer
+  [1m[36mSpree::Taxon Load (0.1ms)[0m  [1mSELECT "spree_taxons".* FROM "spree_taxons" [0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20140324122020')
+  [1m[36m (1.3ms)[0m  [1mcommit transaction[0m
+Migrating to AddShippingCategoryToShippingMethodsAndProducts (20140324122021)
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSpree::ShippingCategory Load (0.0ms)[0m  [1mSELECT "spree_shipping_categories".* FROM "spree_shipping_categories" LIMIT 1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "spree_shipping_categories" ("created_at", "name", "updated_at") VALUES (?, ?, ?)  [["created_at", Mon, 24 Mar 2014 12:20:09 UTC +00:00], ["name", "Default"], ["updated_at", Mon, 24 Mar 2014 12:20:09 UTC +00:00]]
+  [1m[36mSpree::ShippingMethod Load (0.1ms)[0m  [1mSELECT "spree_shipping_methods".* FROM "spree_shipping_methods" WHERE "spree_shipping_methods"."deleted_at" IS NULL[0m
+  [1m[35mSQL (0.1ms)[0m  UPDATE "spree_products" SET "shipping_category_id" = 1 WHERE "spree_products"."shipping_category_id" IS NULL AND ("spree_products".deleted_at IS NULL)
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20140324122021')[0m
+  [1m[35m (1.9ms)[0m  commit transaction
+Migrating to MigrateOldShippingCalculators (20140324122022)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSpree::ShippingMethod Load (0.1ms)[0m  SELECT "spree_shipping_methods".* FROM "spree_shipping_methods" WHERE "spree_shipping_methods"."deleted_at" IS NULL
+  [1m[36m (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20140324122022')[0m
+  [1m[35m (1.1ms)[0m  commit transaction
+Migrating to ChangeStatesRequiredForCountries (20140324122023)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  CREATE TEMPORARY TABLE "altered_spree_countries" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "iso_name" varchar(255), "iso" varchar(255), "iso3" varchar(255), "name" varchar(255), "numcode" integer, "states_required" boolean DEFAULT 't') 
+  [1m[36m (0.1ms)[0m  [1mSELECT * FROM "spree_countries"[0m
+  [1m[35m (0.3ms)[0m  DROP TABLE "spree_countries"
+  [1m[36m (0.2ms)[0m  [1mCREATE TABLE "spree_countries" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "iso_name" varchar(255), "iso" varchar(255), "iso3" varchar(255), "name" varchar(255), "numcode" integer, "states_required" boolean DEFAULT 'f') [0m
+  [1m[35m (0.0ms)[0m  SELECT * FROM "altered_spree_countries"
+  [1m[36m (0.1ms)[0m  [1mDROP TABLE "altered_spree_countries"[0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20140324122023')
+  [1m[36m (1.8ms)[0m  [1mcommit transaction[0m
+Migrating to AddDeletedAtToSpreeStockItems (20140324122024)
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "spree_stock_items" ADD "deleted_at" datetime[0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20140324122024')
+  [1m[36m (1.5ms)[0m  [1mcommit transaction[0m
+Migrating to RemoveUnusedCreditCardFields (20140324122025)
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.2ms)[0m  [1mCREATE TEMPORARY TABLE "altered_spree_credit_cards" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "month" varchar(255), "year" varchar(255), "cc_type" varchar(255), "last_digits" varchar(255), "first_name" varchar(255), "last_name" varchar(255), "start_month" varchar(255), "start_year" varchar(255), "issue_number" varchar(255), "address_id" integer, "gateway_customer_profile_id" varchar(255), "gateway_payment_profile_id" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  SELECT * FROM "spree_credit_cards"
+  [1m[36m (0.3ms)[0m  [1mDROP TABLE "spree_credit_cards"[0m
+  [1m[35m (0.3ms)[0m  CREATE TABLE "spree_credit_cards" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "month" varchar(255), "year" varchar(255), "cc_type" varchar(255), "last_digits" varchar(255), "first_name" varchar(255), "last_name" varchar(255), "start_year" varchar(255), "issue_number" varchar(255), "address_id" integer, "gateway_customer_profile_id" varchar(255), "gateway_payment_profile_id" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1mSELECT * FROM "altered_spree_credit_cards"[0m
+  [1m[35m (0.1ms)[0m  DROP TABLE "altered_spree_credit_cards"
+  [1m[36m (0.2ms)[0m  [1mCREATE TEMPORARY TABLE "altered_spree_credit_cards" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "month" varchar(255), "year" varchar(255), "cc_type" varchar(255), "last_digits" varchar(255), "first_name" varchar(255), "last_name" varchar(255), "start_year" varchar(255), "issue_number" varchar(255), "address_id" integer, "gateway_customer_profile_id" varchar(255), "gateway_payment_profile_id" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.0ms)[0m  SELECT * FROM "spree_credit_cards"
+  [1m[36m (0.3ms)[0m  [1mDROP TABLE "spree_credit_cards"[0m
+  [1m[35m (0.2ms)[0m  CREATE TABLE "spree_credit_cards" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "month" varchar(255), "year" varchar(255), "cc_type" varchar(255), "last_digits" varchar(255), "first_name" varchar(255), "last_name" varchar(255), "issue_number" varchar(255), "address_id" integer, "gateway_customer_profile_id" varchar(255), "gateway_payment_profile_id" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.0ms)[0m  [1mSELECT * FROM "altered_spree_credit_cards"[0m
+  [1m[35m (0.1ms)[0m  DROP TABLE "altered_spree_credit_cards"
+  [1m[36m (0.1ms)[0m  [1mCREATE TEMPORARY TABLE "altered_spree_credit_cards" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "month" varchar(255), "year" varchar(255), "cc_type" varchar(255), "last_digits" varchar(255), "first_name" varchar(255), "last_name" varchar(255), "issue_number" varchar(255), "address_id" integer, "gateway_customer_profile_id" varchar(255), "gateway_payment_profile_id" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.0ms)[0m  SELECT * FROM "spree_credit_cards"
+  [1m[36m (0.1ms)[0m  [1mDROP TABLE "spree_credit_cards"[0m
+  [1m[35m (0.1ms)[0m  CREATE TABLE "spree_credit_cards" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "month" varchar(255), "year" varchar(255), "cc_type" varchar(255), "last_digits" varchar(255), "first_name" varchar(255), "last_name" varchar(255), "address_id" integer, "gateway_customer_profile_id" varchar(255), "gateway_payment_profile_id" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.0ms)[0m  [1mSELECT * FROM "altered_spree_credit_cards"[0m
+  [1m[35m (0.1ms)[0m  DROP TABLE "altered_spree_credit_cards"
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20140324122025')[0m
+  [1m[35m (2.8ms)[0m  commit transaction
+Migrating to AddTrackInventoryToVariant (20140324122026)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.6ms)[0m  ALTER TABLE "spree_variants" ADD "track_inventory" boolean DEFAULT 't'
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20140324122026')[0m
+  [1m[35m (1.2ms)[0m  commit transaction
+Migrating to AddChannelToSpreeOrders (20140324122027)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  ALTER TABLE "spree_orders" ADD "channel" varchar(255) DEFAULT 'spree'
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20140324122027')[0m
+  [1m[35m (1.7ms)[0m  commit transaction
+Migrating to AddIndexToVariantIdAndCurrencyOnPrices (20140324122028)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  CREATE INDEX "index_spree_prices_on_variant_id_and_currency" ON "spree_prices" ("variant_id", "currency")
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20140324122028')[0m
+  [1m[35m (1.8ms)[0m  commit transaction
+Migrating to DefaultVariantWeightToZero (20140324122029)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.1ms)[0m  UPDATE "spree_variants" SET weight = 0.0 WHERE "spree_variants"."weight" IS NULL
+  [1m[36m (0.2ms)[0m  [1mCREATE TEMPORARY TABLE "altered_spree_variants" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "sku" varchar(255) DEFAULT '' NOT NULL, "weight" decimal(8,2), "height" decimal(8,2), "width" decimal(8,2), "depth" decimal(8,2), "deleted_at" datetime, "is_master" boolean DEFAULT 'f', "product_id" integer, "cost_price" decimal(8,2), "position" integer, "cost_currency" varchar(255), "track_inventory" boolean DEFAULT 't') [0m
+  [1m[35m (0.1ms)[0m  CREATE INDEX "temp_index_altered_spree_variants_on_sku" ON "altered_spree_variants" ("sku")
+  [1m[36m (0.1ms)[0m  [1mCREATE INDEX "temp_index_altered_spree_variants_on_product_id" ON "altered_spree_variants" ("product_id")[0m
+  [1m[35m (0.0ms)[0m  SELECT * FROM "spree_variants"
+  [1m[36m (0.3ms)[0m  [1mDROP TABLE "spree_variants"[0m
+  [1m[35m (0.2ms)[0m  CREATE TABLE "spree_variants" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "sku" varchar(255) DEFAULT '' NOT NULL, "weight" decimal(8,2) DEFAULT 0.0, "height" decimal(8,2), "width" decimal(8,2), "depth" decimal(8,2), "deleted_at" datetime, "is_master" boolean DEFAULT 'f', "product_id" integer, "cost_price" decimal(8,2), "position" integer, "cost_currency" varchar(255), "track_inventory" boolean DEFAULT 't') 
+  [1m[36m (0.1ms)[0m  [1mCREATE INDEX "index_spree_variants_on_product_id" ON "spree_variants" ("product_id")[0m
+  [1m[35m (0.1ms)[0m  CREATE INDEX "index_spree_variants_on_sku" ON "spree_variants" ("sku")
+  [1m[36m (0.1ms)[0m  [1mSELECT * FROM "altered_spree_variants"[0m
+  [1m[35m (0.1ms)[0m  DROP TABLE "altered_spree_variants"
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20140324122029')[0m
+  [1m[35m (2.6ms)[0m  commit transaction
+Migrating to CreateUsers (20140324122030)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20140324122030')
+  [1m[36m (1.4ms)[0m  [1mcommit transaction[0m
+Migrating to RenameColumnsForDevise (20140324122031)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20140324122031')[0m
+  [1m[35m (1.3ms)[0m  commit transaction
+Migrating to ConvertUserRememberField (20140324122032)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  CREATE TEMPORARY TABLE "altered_spree_users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "encrypted_password" varchar(128), "password_salt" varchar(128), "email" varchar(255), "remember_token" varchar(255), "persistence_token" varchar(255), "reset_password_token" varchar(255), "perishable_token" varchar(255), "sign_in_count" integer DEFAULT 0 NOT NULL, "failed_attempts" integer DEFAULT 0 NOT NULL, "last_request_at" datetime, "current_sign_in_at" datetime, "last_sign_in_at" datetime, "current_sign_in_ip" varchar(255), "last_sign_in_ip" varchar(255), "login" varchar(255), "ship_address_id" integer, "bill_address_id" integer, "authentication_token" varchar(255), "unlock_token" varchar(255), "locked_at" datetime, "remember_created_at" datetime, "reset_password_sent_at" datetime, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1mSELECT * FROM "spree_users"[0m
+  [1m[35m (0.3ms)[0m  DROP TABLE "spree_users"
+  [1m[36m (0.4ms)[0m  [1mCREATE TABLE "spree_users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "encrypted_password" varchar(128), "password_salt" varchar(128), "email" varchar(255), "remember_token" varchar(255), "persistence_token" varchar(255), "reset_password_token" varchar(255), "perishable_token" varchar(255), "sign_in_count" integer DEFAULT 0 NOT NULL, "failed_attempts" integer DEFAULT 0 NOT NULL, "last_request_at" datetime, "current_sign_in_at" datetime, "last_sign_in_at" datetime, "current_sign_in_ip" varchar(255), "last_sign_in_ip" varchar(255), "login" varchar(255), "ship_address_id" integer, "bill_address_id" integer, "authentication_token" varchar(255), "unlock_token" varchar(255), "locked_at" datetime, "reset_password_sent_at" datetime, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  SELECT * FROM "altered_spree_users"
+  [1m[36m (0.1ms)[0m  [1mDROP TABLE "altered_spree_users"[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "spree_users" ADD "remember_created_at" datetime
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20140324122032')[0m
+  [1m[35m (2.9ms)[0m  commit transaction
+Migrating to AddResetPasswordSentAtToSpreeUsers (20140324122033)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20140324122033')
+  [1m[36m (1.3ms)[0m  [1mcommit transaction[0m
+Migrating to MakeUsersEmailIndexUnique (20140324122034)
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.3ms)[0m  [1mCREATE UNIQUE INDEX "email_idx_unique" ON "spree_users" ("email")[0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20140324122034')
+  [1m[36m (1.6ms)[0m  [1mcommit transaction[0m
+Migrating to AddApiKeyToSpreeUsers (20140324122035)
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "spree_users" ADD "api_key" varchar(40)[0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20140324122035')
+  [1m[36m (1.2ms)[0m  [1mcommit transaction[0m
+Migrating to ResizeApiKeyField (20140324122036)
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.2ms)[0m  [1mCREATE TEMPORARY TABLE "altered_spree_users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "encrypted_password" varchar(128), "password_salt" varchar(128), "email" varchar(255), "remember_token" varchar(255), "persistence_token" varchar(255), "reset_password_token" varchar(255), "perishable_token" varchar(255), "sign_in_count" integer DEFAULT 0 NOT NULL, "failed_attempts" integer DEFAULT 0 NOT NULL, "last_request_at" datetime, "current_sign_in_at" datetime, "last_sign_in_at" datetime, "current_sign_in_ip" varchar(255), "last_sign_in_ip" varchar(255), "login" varchar(255), "ship_address_id" integer, "bill_address_id" integer, "authentication_token" varchar(255), "unlock_token" varchar(255), "locked_at" datetime, "reset_password_sent_at" datetime, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "remember_created_at" datetime, "api_key" varchar(40)) [0m
+  [1m[35m (0.1ms)[0m  CREATE UNIQUE INDEX "temp_email_idx_unique" ON "altered_spree_users" ("email")
+  [1m[36m (0.2ms)[0m  [1mSELECT * FROM "spree_users"[0m
+  [1m[35m (0.3ms)[0m  DROP TABLE "spree_users"
+  [1m[36m (0.2ms)[0m  [1mCREATE TABLE "spree_users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "encrypted_password" varchar(128), "password_salt" varchar(128), "email" varchar(255), "remember_token" varchar(255), "persistence_token" varchar(255), "reset_password_token" varchar(255), "perishable_token" varchar(255), "sign_in_count" integer DEFAULT 0 NOT NULL, "failed_attempts" integer DEFAULT 0 NOT NULL, "last_request_at" datetime, "current_sign_in_at" datetime, "last_sign_in_at" datetime, "current_sign_in_ip" varchar(255), "last_sign_in_ip" varchar(255), "login" varchar(255), "ship_address_id" integer, "bill_address_id" integer, "authentication_token" varchar(255), "unlock_token" varchar(255), "locked_at" datetime, "reset_password_sent_at" datetime, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "remember_created_at" datetime, "api_key" varchar(48)) [0m
+  [1m[35m (0.3ms)[0m  CREATE UNIQUE INDEX "email_idx_unique" ON "spree_users" ("email")
+  [1m[36m (0.1ms)[0m  [1mSELECT * FROM "altered_spree_users"[0m
+  [1m[35m (0.1ms)[0m  DROP TABLE "altered_spree_users"
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20140324122036')[0m
+  [1m[35m (5.0ms)[0m  commit transaction
+Migrating to RenameApiKeyToSpreeApiKey (20140324122037)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  CREATE TEMPORARY TABLE "altered_spree_users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "encrypted_password" varchar(128), "password_salt" varchar(128), "email" varchar(255), "remember_token" varchar(255), "persistence_token" varchar(255), "reset_password_token" varchar(255), "perishable_token" varchar(255), "sign_in_count" integer DEFAULT 0 NOT NULL, "failed_attempts" integer DEFAULT 0 NOT NULL, "last_request_at" datetime, "current_sign_in_at" datetime, "last_sign_in_at" datetime, "current_sign_in_ip" varchar(255), "last_sign_in_ip" varchar(255), "login" varchar(255), "ship_address_id" integer, "bill_address_id" integer, "authentication_token" varchar(255), "unlock_token" varchar(255), "locked_at" datetime, "reset_password_sent_at" datetime, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "remember_created_at" datetime, "spree_api_key" varchar(48)) 
+  [1m[36m (0.1ms)[0m  [1mCREATE UNIQUE INDEX "temp_email_idx_unique" ON "altered_spree_users" ("email")[0m
+  [1m[35m (0.1ms)[0m  SELECT * FROM "spree_users"
+  [1m[36m (0.3ms)[0m  [1mDROP TABLE "spree_users"[0m
+  [1m[35m (0.2ms)[0m  CREATE TABLE "spree_users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "encrypted_password" varchar(128), "password_salt" varchar(128), "email" varchar(255), "remember_token" varchar(255), "persistence_token" varchar(255), "reset_password_token" varchar(255), "perishable_token" varchar(255), "sign_in_count" integer DEFAULT 0 NOT NULL, "failed_attempts" integer DEFAULT 0 NOT NULL, "last_request_at" datetime, "current_sign_in_at" datetime, "last_sign_in_at" datetime, "current_sign_in_ip" varchar(255), "last_sign_in_ip" varchar(255), "login" varchar(255), "ship_address_id" integer, "bill_address_id" integer, "authentication_token" varchar(255), "unlock_token" varchar(255), "locked_at" datetime, "reset_password_sent_at" datetime, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "remember_created_at" datetime, "spree_api_key" varchar(48)) 
+  [1m[36m (0.3ms)[0m  [1mCREATE UNIQUE INDEX "email_idx_unique" ON "spree_users" ("email")[0m
+  [1m[35m (0.2ms)[0m  SELECT * FROM "altered_spree_users"
+  [1m[36m (0.3ms)[0m  [1mDROP TABLE "altered_spree_users"[0m
+  [1m[35m (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20140324122037')
+  [1m[36m (1.8ms)[0m  [1mcommit transaction[0m
+Migrating to AddIndexToUserSpreeApiKey (20140324122038)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.5ms)[0m  [1mCREATE INDEX "index_spree_users_on_spree_api_key" ON "spree_users" ("spree_api_key")[0m
+  [1m[35m (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20140324122038')
+  [1m[36m (1.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.3ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+  [1m[36m (0.2ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+  [1m[35m (0.3ms)[0m  select sqlite_version(*)
+  [1m[36m (1.2ms)[0m  [1mCREATE TABLE "spree_activators" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "description" varchar(255), "expires_at" datetime, "starts_at" datetime, "name" varchar(255), "event_name" varchar(255), "type" varchar(255), "usage_limit" integer, "match_policy" varchar(255) DEFAULT 'all', "code" varchar(255), "advertise" boolean DEFAULT 'f', "path" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (1.7ms)[0m  CREATE TABLE "spree_addresses" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "firstname" varchar(255), "lastname" varchar(255), "address1" varchar(255), "address2" varchar(255), "city" varchar(255), "zipcode" varchar(255), "phone" varchar(255), "state_name" varchar(255), "alternative_phone" varchar(255), "company" varchar(255), "state_id" integer, "country_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (2.6ms)[0m  [1mCREATE INDEX "index_addresses_on_firstname" ON "spree_addresses" ("firstname")[0m
+  [1m[35m (1.2ms)[0m  CREATE INDEX "index_addresses_on_lastname" ON "spree_addresses" ("lastname")
+  [1m[36m (1.2ms)[0m  [1mCREATE TABLE "spree_adjustments" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "source_id" integer, "source_type" varchar(255), "adjustable_id" integer, "adjustable_type" varchar(255), "originator_id" integer, "originator_type" varchar(255), "amount" decimal(10,2), "label" varchar(255), "mandatory" boolean, "eligible" boolean DEFAULT 't', "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "state" varchar(255)) [0m
+  [1m[35m (1.1ms)[0m  CREATE INDEX "index_adjustments_on_order_id" ON "spree_adjustments" ("adjustable_id")
+  [1m[36m (1.0ms)[0m  [1mCREATE INDEX "index_spree_adjustments_on_source_type_and_source_id" ON "spree_adjustments" ("source_type", "source_id")[0m
+  [1m[35m (1.3ms)[0m  CREATE TABLE "spree_assets" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "viewable_id" integer, "viewable_type" varchar(255), "attachment_width" integer, "attachment_height" integer, "attachment_file_size" integer, "position" integer, "attachment_content_type" varchar(255), "attachment_file_name" varchar(255), "type" varchar(75), "attachment_updated_at" datetime, "alt" text) 
+  [1m[36m (1.6ms)[0m  [1mCREATE INDEX "index_assets_on_viewable_id" ON "spree_assets" ("viewable_id")[0m
+  [1m[35m (1.3ms)[0m  CREATE INDEX "index_assets_on_viewable_type_and_type" ON "spree_assets" ("viewable_type", "type")
+  [1m[36m (1.1ms)[0m  [1mCREATE TABLE "spree_calculators" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "type" varchar(255), "calculable_id" integer, "calculable_type" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (1.3ms)[0m  CREATE TABLE "spree_configurations" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "type" varchar(50), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (1.1ms)[0m  [1mCREATE INDEX "index_spree_configurations_on_name_and_type" ON "spree_configurations" ("name", "type")[0m
+  [1m[35m (1.3ms)[0m  CREATE TABLE "spree_countries" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "iso_name" varchar(255), "iso" varchar(255), "iso3" varchar(255), "name" varchar(255), "numcode" integer, "states_required" boolean DEFAULT 'f') 
+  [1m[36m (1.4ms)[0m  [1mCREATE TABLE "spree_credit_cards" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "month" varchar(255), "year" varchar(255), "cc_type" varchar(255), "last_digits" varchar(255), "first_name" varchar(255), "last_name" varchar(255), "address_id" integer, "gateway_customer_profile_id" varchar(255), "gateway_payment_profile_id" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (1.3ms)[0m  CREATE TABLE "spree_gateways" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "type" varchar(255), "name" varchar(255), "description" text, "active" boolean DEFAULT 't', "environment" varchar(255) DEFAULT 'development', "server" varchar(255) DEFAULT 'test', "test_mode" boolean DEFAULT 't', "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (1.8ms)[0m  [1mCREATE TABLE "spree_inventory_units" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "state" varchar(255), "variant_id" integer, "order_id" integer, "shipment_id" integer, "return_authorization_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "pending" boolean DEFAULT 't') [0m
+  [1m[35m (1.5ms)[0m  CREATE INDEX "index_inventory_units_on_order_id" ON "spree_inventory_units" ("order_id")
+  [1m[36m (1.4ms)[0m  [1mCREATE INDEX "index_inventory_units_on_shipment_id" ON "spree_inventory_units" ("shipment_id")[0m
+  [1m[35m (1.6ms)[0m  CREATE INDEX "index_inventory_units_on_variant_id" ON "spree_inventory_units" ("variant_id")
+  [1m[36m (1.3ms)[0m  [1mCREATE TABLE "spree_line_items" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "variant_id" integer, "order_id" integer, "quantity" integer NOT NULL, "price" decimal(8,2) NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "currency" varchar(255), "cost_price" decimal(8,2), "tax_category_id" integer) [0m
+  [1m[35m (1.1ms)[0m  CREATE INDEX "index_spree_line_items_on_order_id" ON "spree_line_items" ("order_id")
+  [1m[36m (1.5ms)[0m  [1mCREATE INDEX "index_spree_line_items_on_variant_id" ON "spree_line_items" ("variant_id")[0m
+  [1m[35m (1.4ms)[0m  CREATE TABLE "spree_log_entries" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "source_id" integer, "source_type" varchar(255), "details" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (1.3ms)[0m  [1mCREATE TABLE "spree_option_types" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(100), "presentation" varchar(100), "position" integer DEFAULT 0 NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (1.6ms)[0m  CREATE TABLE "spree_option_types_prototypes" ("prototype_id" integer, "option_type_id" integer) 
+  [1m[36m (1.4ms)[0m  [1mCREATE TABLE "spree_option_values" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "position" integer, "name" varchar(255), "presentation" varchar(255), "option_type_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (1.5ms)[0m  CREATE TABLE "spree_option_values_variants" ("variant_id" integer, "option_value_id" integer) 
+  [1m[36m (1.4ms)[0m  [1mCREATE INDEX "index_option_values_variants_on_variant_id_and_option_value_id" ON "spree_option_values_variants" ("variant_id", "option_value_id")[0m
+  [1m[35m (1.5ms)[0m  CREATE INDEX "index_spree_option_values_variants_on_variant_id" ON "spree_option_values_variants" ("variant_id")
+  [1m[36m (2.3ms)[0m  [1mCREATE TABLE "spree_orders" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "number" varchar(32), "item_total" decimal(10,2) DEFAULT 0.0 NOT NULL, "total" decimal(10,2) DEFAULT 0.0 NOT NULL, "state" varchar(255), "adjustment_total" decimal(10,2) DEFAULT 0.0 NOT NULL, "user_id" integer, "completed_at" datetime, "bill_address_id" integer, "ship_address_id" integer, "payment_total" decimal(10,2) DEFAULT 0.0, "shipping_method_id" integer, "shipment_state" varchar(255), "payment_state" varchar(255), "email" varchar(255), "special_instructions" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "currency" varchar(255), "last_ip_address" varchar(255), "created_by_id" integer, "channel" varchar(255) DEFAULT 'spree') [0m
+  [1m[35m (1.3ms)[0m  CREATE INDEX "index_spree_orders_on_completed_at" ON "spree_orders" ("completed_at")
+  [1m[36m (1.4ms)[0m  [1mCREATE INDEX "index_spree_orders_on_number" ON "spree_orders" ("number")[0m
+  [1m[35m (1.6ms)[0m  CREATE TABLE "spree_payment_methods" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "type" varchar(255), "name" varchar(255), "description" text, "active" boolean DEFAULT 't', "environment" varchar(255) DEFAULT 'development', "deleted_at" datetime, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "display_on" varchar(255)) 
+  [1m[36m (1.7ms)[0m  [1mCREATE TABLE "spree_payments" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "amount" decimal(10,2) DEFAULT 0.0 NOT NULL, "order_id" integer, "source_id" integer, "source_type" varchar(255), "payment_method_id" integer, "state" varchar(255), "response_code" varchar(255), "avs_response" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "identifier" varchar(255), "cvv_response_code" varchar(255), "cvv_response_message" varchar(255)) [0m
+  [1m[35m (2.0ms)[0m  CREATE INDEX "index_spree_payments_on_order_id" ON "spree_payments" ("order_id")
+  [1m[36m (1.9ms)[0m  [1mCREATE TABLE "spree_preferences" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "value" text, "key" varchar(255), "value_type" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (1.9ms)[0m  CREATE UNIQUE INDEX "index_spree_preferences_on_key" ON "spree_preferences" ("key")
+  [1m[36m (2.4ms)[0m  [1mCREATE TABLE "spree_prices" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "variant_id" integer NOT NULL, "amount" decimal(8,2), "currency" varchar(255)) [0m
+  [1m[35m (2.0ms)[0m  CREATE INDEX "index_spree_prices_on_variant_id_and_currency" ON "spree_prices" ("variant_id", "currency")
+  [1m[36m (1.5ms)[0m  [1mCREATE TABLE "spree_product_option_types" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "position" integer, "product_id" integer, "option_type_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (1.8ms)[0m  CREATE TABLE "spree_product_properties" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "value" varchar(255), "product_id" integer, "property_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "position" integer DEFAULT 0) 
+  [1m[36m (1.4ms)[0m  [1mCREATE INDEX "index_product_properties_on_product_id" ON "spree_product_properties" ("product_id")[0m
+  [1m[35m (2.4ms)[0m  CREATE TABLE "spree_products" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255) DEFAULT '' NOT NULL, "description" text, "available_on" datetime, "deleted_at" datetime, "permalink" varchar(255), "meta_description" text, "meta_keywords" varchar(255), "tax_category_id" integer, "shipping_category_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (1.5ms)[0m  [1mCREATE INDEX "index_spree_products_on_available_on" ON "spree_products" ("available_on")[0m
+  [1m[35m (1.5ms)[0m  CREATE INDEX "index_spree_products_on_deleted_at" ON "spree_products" ("deleted_at")
+  [1m[36m (1.6ms)[0m  [1mCREATE INDEX "index_spree_products_on_name" ON "spree_products" ("name")[0m
+  [1m[35m (1.5ms)[0m  CREATE INDEX "index_spree_products_on_permalink" ON "spree_products" ("permalink")
+  [1m[36m (2.2ms)[0m  [1mCREATE UNIQUE INDEX "permalink_idx_unique" ON "spree_products" ("permalink")[0m
+  [1m[35m (1.5ms)[0m  CREATE TABLE "spree_products_promotion_rules" ("product_id" integer, "promotion_rule_id" integer) 
+  [1m[36m (1.7ms)[0m  [1mCREATE INDEX "index_products_promotion_rules_on_product_id" ON "spree_products_promotion_rules" ("product_id")[0m
+  [1m[35m (1.6ms)[0m  CREATE INDEX "index_products_promotion_rules_on_promotion_rule_id" ON "spree_products_promotion_rules" ("promotion_rule_id")
+  [1m[36m (1.7ms)[0m  [1mCREATE TABLE "spree_products_taxons" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "product_id" integer, "taxon_id" integer) [0m
+  [1m[35m (2.2ms)[0m  CREATE INDEX "index_spree_products_taxons_on_product_id" ON "spree_products_taxons" ("product_id")
+  [1m[36m (1.7ms)[0m  [1mCREATE INDEX "index_spree_products_taxons_on_taxon_id" ON "spree_products_taxons" ("taxon_id")[0m
+  [1m[35m (28.7ms)[0m  CREATE TABLE "spree_promotion_action_line_items" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "promotion_action_id" integer, "variant_id" integer, "quantity" integer DEFAULT 1) 
+  [1m[36m (2.1ms)[0m  [1mCREATE TABLE "spree_promotion_actions" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "activator_id" integer, "position" integer, "type" varchar(255)) [0m
+  [1m[35m (2.1ms)[0m  CREATE TABLE "spree_promotion_rules" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "activator_id" integer, "user_id" integer, "product_group_id" integer, "type" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (2.5ms)[0m  [1mCREATE INDEX "index_promotion_rules_on_product_group_id" ON "spree_promotion_rules" ("product_group_id")[0m
+  [1m[35m (2.0ms)[0m  CREATE INDEX "index_promotion_rules_on_user_id" ON "spree_promotion_rules" ("user_id")
+  [1m[36m (1.5ms)[0m  [1mCREATE TABLE "spree_promotion_rules_users" ("user_id" integer, "promotion_rule_id" integer) [0m
+  [1m[35m (1.3ms)[0m  CREATE INDEX "index_promotion_rules_users_on_promotion_rule_id" ON "spree_promotion_rules_users" ("promotion_rule_id")
+  [1m[36m (1.7ms)[0m  [1mCREATE INDEX "index_promotion_rules_users_on_user_id" ON "spree_promotion_rules_users" ("user_id")[0m
+  [1m[35m (1.5ms)[0m  CREATE TABLE "spree_properties" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "presentation" varchar(255) NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (1.4ms)[0m  [1mCREATE TABLE "spree_properties_prototypes" ("prototype_id" integer, "property_id" integer) [0m
+  [1m[35m (2.2ms)[0m  CREATE TABLE "spree_prototypes" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (1.3ms)[0m  [1mCREATE TABLE "spree_return_authorizations" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "number" varchar(255), "state" varchar(255), "amount" decimal(10,2) DEFAULT 0.0 NOT NULL, "order_id" integer, "reason" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "stock_location_id" integer) [0m
+  [1m[35m (1.7ms)[0m  CREATE TABLE "spree_roles" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255)) 
+  [1m[36m (1.4ms)[0m  [1mCREATE TABLE "spree_roles_users" ("role_id" integer, "user_id" integer) [0m
+  [1m[35m (26.7ms)[0m  CREATE INDEX "index_spree_roles_users_on_role_id" ON "spree_roles_users" ("role_id")
+  [1m[36m (3.1ms)[0m  [1mCREATE INDEX "index_spree_roles_users_on_user_id" ON "spree_roles_users" ("user_id")[0m
+  [1m[35m (1.8ms)[0m  CREATE TABLE "spree_shipments" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "tracking" varchar(255), "number" varchar(255), "cost" decimal(8,2), "shipped_at" datetime, "order_id" integer, "address_id" integer, "state" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "stock_location_id" integer) 
+  [1m[36m (2.5ms)[0m  [1mCREATE INDEX "index_shipments_on_number" ON "spree_shipments" ("number")[0m
+  [1m[35m (1.7ms)[0m  CREATE INDEX "index_spree_shipments_on_order_id" ON "spree_shipments" ("order_id")
+  [1m[36m (1.8ms)[0m  [1mCREATE TABLE "spree_shipping_categories" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (1.8ms)[0m  CREATE TABLE "spree_shipping_method_categories" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "shipping_method_id" integer NOT NULL, "shipping_category_id" integer NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (2.2ms)[0m  [1mCREATE INDEX "index_spree_shipping_method_categories_on_shipping_category_id" ON "spree_shipping_method_categories" ("shipping_category_id")[0m
+  [1m[35m (2.7ms)[0m  CREATE INDEX "index_spree_shipping_method_categories_on_shipping_method_id" ON "spree_shipping_method_categories" ("shipping_method_id")
+  [1m[36m (3.2ms)[0m  [1mCREATE TABLE "spree_shipping_methods" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "display_on" varchar(255), "deleted_at" datetime, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "tracking_url" varchar(255), "admin_name" varchar(255)) [0m
+  [1m[35m (2.9ms)[0m  CREATE TABLE "spree_shipping_methods_zones" ("shipping_method_id" integer, "zone_id" integer) 
+  [1m[36m (2.4ms)[0m  [1mCREATE TABLE "spree_shipping_rates" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "shipment_id" integer, "shipping_method_id" integer, "selected" boolean DEFAULT 'f', "cost" decimal(8,2) DEFAULT 0.0, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (1.6ms)[0m  CREATE UNIQUE INDEX "spree_shipping_rates_join_index" ON "spree_shipping_rates" ("shipment_id", "shipping_method_id")
+  [1m[36m (1.5ms)[0m  [1mCREATE TABLE "spree_state_changes" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "previous_state" varchar(255), "stateful_id" integer, "user_id" integer, "stateful_type" varchar(255), "next_state" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (1.9ms)[0m  CREATE TABLE "spree_states" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "abbr" varchar(255), "country_id" integer) 
+  [1m[36m (1.5ms)[0m  [1mCREATE TABLE "spree_stock_items" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "stock_location_id" integer, "variant_id" integer, "count_on_hand" integer DEFAULT 0 NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "backorderable" boolean DEFAULT 'f', "deleted_at" datetime) [0m
+  [1m[35m (1.5ms)[0m  CREATE INDEX "stock_item_by_loc_and_var_id" ON "spree_stock_items" ("stock_location_id", "variant_id")
+  [1m[36m (1.5ms)[0m  [1mCREATE INDEX "index_spree_stock_items_on_stock_location_id" ON "spree_stock_items" ("stock_location_id")[0m
+  [1m[35m (2.1ms)[0m  CREATE TABLE "spree_stock_locations" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "address1" varchar(255), "address2" varchar(255), "city" varchar(255), "state_id" integer, "state_name" varchar(255), "country_id" integer, "zipcode" varchar(255), "phone" varchar(255), "active" boolean DEFAULT 't', "backorderable_default" boolean DEFAULT 'f', "propagate_all_variants" boolean DEFAULT 't', "admin_name" varchar(255)) 
+  [1m[36m (2.1ms)[0m  [1mCREATE TABLE "spree_stock_movements" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "stock_item_id" integer, "quantity" integer DEFAULT 0, "action" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "originator_id" integer, "originator_type" varchar(255)) [0m
+  [1m[35m (1.4ms)[0m  CREATE INDEX "index_spree_stock_movements_on_stock_item_id" ON "spree_stock_movements" ("stock_item_id")
+  [1m[36m (2.2ms)[0m  [1mCREATE TABLE "spree_stock_transfers" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "type" varchar(255), "reference" varchar(255), "source_location_id" integer, "destination_location_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "number" varchar(255)) [0m
+  [1m[35m (2.3ms)[0m  CREATE INDEX "index_spree_stock_transfers_on_destination_location_id" ON "spree_stock_transfers" ("destination_location_id")
+  [1m[36m (1.3ms)[0m  [1mCREATE INDEX "index_spree_stock_transfers_on_number" ON "spree_stock_transfers" ("number")[0m
+  [1m[35m (2.0ms)[0m  CREATE INDEX "index_spree_stock_transfers_on_source_location_id" ON "spree_stock_transfers" ("source_location_id")
+  [1m[36m (1.9ms)[0m  [1mCREATE TABLE "spree_tax_categories" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "description" varchar(255), "is_default" boolean DEFAULT 'f', "deleted_at" datetime, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (1.6ms)[0m  CREATE TABLE "spree_tax_rates" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "amount" decimal(8,5), "zone_id" integer, "tax_category_id" integer, "included_in_price" boolean DEFAULT 'f', "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "name" varchar(255), "show_rate_in_label" boolean DEFAULT 't', "deleted_at" datetime) 
+  [1m[36m (1.6ms)[0m  [1mCREATE TABLE "spree_taxonomies" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255) NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "position" integer DEFAULT 0) [0m
+  [1m[35m (2.2ms)[0m  CREATE TABLE "spree_taxons" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "parent_id" integer, "position" integer DEFAULT 0, "name" varchar(255) NOT NULL, "permalink" varchar(255), "taxonomy_id" integer, "lft" integer, "rgt" integer, "icon_file_name" varchar(255), "icon_content_type" varchar(255), "icon_file_size" integer, "icon_updated_at" datetime, "description" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "meta_title" varchar(255), "meta_description" varchar(255), "meta_keywords" varchar(255), "depth" integer) 
+  [1m[36m (1.5ms)[0m  [1mCREATE INDEX "index_taxons_on_parent_id" ON "spree_taxons" ("parent_id")[0m
+  [1m[35m (1.5ms)[0m  CREATE INDEX "index_taxons_on_permalink" ON "spree_taxons" ("permalink")
+  [1m[36m (1.4ms)[0m  [1mCREATE INDEX "index_taxons_on_taxonomy_id" ON "spree_taxons" ("taxonomy_id")[0m
+  [1m[35m (1.7ms)[0m  CREATE TABLE "spree_tokenized_permissions" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "permissable_id" integer, "permissable_type" varchar(255), "token" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (1.6ms)[0m  [1mCREATE INDEX "index_tokenized_name_and_type" ON "spree_tokenized_permissions" ("permissable_id", "permissable_type")[0m
+  [1m[35m (2.6ms)[0m  CREATE TABLE "spree_trackers" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "environment" varchar(255), "analytics_id" varchar(255), "active" boolean DEFAULT 't', "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (2.8ms)[0m  [1mCREATE TABLE "spree_users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "encrypted_password" varchar(128), "password_salt" varchar(128), "email" varchar(255), "remember_token" varchar(255), "persistence_token" varchar(255), "reset_password_token" varchar(255), "perishable_token" varchar(255), "sign_in_count" integer DEFAULT 0 NOT NULL, "failed_attempts" integer DEFAULT 0 NOT NULL, "last_request_at" datetime, "current_sign_in_at" datetime, "last_sign_in_at" datetime, "current_sign_in_ip" varchar(255), "last_sign_in_ip" varchar(255), "login" varchar(255), "ship_address_id" integer, "bill_address_id" integer, "authentication_token" varchar(255), "unlock_token" varchar(255), "locked_at" datetime, "reset_password_sent_at" datetime, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "remember_created_at" datetime, "spree_api_key" varchar(48)) [0m
+  [1m[35m (2.2ms)[0m  CREATE UNIQUE INDEX "email_idx_unique" ON "spree_users" ("email")
+  [1m[36m (1.8ms)[0m  [1mCREATE INDEX "index_spree_users_on_spree_api_key" ON "spree_users" ("spree_api_key")[0m
+  [1m[35m (2.0ms)[0m  CREATE TABLE "spree_variants" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "sku" varchar(255) DEFAULT '' NOT NULL, "weight" decimal(8,2) DEFAULT 0.0, "height" decimal(8,2), "width" decimal(8,2), "depth" decimal(8,2), "deleted_at" datetime, "is_master" boolean DEFAULT 'f', "product_id" integer, "cost_price" decimal(8,2), "position" integer, "cost_currency" varchar(255), "track_inventory" boolean DEFAULT 't') 
+  [1m[36m (1.3ms)[0m  [1mCREATE INDEX "index_spree_variants_on_product_id" ON "spree_variants" ("product_id")[0m
+  [1m[35m (1.3ms)[0m  CREATE INDEX "index_spree_variants_on_sku" ON "spree_variants" ("sku")
+  [1m[36m (1.5ms)[0m  [1mCREATE TABLE "spree_zone_members" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "zoneable_id" integer, "zoneable_type" varchar(255), "zone_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (2.1ms)[0m  CREATE TABLE "spree_zones" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "description" varchar(255), "default_tax" boolean DEFAULT 'f', "zone_members_count" integer DEFAULT 0, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (1.6ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35m (1.4ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36m (0.1ms)[0m  [1mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (1.6ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140324122038')
+  [1m[36m (1.3ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140324121939')[0m
+  [1m[35m (1.4ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140324121940')
+  [1m[36m (2.0ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140324121941')[0m
+  [1m[35m (1.4ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140324121942')
+  [1m[36m (1.4ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140324121943')[0m
+  [1m[35m (22.6ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140324121944')
+  [1m[36m (2.7ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140324121945')[0m
+  [1m[35m (2.0ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140324121946')
+  [1m[36m (1.8ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140324121947')[0m
+  [1m[35m (1.7ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140324121948')
+  [1m[36m (2.2ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140324121949')[0m
+  [1m[35m (1.4ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140324121950')
+  [1m[36m (1.9ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140324121951')[0m
+  [1m[35m (1.8ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140324121952')
+  [1m[36m (1.6ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140324121953')[0m
+  [1m[35m (1.5ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140324121954')
+  [1m[36m (1.8ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140324121955')[0m
+  [1m[35m (1.7ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140324121956')
+  [1m[36m (1.5ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140324121957')[0m
+  [1m[35m (1.6ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140324121958')
+  [1m[36m (1.5ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140324121959')[0m
+  [1m[35m (2.1ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140324121960')
+  [1m[36m (1.7ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140324121961')[0m
+  [1m[35m (2.0ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140324121962')
+  [1m[36m (1.8ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140324121963')[0m
+  [1m[35m (142.8ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140324121964')
+  [1m[36m (1.7ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140324121965')[0m
+  [1m[35m (1.4ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140324121966')
+  [1m[36m (2.1ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140324121967')[0m
+  [1m[35m (1.5ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140324121968')
+  [1m[36m (1.5ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140324121969')[0m
+  [1m[35m (2.4ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140324121970')
+  [1m[36m (1.3ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140324121971')[0m
+  [1m[35m (1.9ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140324121972')
+  [1m[36m (1.6ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140324121973')[0m
+  [1m[35m (1.6ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140324121974')
+  [1m[36m (1.6ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140324121975')[0m
+  [1m[35m (1.3ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140324121976')
+  [1m[36m (1.7ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140324121977')[0m
+  [1m[35m (1.8ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140324121978')
+  [1m[36m (1.7ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140324121979')[0m
+  [1m[35m (1.7ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140324121980')
+  [1m[36m (2.5ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140324121981')[0m
+  [1m[35m (1.6ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140324121982')
+  [1m[36m (1.4ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140324121983')[0m
+  [1m[35m (1.3ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140324121984')
+  [1m[36m (2.2ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140324121985')[0m
+  [1m[35m (2.6ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140324121986')
+  [1m[36m (1.5ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140324121987')[0m
+  [1m[35m (1.3ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140324121988')
+  [1m[36m (1.4ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140324121989')[0m
+  [1m[35m (1.9ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140324121990')
+  [1m[36m (1.5ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140324121991')[0m
+  [1m[35m (2.4ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140324121992')
+  [1m[36m (1.4ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140324121993')[0m
+  [1m[35m (1.5ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140324121994')
+  [1m[36m (1.4ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140324121995')[0m
+  [1m[35m (2.0ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140324121996')
+  [1m[36m (2.7ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140324121997')[0m
+  [1m[35m (1.7ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140324121998')
+  [1m[36m (1.9ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140324121999')[0m
+  [1m[35m (1.4ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140324122000')
+  [1m[36m (1.8ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140324122001')[0m
+  [1m[35m (1.5ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140324122002')
+  [1m[36m (2.3ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140324122003')[0m
+  [1m[35m (1.5ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140324122004')
+  [1m[36m (1.6ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140324122005')[0m
+  [1m[35m (2.1ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140324122006')
+  [1m[36m (2.4ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140324122007')[0m
+  [1m[35m (1.6ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140324122008')
+  [1m[36m (1.4ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140324122009')[0m
+  [1m[35m (1.3ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140324122010')
+  [1m[36m (1.7ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140324122011')[0m
+  [1m[35m (1.5ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140324122012')
+  [1m[36m (1.6ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140324122013')[0m
+  [1m[35m (1.6ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140324122014')
+  [1m[36m (2.0ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140324122015')[0m
+  [1m[35m (1.8ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140324122016')
+  [1m[36m (2.0ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140324122017')[0m
+  [1m[35m (1.6ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140324122018')
+  [1m[36m (1.7ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140324122019')[0m
+  [1m[35m (1.5ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140324122020')
+  [1m[36m (1.9ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140324122021')[0m
+  [1m[35m (2.6ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140324122022')
+  [1m[36m (2.4ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140324122023')[0m
+  [1m[35m (1.8ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140324122024')
+  [1m[36m (1.8ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140324122025')[0m
+  [1m[35m (2.6ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140324122026')
+  [1m[36m (2.0ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140324122027')[0m
+  [1m[35m (1.6ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140324122028')
+  [1m[36m (2.0ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140324122029')[0m
+  [1m[35m (1.9ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140324122030')
+  [1m[36m (2.2ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140324122031')[0m
+  [1m[35m (2.3ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140324122032')
+  [1m[36m (1.8ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140324122033')[0m
+  [1m[35m (2.7ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140324122034')
+  [1m[36m (1.7ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140324122035')[0m
+  [1m[35m (191.4ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140324122036')
+  [1m[36m (2.2ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140324122037')[0m
+Connecting to database specified by database.yml
+  [1m[36m (0.4ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to SpreeOneTwo (20140324121939)
+Migrating to SpreePromoOneTwo (20140324121940)
+Migrating to AddTaxRateLabel (20140324121941)
+Migrating to AddToggleTaxRateDisplay (20140324121942)
+Migrating to RemoveUnusedPreferenceColumns (20140324121943)
+Migrating to AddLockVersionToVariant (20140324121944)
+Migrating to AddStatesRequiredToCountries (20140324121945)
+Migrating to AddOnDemandToProductAndVariant (20140324121946)
+Migrating to RemoveNotNullConstraintFromProductsOnHand (20140324121947)
+Migrating to SplitPricesFromVariants (20140324121948)
+Migrating to RemoveNotNullFromSpreePricesAmount (20140324121949)
+Migrating to AddCurrencyToLineItems (20140324121950)
+Migrating to AddCurrencyToOrders (20140324121951)
+Migrating to AddCostCurrencyToVariants (20140324121952)
+Migrating to RemoveDisplayOnFromPaymentMethods (20140324121953)
+Migrating to AddPositionToTaxonomies (20140324121954)
+Migrating to AddLastIpToSpreeOrders (20140324121955)
+Migrating to AddStateToSpreeAdjustments (20140324121956)
+Migrating to AddDisplayOnToSpreePaymentMethods (20140324121957)
+Migrating to AddPositionToProductProperties (20140324121958)
+Migrating to AddIdentifierToSpreePayments (20140324121959)
+Migrating to AddOrderIdIndexToPayments (20140324121960)
+Migrating to AddPrimaryToSpreeProductsTaxons (20140324121961)
+Migrating to CreateSpreeStockItems (20140324121962)
+Migrating to CreateSpreeStockLocations (20140324121963)
+Migrating to CreateDefaultStock (20140324121964)
+Migrating to AddOrderIdIndexToShipments (20140324121965)
+Migrating to ChangeMetaDescriptionOnSpreeProductsToText (20140324121966)
+Migrating to AddStockLocationIdToSpreeShipments (20140324121967)
+Migrating to AddPendingToInventoryUnit (20140324121968)
+Migrating to RemoveOnDemandFromProductAndVariant (20140324121969)
+Migrating to CreateShippingMethodZone (20140324121970)
+Migrating to RemoveShippingCategoryIdFromShippingMethod (20140324121971)
+Migrating to CreateShippingMethodCategories (20140324121972)
+Migrating to AddTrackingUrlToSpreeShippingMethods (20140324121973)
+Migrating to CreateSpreeShippingRates (20140324121974)
+Migrating to RemoveCategoryMatchAttributesFromShippingMethod (20140324121975)
+Migrating to CreateStockMovements (20140324121976)
+Migrating to AddAddressFieldsToStockLocation (20140324121977)
+Migrating to AddActiveFieldToStockLocations (20140324121978)
+Migrating to AddBackorderableToStockItem (20140324121979)
+Migrating to AddDefaultQuantityToStockMovement (20140324121980)
+Migrating to AddSourceAndDestinationToStockMovements (20140324121981)
+Migrating to ChangeOrdersTotalPrecision (20140324121982)
+Migrating to ChangeSpreePaymentsAmountPrecision (20140324121983)
+Migrating to ChangeSpreeReturnAuthorizationAmountPrecision (20140324121984)
+Migrating to ChangeAdjustmentsAmountPrecision (20140324121985)
+Migrating to AddOriginatorToStockMovement (20140324121986)
+Migrating to DropSourceAndDestinationFromStockMovement (20140324121987)
+Migrating to MigrateInventoryUnitSoldToOnHand (20140324121988)
+Migrating to AddStockLocationToRma (20140324121989)
+Migrating to UpdateShipmentStateForCanceledOrders (20140324121990)
+Migrating to AddSeoMetasToTaxons (20140324121991)
+Migrating to RemoveStockItemAndVariantLock (20140324121992)
+Migrating to AddIndexToSourceColumnsOnAdjustments (20140324121993)
+Migrating to UpdateAdjustmentStates (20140324121994)
+Migrating to AddShippingRatesToShipments (20140324121995)
+Migrating to CreateSpreeStockTransfers (20140324121996)
+Migrating to DropProductsCountOnHand (20140324121997)
+Migrating to SetDefaultShippingRateCost (20140324121998)
+Migrating to AddNumberToStockTransfer (20140324121999)
+Migrating to AddSkuIndexToSpreeVariants (20140324122000)
+Migrating to AddBackorderableDefaultToSpreeStockLocation (20140324122001)
+Migrating to AddPropageAllVariantsToSpreeStockLocation (20140324122002)
+Migrating to RenameShippingMethodsZonesToSpreeShippingMethodsZones (20140324122003)
+Migrating to AddCvvResultCodeAndCvvResultMessageToSpreePayments (20140324122004)
+Migrating to AddUniqueIndexToPermalinkOnSpreeProducts (20140324122005)
+Migrating to AddUniqueIndexToOrdersShipmentsAndStockTransfers (20140324122006)
+Migrating to AddDeletedAtToSpreeTaxRates (20140324122007)
+Migrating to RemoveLockVersionFromInventoryUnits (20140324122008)
+Migrating to AddCostPriceToLineItem (20140324122009)
+Migrating to SetBackorderableToDefaultToFalse (20140324122010)
+Migrating to AddCreatedByIdToSpreeOrders (20140324122011)
+Migrating to IndexCompletedAtOnSpreeOrders (20140324122012)
+Migrating to AddTaxCategoryIdToSpreeLineItems (20140324122013)
+Migrating to MigrateTaxCategoriesToLineItems (20140324122014)
+Migrating to DropSpreeMailMethods (20140324122015)
+Migrating to SetDefaultStockLocationOnShipments (20140324122016)
+Migrating to AddAdminNameColumnToSpreeShippingMethods (20140324122017)
+Migrating to AddAdminNameColumnToSpreeStockLocations (20140324122018)
+Migrating to ExpandOrderNumberSize (20140324122019)
+Migrating to AddDepthToSpreeTaxons (20140324122020)
+Migrating to AddShippingCategoryToShippingMethodsAndProducts (20140324122021)
+Migrating to MigrateOldShippingCalculators (20140324122022)
+Migrating to ChangeStatesRequiredForCountries (20140324122023)
+Migrating to AddDeletedAtToSpreeStockItems (20140324122024)
+Migrating to RemoveUnusedCreditCardFields (20140324122025)
+Migrating to AddTrackInventoryToVariant (20140324122026)
+Migrating to AddChannelToSpreeOrders (20140324122027)
+Migrating to AddIndexToVariantIdAndCurrencyOnPrices (20140324122028)
+Migrating to DefaultVariantWeightToZero (20140324122029)
+Migrating to CreateUsers (20140324122030)
+Migrating to RenameColumnsForDevise (20140324122031)
+Migrating to ConvertUserRememberField (20140324122032)
+Migrating to AddResetPasswordSentAtToSpreeUsers (20140324122033)
+Migrating to MakeUsersEmailIndexUnique (20140324122034)
+Migrating to AddApiKeyToSpreeUsers (20140324122035)
+Migrating to ResizeApiKeyField (20140324122036)
+Migrating to RenameApiKeyToSpreeApiKey (20140324122037)
+Migrating to AddIndexToUserSpreeApiKey (20140324122038)
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (0.3ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
